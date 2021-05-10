@@ -5,6 +5,7 @@ public class UserAccount {
 	private String Name;
 	private String userName;
 	private String password;
+	private boolean isAdmin;
 
 	public UserAccount() {
 
@@ -41,5 +42,15 @@ public class UserAccount {
 	public void setName(String name) {
 		Name = name;
 	}
+
+	public boolean isAdmin() {
+		return isAdmin;
+	}
+
+	public void setAdmin(boolean isAdmin) {
+		this.isAdmin = isAdmin;
+	}
+	
+	
 
 }

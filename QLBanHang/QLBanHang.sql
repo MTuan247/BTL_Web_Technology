@@ -21,7 +21,7 @@ Create Table Account(
 	NAME NVARCHAR(100),
 	USER_NAME NVARCHAR(30),
 	PASSWORD NVARCHAR(30),
-
+	IS_ADMIN BIT,
 );
 
 Create Table Cart(
