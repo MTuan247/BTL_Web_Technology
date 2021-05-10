@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ page import="java.util.List,Model.Product" %>
+<%@ page import="java.util.List,Model.CartProduct" %>
 
 <!DOCTYPE html>
 <html>
@@ -16,13 +16,13 @@
 
 	<h3>Cart</h3>
 
-	<jsp:include page="_listP.jsp"></jsp:include>
+	<jsp:include page="_listProductInCart.jsp"></jsp:include>
 	
 	<%	
 		float sum = 0;
-		List<Product> list = (List<Product>) request.getAttribute("listProduct");
-		for (Product o : list){
-			sum += o.getPrice() * o.getSale();
+		List<CartProduct> list = (List<CartProduct>) request.getAttribute("listProduct");
+		for (CartProduct o : list){
+			sum += o.getPrice() * o.getSale() * o.getNum();
 		}
 		
 		out.println("<br>");

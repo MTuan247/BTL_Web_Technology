@@ -14,7 +14,6 @@ import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-import DB.ConnectionUtils;
 import Model.UserAccount;
 import Utils.DBUtils;
 import Utils.MyUtils;
@@ -50,8 +49,8 @@ public class CookieFilter implements Filter {
         }
  
         // Connection đã được tạo trong JDBCFilter.
-//        Connection conn = MyUtils.getStoredConnection(request);
-        Connection conn = ConnectionUtils.getConnection();
+        Connection conn = MyUtils.getStoredConnection(request);
+//        Connection conn = ConnectionUtils.getConnection();
  
         // Cờ (flag) để kiểm tra Cookie.
         String checked = (String) session.getAttribute("COOKIE_CHECKED");

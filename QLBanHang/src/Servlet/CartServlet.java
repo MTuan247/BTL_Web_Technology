@@ -12,7 +12,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import DB.ConnectionUtils;
+//import DB.ConnectionUtils;
+import Model.CartProduct;
 import Model.Product;
 import Model.UserAccount;
 import Utils.DBUtils;
@@ -24,78 +25,103 @@ public class CartServlet extends HttpServlet {
 
 	public CartServlet() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-
-		HttpSession session = request.getSession();
+		Connection conn = MyUtils.getStoredConnection(request);
+		List<CartProduct> listProduct = getListCartProduct(conn,request);
 		
-		UserAccount loginedUser = MyUtils.getLoginedUser(session);
-
-		if (loginedUser == null) {
-
-			response.sendRedirect(request.getContextPath() + "/Login");
-			return;
-		}
-		
-		Connection conn = ConnectionUtils.getConnection();
-		List<Product> listProduct = null;
-		List<String> listProductIDInCart = null;
-		
-		listProduct = DBUtils.getAllProductFromCart(conn, loginedUser.getUserID());
-
-		request.setAttribute("user", loginedUser);
 		request.setAttribute("listProduct", listProduct);
-		
-		if (loginedUser != null) {
-
-			listProductIDInCart = DBUtils.getAllProductIDFromCart(conn, loginedUser.getUserID());
-			for (Product o : listProduct) {
-				if(listProductIDInCart.contains(o.getProductID())) {
-					o.setInCart(true);
-				}
-			}
-		}
-
 		RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher("/WEB-INF/views/cartView.jsp");
-
 		dispatcher.forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-//		doGet(request, response);
-		HttpSession session = request.getSession();
-		UserAccount loginedUser = MyUtils.getLoginedUser(session);
-
-		if (loginedUser == null) {
-
-			response.sendRedirect(request.getContextPath() + "/Login");
-			return;
-		}
-		
-		Connection conn = ConnectionUtils.getConnection();
+		Connection conn = MyUtils.getStoredConnection(request);
 		
 		String action = request.getParameter("action");
-		String productID = request.getParameter("productID");
-		String userID = loginedUser.getUserID();
-		
-//		System.out.println(productID);
-//		System.out.println(userID);
-//		System.out.println(action);
-//		System.out.println(action.equalsIgnoreCase("Add To Cart"));
 		
 		if(action.equalsIgnoreCase("Add To Cart")) {
-			DBUtils.insertToCart(conn, userID, productID);
+			AddToCart(conn,request);
 		} else if (action.equalsIgnoreCase("Remove From Cart")) {
-			DBUtils.removeFromCart(conn, userID, productID);
+			RemoveFromCart(conn,request);
+		} else if (action.equalsIgnoreCase("Change")) {
+			UpdateNumber(conn,request);
+			return;
 		}
 		
 		String url = request.getHeader("referer");
 		response.sendRedirect(url);
 		
 	}
+	
+	public List<CartProduct> getListCartProduct(Connection conn, HttpServletRequest request ){
+		List<CartProduct> listProduct = null;
+		HttpSession session = request.getSession();
+		UserAccount loginedUser = MyUtils.getLoginedUser(session);
+		
+		if (loginedUser == null) {
+			listProduct = MyUtils.getCartProduct(session);
+		} else {
+			listProduct = DBUtils.getAllProductFromCart(conn, loginedUser.getUserID());
+		}
+		
+		for (Product o : listProduct) {
+			o.setInCart(true);
+		}
+		
+		return listProduct;
+	}
+	
+	public void AddToCart(Connection conn, HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		UserAccount loginedUser = MyUtils.getLoginedUser(session);
+		
+		String productID = request.getParameter("productID");
+		
+		if (loginedUser == null) {	
+			List<CartProduct> listProduct = MyUtils.getCartProduct(session);
+			List<String> listProductID = MyUtils.getCartProductID(session);
+			listProduct.add(DBUtils.findProduct(conn, productID));
+			listProductID.add(productID);
+		} else {
+			DBUtils.insertToCart(conn, loginedUser.getUserID(), productID);
+		}
+	}
+	
+	public void RemoveFromCart(Connection conn, HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		UserAccount loginedUser = MyUtils.getLoginedUser(session);
+		
+		String productID = request.getParameter("productID");
+		
+		if (loginedUser == null) {
+			List<CartProduct> listProduct = MyUtils.getCartProduct(session);
+			List<String> listProductID = MyUtils.getCartProductID(session);
+			listProduct.removeIf(n -> (n.getID().equalsIgnoreCase(productID) ));
+			listProductID.remove(productID);
+		} else {
+			DBUtils.removeFromCart(conn, loginedUser.getUserID(), productID);
+		}
+	}
 
+	public void UpdateNumber(Connection conn, HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		UserAccount loginedUser = MyUtils.getLoginedUser(session);
+		
+		String productID = request.getParameter("productID");
+		if (loginedUser == null) {
+			List<CartProduct> listProduct = MyUtils.getCartProduct(session);
+			for (CartProduct o : listProduct) {
+				if(o.getProductID().equalsIgnoreCase(productID)) {
+					o.setNum(o.getNum() + 1);
+					System.out.println(o.getNum());
+				}
+			}
+		} else {
+
+		}
+	}
 }

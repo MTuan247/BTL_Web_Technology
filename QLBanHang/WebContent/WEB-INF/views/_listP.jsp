@@ -11,7 +11,7 @@
 		<th>Price</th>
 		<th>Sale</th>
 		<th>Available</th>
-		<th>Add to Cart</th>
+		<th>Action</th>
 	</tr>
 	<c:forEach items="${listProduct}" var="product">
 		<tr>

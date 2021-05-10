@@ -9,6 +9,7 @@ import java.util.List;
 
 import Model.Product;
 import Model.UserAccount;
+import Model.CartProduct;
 import Model.Category;
 
 public class DBUtils {
@@ -74,7 +75,7 @@ public class DBUtils {
 				float price = rs.getFloat("Price");
 				float sale = rs.getFloat("sale");
 				int available = rs.getInt("available");
-				list.add(new Product(productID, name, image, description, price, sale,available));
+				list.add(new Product(productID, name, image, description, price, sale, available));
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -102,7 +103,7 @@ public class DBUtils {
 				float price = rs.getFloat("Price");
 				float sale = rs.getFloat("sale");
 				int available = rs.getInt("available");
-				list.add(new Product(productID, name, image, description, price, sale,available));
+				list.add(new Product(productID, name, image, description, price, sale, available));
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -118,7 +119,7 @@ public class DBUtils {
 		List<Product> list = null;
 		try {
 			PreparedStatement pstm = conn.prepareStatement(sql);
-			pstm.setString(1,"%" + search + "%");
+			pstm.setString(1, "%" + search + "%");
 
 			ResultSet rs = pstm.executeQuery();
 			list = new ArrayList<Product>();
@@ -130,7 +131,7 @@ public class DBUtils {
 				float price = rs.getFloat("Price");
 				float sale = rs.getFloat("sale");
 				int available = rs.getInt("available");
-				list.add(new Product(productID, name, image, description, price, sale,available));
+				list.add(new Product(productID, name, image, description, price, sale, available));
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -140,17 +141,17 @@ public class DBUtils {
 		return list;
 	}
 
-	public static List<Product> getAllProductFromCart(Connection conn, String userID) {
+	public static List<CartProduct> getAllProductFromCart(Connection conn, String userID) {
 		String sql = "Select * from Cart,Product where Cart.PRODUCT_ID = Product.PRODUCT_ID and USER_ID = ?";
 
-		List<Product> list = null;
+		List<CartProduct> list = null;
 		try {
 			PreparedStatement pstm = conn.prepareStatement(sql);
 
 			pstm.setString(1, userID);
 
 			ResultSet rs = pstm.executeQuery();
-			list = new ArrayList<Product>();
+			list = new ArrayList<CartProduct>();
 			while (rs.next()) {
 				String productID = rs.getString("PRODUCT_ID");
 				String name = rs.getString("Name");
@@ -159,7 +160,7 @@ public class DBUtils {
 				float price = rs.getFloat("Price");
 				float sale = rs.getFloat("sale");
 				int available = rs.getInt("available");
-				list.add(new Product(productID, name, image, description, price, sale,available));
+				list.add(new CartProduct(productID, name, image, description, price, sale, available));
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -215,19 +216,27 @@ public class DBUtils {
 		return list;
 	}
 
-	public static Product findProduct(Connection conn, String code) throws SQLException {
-		String sql = "Select a.Code, a.Name, a.Price from Product a where a.Code=?";
+	public static CartProduct findProduct(Connection conn, String id) {
+		String sql = "Select * from Product where PRODUCT_ID=?";
 
-		PreparedStatement pstm = conn.prepareStatement(sql);
-		pstm.setString(1, code);
+		try {
+			PreparedStatement pstm = conn.prepareStatement(sql);
+			pstm.setString(1, id);
 
-		ResultSet rs = pstm.executeQuery();
+			ResultSet rs = pstm.executeQuery();
 
-		while (rs.next()) {
-			String name = rs.getString("Name");
-			float price = rs.getFloat("Price");
-			Product product = new Product(code, name, price);
-			return product;
+			if (rs.next()) {
+				String productID = rs.getString("PRODUCT_ID");
+				String name = rs.getString("Name");
+				String image = rs.getString("image");
+				String description = rs.getString("description");
+				float price = rs.getFloat("Price");
+				float sale = rs.getFloat("sale");
+				int available = rs.getInt("available");
+				return new CartProduct(productID, name, image, description, price, sale, available);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
 		}
 		return null;
 	}
@@ -265,41 +274,15 @@ public class DBUtils {
 	}
 
 	public static void updateProduct(Connection conn, Product product) throws SQLException {
-		String sql = "Update Product set Name =?, Price=? where Code=? ";
-
-		PreparedStatement pstm = conn.prepareStatement(sql);
-
-		pstm.setString(1, product.getName());
-		pstm.setFloat(2, product.getPrice());
-		pstm.setString(3, product.getID());
-		pstm.executeUpdate();
+		
 	}
 
 	public static void insertProduct(Connection conn, Product product) {
-		String sql = "Insert into Product(Code, Name,Price) values (?,?,?)";
-
-		try {
-			PreparedStatement pstm = conn.prepareStatement(sql);
-
-			pstm.setString(1, product.getID());
-			pstm.setString(2, product.getName());
-			pstm.setFloat(3, product.getPrice());
-
-			pstm.executeUpdate();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		
 	}
 
 	public static void deleteProduct(Connection conn, String code) throws SQLException {
-		String sql = "Delete From Product where Code= ?";
 
-		PreparedStatement pstm = conn.prepareStatement(sql);
-
-		pstm.setString(1, code);
-
-		pstm.executeUpdate();
 	}
 
 }

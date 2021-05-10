@@ -14,7 +14,6 @@ import javax.servlet.http.HttpSession;
 
 import Utils.DBUtils;
 import Utils.MyUtils;
-import DB.ConnectionUtils;
 import Model.Category;
 import Model.Product;
 import Model.UserAccount;
@@ -31,25 +30,18 @@ public class HomeServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		Connection conn = ConnectionUtils.getConnection();
+		Connection conn = MyUtils.getStoredConnection(request);
 		List<Product> listProduct = null;
 		List<String> listProductIDInCart = null;
 		List<Category> listCategory = null;
 
-		HttpSession session = request.getSession();
-
-		UserAccount loginedUser = MyUtils.getLoginedUser(session);
-
 		listCategory = DBUtils.getAllCategory(conn);
 		listProduct = getListProduct(conn, request, response);
-		
-		if (loginedUser != null) {
+		listProductIDInCart = getListProductIDInCart(conn,request,response);
 
-			listProductIDInCart = DBUtils.getAllProductIDFromCart(conn, loginedUser.getUserID());
-			for (Product o : listProduct) {
-				if(listProductIDInCart.contains(o.getProductID())) {
-					o.setInCart(true);
-				}
+		for (Product o : listProduct) {
+			if(listProductIDInCart.contains(o.getProductID())) {
+				o.setInCart(true);
 			}
 		}
 
@@ -69,5 +61,19 @@ public class HomeServlet extends HttpServlet {
 	
 	protected List<Product> getListProduct(Connection conn, HttpServletRequest request, HttpServletResponse response){
 		return DBUtils.getAllProduct(conn);
+	}
+	
+	protected List<String> getListProductIDInCart(Connection conn, HttpServletRequest request, HttpServletResponse response){
+		List<String> listProductIDInCart = null;
+		HttpSession session = request.getSession();
+		UserAccount loginedUser = MyUtils.getLoginedUser(session);
+		
+		if (loginedUser != null) {
+			listProductIDInCart = DBUtils.getAllProductIDFromCart(conn, loginedUser.getUserID());
+		} else {
+			listProductIDInCart = MyUtils.getCartProductID(session);
+		}
+		
+		return listProductIDInCart;
 	}
 }
