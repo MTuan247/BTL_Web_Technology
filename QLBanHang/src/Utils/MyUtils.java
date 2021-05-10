@@ -11,7 +11,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import Model.CartProduct;
-//import Model.Product;
 import Model.UserAccount;
  
 public class MyUtils {

@@ -18,21 +18,12 @@
 
 	<jsp:include page="_listProductInCart.jsp"></jsp:include>
 	
-	<%	
-		float sum = 0;
-		List<CartProduct> list = (List<CartProduct>) request.getAttribute("listProduct");
-		for (CartProduct o : list){
-			sum += o.getPrice() * o.getSale() * o.getNum();
-		}
-		
-		out.println("<br>");
-		out.println("<h3> Total Money: ");
-		out.println(sum);
-		out.println("</h3>");
-		out.println("<br>");
-	%>
-
-
+	<br>
+	<h3 id="TotalMoney">Total Money: ${totalMoney }</h3>
+	<br>
+	
+	
+	
 	<jsp:include page="_footer.jsp"></jsp:include>
 
 </body>

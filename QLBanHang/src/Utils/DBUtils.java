@@ -31,6 +31,7 @@ public class DBUtils {
 			user.setUserID(userID);
 			user.setUserName(userName);
 			user.setPassword(password);
+			user.setAdmin(rs.getBoolean("IS_ADMIN"));
 			return user;
 		}
 		return null;
@@ -49,10 +50,12 @@ public class DBUtils {
 		if (rs.next()) {
 			String userID = rs.getString("USER_ID");
 			String password = rs.getString("Password");
+			boolean isAdmin = rs.getBoolean("IS_ADMIN");
 			UserAccount user = new UserAccount();
 			user.setUserID(userID);
 			user.setUserName(userName);
 			user.setPassword(password);
+			user.setAdmin(isAdmin);
 			return user;
 		}
 		return null;
@@ -273,7 +276,20 @@ public class DBUtils {
 		}
 	}
 
-	public static void updateProduct(Connection conn, Product product) throws SQLException {
+	public static void updateProduct(Connection conn, CartProduct product){
+		String sql = "Update Product Set AVAILABLE=? Where PRODUCT_ID=?";
+
+		try {
+			PreparedStatement pstm = conn.prepareStatement(sql);
+
+			pstm.setInt(1, product.getAvailable()-product.getNum());
+			pstm.setString(2, product.getID());
+
+			pstm.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 	}
 
