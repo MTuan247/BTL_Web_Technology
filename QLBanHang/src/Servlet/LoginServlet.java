@@ -12,7 +12,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import DB.ConnectionUtils;
 import Model.UserAccount;
 import Utils.DBUtils;
 import Utils.MyUtils;
@@ -52,7 +51,7 @@ public class LoginServlet extends HttpServlet {
 			hasError = true;
 			errorString = "Required username and password!";
 		} else {
-			Connection conn = ConnectionUtils.getConnection();
+			Connection conn = MyUtils.getStoredConnection(request);
 			try {
 				// Tìm user trong DB.
 

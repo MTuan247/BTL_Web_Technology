@@ -1,6 +1,8 @@
 package Utils;
 
 import java.sql.Connection;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.ServletRequest;
 import javax.servlet.http.Cookie;
@@ -8,6 +10,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import Model.CartProduct;
+//import Model.Product;
 import Model.UserAccount;
  
 public class MyUtils {
@@ -15,6 +19,10 @@ public class MyUtils {
     public static final String ATT_NAME_CONNECTION = "ATTRIBUTE_FOR_CONNECTION";
  
     private static final String ATT_NAME_USER_NAME = "ATTRIBUTE_FOR_STORE_USER_NAME_IN_COOKIE";
+    
+    private static final String ATT_NAME_CART_LIST = "ATTRIBUTE_FOR_STORE_CART_LIST";
+    
+    private static final String ATT_NAME_CART_LIST_ID = "ATTRIBUTE_FOR_STORE_CART_LIST_ID";
  
     // Lưu trữ Connection vào attribute của request.
     // Thông tin lưu trữ này chỉ tồn tại trong thời gian yêu cầu (request)
@@ -74,6 +82,34 @@ public class MyUtils {
         response.addCookie(cookieUserName);
     }
     
+    // Lưu, Lấy danh sách sản phẩm trong list vào session
+    public static void storeCartProduct(HttpSession session, List<CartProduct> list) {
+    	session.setAttribute(ATT_NAME_CART_LIST, list);
+    }
     
+    public static List<CartProduct> getCartProduct(HttpSession session) {
+    	@SuppressWarnings("unchecked")
+		List<CartProduct> list = (List<CartProduct>) session.getAttribute(ATT_NAME_CART_LIST);
+    	if (list == null) {
+    		list = new ArrayList<CartProduct>();
+    		storeCartProduct(session,list);
+    	}
+        return list;
+    }
+    
+ // Lưu, Lấy danh sách id sản phẩm trong list vào session
+    public static void storeCartProductID(HttpSession session, List<String> list) {
+    	session.setAttribute(ATT_NAME_CART_LIST_ID, list);
+    }
+    
+    public static List<String> getCartProductID(HttpSession session) {
+    	@SuppressWarnings("unchecked")
+		List<String> list = (List<String>) session.getAttribute(ATT_NAME_CART_LIST_ID);
+    	if (list == null) {
+    		list = new ArrayList<String>();
+    		storeCartProductID(session,list);
+    	}
+        return list;
+    }
  
 }

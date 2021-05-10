@@ -10,16 +10,10 @@ public class ConnectionUtils {
 		try {
 			conn = SQLServerConnUtils_SQLJDBC.getSQLServerConnection_SQLJDBC();
 		} catch (ClassNotFoundException | SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-
-//        return OracleConnUtils.getOracleConnection();
-		// return OracleConnUtils.getOracleConnection();
-		// return MySQLConnUtils.getMySQLConnection();
-		// return SQLServerConnUtils_JTDS.getSQLServerConnection_JTDS();
+		System.out.println(conn);
 		return conn;
-		// return PostGresConnUtils.getPostGresConnection();
 	}
 
 	public static void closeQuietly(Connection conn) {
@@ -38,10 +32,10 @@ public class ConnectionUtils {
 
 //    public static void main(String[] args) {
 //    	try {
-//			System.out.print(new ConnectionUtils().getConnection());
-//		} catch (ClassNotFoundException | SQLException e) {
-//			// TODO Auto-generated catch block
+//    		System.out.print(new ConnectionUtils().getConnection());
+//		} catch (Exception e) {
 //			e.printStackTrace();
 //		}
+//    	
 //    }
 }

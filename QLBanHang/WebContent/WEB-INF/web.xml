@@ -5,6 +5,11 @@
 	id="WebApp_ID" version="3.1">
 
 	<display-name>QLBanHang</display-name>
+	
+	<filter-mapping>
+		<filter-name>jdbcFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
 
 	<filter-mapping>
 		<filter-name>cookieFilter</filter-name>
