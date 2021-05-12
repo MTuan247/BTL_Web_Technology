@@ -276,7 +276,7 @@ public class DBUtils {
 		}
 	}
 
-	public static void updateProduct(Connection conn, CartProduct product){
+	public static void buyProduct(Connection conn, CartProduct product){
 		String sql = "Update Product Set AVAILABLE=? Where PRODUCT_ID=?";
 
 		try {

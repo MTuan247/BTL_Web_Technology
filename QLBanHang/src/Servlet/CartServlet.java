@@ -56,7 +56,7 @@ public class CartServlet extends HttpServlet {
 			return;
 		} else if (action.equalsIgnoreCase("Buy")) {
 			Buy(conn,request);
-			return;
+//			return;
 		}
 		
 		String url = request.getHeader("referer");
@@ -165,7 +165,7 @@ public class CartServlet extends HttpServlet {
 		HttpSession session = request.getSession();
 		List<CartProduct> listProduct = MyUtils.getCartProduct(session);
 		for(CartProduct o : listProduct) {
-			DBUtils.updateProduct(conn, o);
+			DBUtils.buyProduct(conn, o);
 		}
 		MyUtils.storeCartProduct(session, null);
 		MyUtils.storeCartProductID(session, null);

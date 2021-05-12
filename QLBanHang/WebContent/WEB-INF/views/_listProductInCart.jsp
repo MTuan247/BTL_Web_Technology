@@ -69,5 +69,6 @@ table, th, td {
 		</tr>
 	</c:forEach>
 </table>
-
-<button onclick="Buy()" style="margin-top: 20px;" >Buy</button>
+<form method="POST" action="Cart" style="margin-top: 20px;">
+	<input type="submit" name="action" value="Buy" />
+</form>
