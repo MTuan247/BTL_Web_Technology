@@ -51,7 +51,7 @@ table, th, td {
 	<c:forEach items="${listProduct}" var="product">
 		<tr>
 			<td>${product.productID}</td>
-			<td>${product.name}</td>
+			<td><a href="Product?productID=${product.productID }" >${product.name}</a></td>
 			<td><img src="${product.image }" alt="${product.name}" style="height: 100px;"></td>
 			<td>${product.price}</td>
 			<td>${product.sale }</td>
