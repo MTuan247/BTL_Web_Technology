@@ -163,7 +163,8 @@ public class DBUtils {
 				float price = rs.getFloat("Price");
 				float sale = rs.getFloat("sale");
 				int available = rs.getInt("available");
-				list.add(new CartProduct(productID, name, image, description, price, sale, available));
+				int number = rs.getInt("Number");
+				list.add(new CartProduct(productID, name, image, description, price, sale, available, number));
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -245,13 +246,14 @@ public class DBUtils {
 	}
 
 	public static void insertToCart(Connection conn, String userID, String productID) {
-		String sql = "Insert into Cart(USER_ID, PRODUCT_ID) values (?,?)";
+		String sql = "Insert into Cart(USER_ID, PRODUCT_ID, NUMBER) values (?,?,?)";
 
 		try {
 			PreparedStatement pstm = conn.prepareStatement(sql);
 
 			pstm.setString(1, userID);
 			pstm.setString(2, productID);
+			pstm.setString(3, "1");
 
 			pstm.executeUpdate();
 		} catch (SQLException e) {
@@ -268,6 +270,23 @@ public class DBUtils {
 
 			pstm.setString(1, userID);
 			pstm.setString(2, productID);
+
+			pstm.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	public static void updateNumberCartProduct(Connection conn, String userID, String productID, int number) {
+		String sql = "Update Cart Set Number=? Where USER_ID = ? AND PRODUCT_ID = ?";
+
+		try {
+			PreparedStatement pstm = conn.prepareStatement(sql);
+
+			pstm.setString(2, userID);
+			pstm.setString(3, productID);
+			pstm.setInt(1, number);
 
 			pstm.executeUpdate();
 		} catch (SQLException e) {

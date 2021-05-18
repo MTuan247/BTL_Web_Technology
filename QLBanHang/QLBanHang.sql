@@ -27,6 +27,7 @@ Create Table Account(
 Create Table Cart(
 	USER_ID INT,
 	PRODUCT_ID INT,
+	NUMBER INT,
 	PRIMARY KEY(USER_ID,PRODUCT_ID),
 	FOREIGN KEY (USER_ID) REFERENCES Account(USER_ID),
 	FOREIGN KEY (PRODUCT_ID) REFERENCES Product(PRODUCT_ID),
@@ -39,8 +40,8 @@ Create Table Category(
 
 --------------insert to account-------------
 
-INSERT INTO Account(USER_ID,USER_NAME,NAME,PASSWORD)
-VALUES (1,'tuan','tuan','123');
+INSERT INTO Account(USER_ID,USER_NAME,NAME,PASSWORD,IS_ADMIN)
+VALUES (1,'tuan','tuan','123',0);
 
 --------------insert to product-------------
 INSERT INTO Product(PRODUCT_ID,NAME,IMAGE,DESCRIPTION,PRICE,SALE,CATEGORY_ID,AVAILABLE)
@@ -59,12 +60,3 @@ VALUES (1,'Category 1'),
 (5,'Category 5');
 
 -----------------test------------------------
-
-Select * from Cart,Product
-where Cart.PRODUCT_ID = Product.PRODUCT_ID
-
-Select * from Cart,Product where Cart.PRODUCT_ID = Product.PRODUCT_ID and USER_ID = 1
-
-Delete From Cart Where USER_ID = 1 AND PRODUCT_ID = 1
-
-Select * from Product where NAME like '%1%'
