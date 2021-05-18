@@ -1,0 +1,62 @@
+<style>
+  :root {
+    --mess: 20px;
+  }
+  #flask-message {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+
+    border: 1px solid #bbbbbb;
+    border-radius: 5px;
+    width: 30%;
+
+    position: fixed;
+    top: 10px;
+    left: calc(50% - 30%/2);
+
+    transform: translateY(-200%);
+    visibility: hidden;
+    transition: 0.3s ease-out;
+  }
+  #icon {
+    display: inline-block;
+    background-color: green;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+  }
+
+  #flask-message.show {
+    transform: translateY(0%);
+    visibility: visible;
+  }
+  #flask-message.hide {
+    transform: translateY(-200%);
+    visibility:  hidden;
+  }
+</style>
+<div id="flask-message">
+  <div id="icon"></div>
+  <p>Submit thành công</p>
+</div>
+
+<input type="submit" id="submit"/>
+<script>
+  var flask_message = document.querySelector("#flask-message");
+  var button = document.querySelector("#submit");
+  var timeout;
+  button.onclick = () => {
+    clearTimeout(timeout);
+    // toggle là bật, tắt??
+    console.log('1');
+    // flask_message.classList.toggle("show");
+    flask_message.classList.add("show");
+    timeout = setTimeout(() => {
+      flask_message.classList.remove("show");
+    }, 1000);
+  }
+  
+</script>

@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Quản lý đơn hàng</title>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+    content="width=device-width, height=device-height, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+  <link rel="icon" type="image/png" href="assets/image/logo200px.png">
+
+  <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+  <link href="assets/css/style.css" rel="stylesheet" type="text/css">
+  <script src="https://kit.fontawesome.com/aa8e5675e3.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" type="text/css" href="assets/css/slideshow.css">
+
+  <!--  -->
+  <link rel="stylesheet" type="text/css" href="assets/css/error_page.css">
+  <link rel="stylesheet" type="text/css" href="assets/css/user.css">
+  <link rel="stylesheet" type="text/css" href="assets/css/transaction-detail.css">
+  <link rel="stylesheet" type="text/css" href="assets/css/transaction.css">
+</head>
+
+<body class="overlay-scrollbar">
+  <header class="header" id="header">
+    <!-- navbar -->
+
+    <div class="navbar">
+      <ul class="navbar-nav">
+        <li class="navbar-item" id="navbar-menu-btn" onclick="toggleMenu()">
+          <i class="fas fa-bars navbar-icon"></i>
+        </li>
+        <li class="navbar-item">
+          <a href="#"><img src="assets/image/logo-side1200_400px.png" alt="logo eshop" class="logo"></a>
+        </li>
+      </ul>
+
+      <ul class="navbar-nav navbar-tab">
+        <li class="navbar-item">
+          <a href="#" class="navbar-item-link" title="Trang chủ">Trang chủ</a>
+        </li>
+        <li class="navbar-item">
+          <a href="#" class="navbar-item-link" title="Sản phẩm">Sản phẩm</a>
+        </li>
+        <li class="navbar-item">
+          <a href="#" class="navbar-item-link" title="Liên hệ">Liên hệ</a>
+        </li>
+      </ul>
+
+      <!-- <form class="navbar-search-form">
+          <input type="text" placeholder="Tìm kiếm danh mục, sản phẩm" name="search" class="navbar-search-input">
+          <i class="fas fa-search navbar-search-icon"></i>
+        </form> -->
+
+      <ul class="navbar-nav">
+        <li class="navbar-item dropdown">
+          <i class="fas fa-search navbar-search-icon navbar-icon dropdown-toggle" data-toggle="search-menu"
+            title="Tìm kiếm"></i>
+          <div id="search-menu" class="dropdown-menu">
+            <form method="GET" action="Search" id="search-form" autocomplete="off">
+              <input type="search" placeholder="Nhập thông tin sản phẩm, danh mục" name="searchValue" id="search-bar">
+              <input type="submit" value="Tìm kiếm" id="search-button">
+            </form>
+          </div>
+        </li>
+        <li class="navbar-item dropdown">
+          <i class="fas fa-user dropdown-toggle navbar-icon " data-toggle="user-menu" title="Tài khoản"></i>
+          <ul id="user-menu" class="dropdown-menu">
+            <li class="dropdown-menu-item">
+              <a href="#" class="dropdown-menu-link">
+                <i class="fas fa-user"></i>
+                <span>Thông tin tài khoản</span>
+              </a>
+            </li>
+            <li class="dropdown-menu-item">
+              <a href="#" class="dropdown-menu-link">
+                <i class="fas fa-shopping-bag"></i>
+                <span>Lịch sử mua hàng</span>
+              </a>
+            </li>
+            <li class="dropdown-menu-item">
+              <a href="#" class="dropdown-menu-link">
+                <i class="fas fa-sign-out-alt"></i>
+                <span>Đăng xuất</span>
+              </a>
+            </li>
+          </ul>
+        </li>
+        <li class="navbar-item">
+          <div class="cart-wrapper">
+            <i class="fas fa-shopping-cart cart-icon navbar-icon" title="Giỏ hàng"></i>
+            <span class="cart-number-product">100</span>
+          </div>
+        </li>
+      </ul>
+
+    </div>
+    <div class="navbar-column" id="navbar-menu">
+      <ul class="navbar-nav-column ">
+        <li class="navbar-item-column">
+          <a href="#" class="navbar-link-column" title="Trang chủ">Trang chủ</a>
+        </li>
+        <li class="navbar-item-column">
+          <a href="#" class="navbar-link-column" title="Sản phẩm">Sản phẩm</a>
+        </li>
+        <li class="navbar-item-column">
+          <a href="#" class="navbar-link-column" title="Liên hệ">Liên hệ</a>
+        </li>
+      </ul>
+    </div>
+  </header>
+
+
+
+
+
+  <main class="main-content">
+    <div class="sidebar">
+      <div class="sidebar-title-container">
+        <i class="fas fa-user-circle"></i>
+        <p class="sidebar-title">Tài khoản của<br><span id="user-name">Phạm Trung Hiếu</span></p>
+      </div>
+      <!-- <p class="sidebar-title">Tài khoản của<br><span id="user-name">Phạm Trung Hiếu</span></p> -->
+      <ul class="sidebar-menu">
+        <li class="sidebar-item">
+          <a href="#" class="sidebar-link">
+            <i class="fas fa-user"></i>
+            <span>Thông tin tài khoản</span>
+          </a>
+        </li>
+        <li class="sidebar-item">
+          <a href="#" class="sidebar-link active-link">
+            <i class="fas fa-shopping-bag"></i>
+            <span>Lịch sử mua hàng</span>
+          </a>
+        </li>
+        <li class="sidebar-item">
+          <a href="#" class="sidebar-link">
+            <i class="fas fa-sign-out-alt"></i>
+            <span>Đăng xuất</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+    <div class="content">
+      <h3>Chi tiết đơn hàng #123456</h3>
+      <p class="transaction-date">Ngày đặt hàng: 23:28 5/5/2021</p>
+      <h5 class="transaction-info-title">ĐỊA CHỈ NGƯỜI NHẬN</h5>
+      <div class="transaction-info-item">
+        <p id="receiver-name">PHẠM TRUNG HIẾU</p>
+        <p>Địa chỉ: Xóm Dõng, xã Cổ Loa, huyện Đông Anh, Hà Nội, Xã Cổ Loa, Huyện Đông Anh, Hà Nội, Việt Nam<p>
+        <p>Điện thoại: 0365006650</p>
+      </div>
+      <h5 class="transaction-info-title">HÌNH THỨC THANH TOÁN</h5>
+      <div class="transaction-info-item">
+        <p>Thanh toán tiền mặt khi nhận hàng</p>
+      </div>
+      <h5 class="transaction-info-title">DANH SÁCH SẢN PHẨM</h5>
+      <table>
+        <tr>
+          <th>Mã đơn hàng</th>
+          <th>Ngày mua</th>
+          <th>Sản phẩm</th>
+          <th>Tổng tiền</th>
+          <th>Trạng thái đơn hàng</th>
+        </tr>
+        <tr>
+          <td class="table-row-link" data-link="#">123456</td>
+          <td>5/5/2021</td>
+          <td>Dell Latitude 7480</td>
+          <td>15.000.000</td>
+          <td>Giao hàng thành công</td>
+        </tr>
+        <tr>
+          <td class="table-row-link" data-link="#">1234567</td>
+          <td>5/5/2021</td>
+          <td>Dell Latitude 7480 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</td>
+          <td>15.000.000</td>
+          <td>Giao hàng thành công</td>
+        </tr>
+      </table>
+    </div>
+  </main>
+  <hr>
+  <div class="subscribe-container">
+    <img src="assets/image/subscribe.svg" alt="subscribe image">
+    <div class="subscribe-text">
+      <p>Đăng ký nhận bản tin từ eShop</p>
+      <p>Đừng bỏ lỡ những sản phẩm và chương trình siêu hấp dẫn</p>
+    </div>
+    <form>
+      <input type="text" placeholder="Địa chỉ email của bạn" name="subscribe-email" id="subscribe-input">
+      <input type="submit" value="Đăng ký" id="subscribe-submit">
+    </form>
+  </div>
+  <footer class="footer">
+    <hr>
+    <div class="footer-info-container">
+      <div class="footer-info-column">
+        <p class="footer-info-title">Về chúng tôi</p>
+        <ul>
+          <li class="footer-info-item">Giới thiệu</li>
+          <li class="footer-info-item">Chính sách bảo mật thông tin</li>
+        </ul>
+      </div>
+      <div class="footer-info-column">
+        <p class="footer-info-title">Hỗ trợ khách hàng</p>
+        <ul>
+          <li class="footer-info-item">Hướng dẫn đặt hàng</li>
+          <li class="footer-info-item">Hướng dẫn thanh toán</li>
+          <li class="footer-info-item">Chính sách đổi trả</li>
+          <li class="footer-info-item">
+            <a target="_blank" href="mailto:hotro@eshop.vn">Hỗ trợ khách hàng: hotro@eshop.vn</a>
+          </li>
+          <li class="footer-info-item">
+            <a target="_blank" href="mailto:hotro@eshop.vn">Báo lỗi hệ thống: system@eshop.vn</a>
+          </li>
+
+        </ul>
+      </div>
+      <div class="footer-info-column">
+        <p class="footer-info-title">Liên hệ</p>
+        <ul>
+          <li class="footer-info-item">
+            <i class="fas fa-map-marker-alt"></i>
+            <a target="_blank"
+              href="https://www.google.com/maps/place/Nh%C3%A0+TC+Tr%C6%B0%E1%BB%9Dng+%C4%90%E1%BA%A1i+H%E1%BB%8Dc+B%C3%A1ch+Khoa+H%C3%A0+N%E1%BB%99i/@21.0026909,105.8443743,17z/data=!3m1!4b1!4m5!3m4!1s0x3135ac76a80aa08f:0x4ebcb2843f16b1c!8m2!3d21.0026909!4d105.846563">
+              104 Lê Thanh Nghị, Bách Khoa, Hai Bà Trưng, Hà Nội
+            </a>
+          </li>
+          <li class="footer-info-item">
+            <i class="fas fa-phone-alt"></i>
+            <a target="_blank" href="tel:0989123456">0989123456</a>
+          </li>
+          <li class="footer-info-item">
+            <i class="fas fa-envelope"></i>
+            <a target="_blank" href="mailto:eshop@gmail.com">eshop@gmail.com</a>
+          </li>
+          <li class="footer-info-item">
+            <a target="_blank" href="#" class="footer-link-icon"><i class="fab fa-facebook-square"></i></a>
+            <a target="_blank" href="#" class="footer-link-icon"><i class="fab fa-twitter-square"></i></a>
+            <a target="_blank" href="#" class="footer-link-icon"><i class="fab fa-instagram-square"></i></a>
+            <a target="_blank" href="#" class="footer-link-icon"><i class="fab fa-youtube-square"></i></a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <hr>
+    <div>Coppyright &copy; 2021, DQHT Team</div>
+  </footer>
+  <a id="go-to-head" href="#header">
+    <i class="fas fa-angle-up"></i>
+  </a>
+
+  <!-- <script src="assets/js/table.js"></script> -->
+  <script src="assets/js/index.js"></script>
+  <script src="assets/js/table.js"></script>
+</body>
+
+</html>

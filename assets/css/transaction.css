@@ -1,0 +1,47 @@
+
+.content {
+  width: 70%;
+  overflow-x: auto;
+}
+@media (max-width: 600px) {
+  .content {
+    width: 100%;
+  }
+}
+
+
+table {
+  background-color: var(--main-bg-color);
+  border-collapse: collapse;
+}
+
+table, tr {
+  width: max-content;
+  border: 1px solid var(--dark-color);
+}
+
+th, td {
+  padding: 1rem 2rem;
+  font-size: 1.5rem;
+}
+
+th {
+  text-align: left;
+  width: max-content;
+}
+
+tr:hover {
+  background-color: #f1f9ff;
+}
+
+td {
+  max-width: 300px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.table-row-link {
+  cursor: pointer;
+  color: var(--primary-color);
+}
