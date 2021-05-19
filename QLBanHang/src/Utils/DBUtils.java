@@ -12,10 +12,13 @@ import Model.UserAccount;
 import Model.CartProduct;
 import Model.Category;
 
+import DB.*;
+
 public class DBUtils {
+	static Connection conn = ConnectionUtils.getConnection();
 
 	public static UserAccount findUser(Connection conn, //
-			String userName, String password) throws SQLException {
+									   String userName, String password) throws SQLException {
 
 		String sql = "Select * from Account " //
 				+ " where USER_NAME = ? and PASSWORD= ?";
@@ -277,7 +280,7 @@ public class DBUtils {
 			e.printStackTrace();
 		}
 	}
-	
+
 	public static void updateNumberCartProduct(Connection conn, String userID, String productID, int number) {
 		String sql = "Update Cart Set Number=? Where USER_ID = ? AND PRODUCT_ID = ?";
 
@@ -309,15 +312,96 @@ public class DBUtils {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+
 	}
 
-	public static void insertProduct(Connection conn, Product product) {
-		
+	public static void insertProduct(Connection conn, Product product, int categoryID) {
+		String sql = "INSERT INTO Product VALUES (?,?,?,?,?,?,?,?)";
+
+		try {
+			PreparedStatement pstm = conn.prepareStatement(sql);
+			pstm.setString(1, product.getID());
+			pstm.setString(2,product.getName());
+			pstm.setString(3, product.getImage());
+			pstm.setFloat(4, product.getPrice());
+			pstm.setFloat(5, product.getSale());
+			pstm.setString(6, product.getDescription());
+			pstm.setInt(7,categoryID);
+			pstm.setInt(8, product.getAvailable());
+
+
+			if(pstm.executeUpdate()>0){
+				System.out.println("Success");
+			}else {
+				System.out.println("Fail");
+			}
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	public static void deleteProduct(Connection conn, String code) throws SQLException {
+		String sql = "DELETE FROM product WHERE PRODUCT_ID = ?";
 
+		try {
+			PreparedStatement pstm = conn.prepareStatement(sql);
+			pstm.setString(1,code);
+			pstm.executeUpdate();
+		} catch (SQLException e){
+			e.printStackTrace();
+		}
 	}
 
+	public static Product getProductByID(String id){
+		String sql = "Select * from Product where PRODUCT_ID=?";
+
+		try {
+			PreparedStatement pstm = conn.prepareStatement(sql);
+			pstm.setString(1, id);
+
+			ResultSet rs = pstm.executeQuery();
+
+			if (rs.next()) {
+				String productID = rs.getString("PRODUCT_ID");
+				String name = rs.getString("Name");
+				String image = rs.getString("image");
+				String description = rs.getString("description");
+				float price = rs.getFloat("Price");
+				float sale = rs.getFloat("sale");
+				int available = rs.getInt("available");
+				return new CartProduct(productID, name, image, description, price, sale, available);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+	public static void changeProductInfo(Product product){
+		String sql = "Update Product Set NAME=?,IMAGE=?,DESCRIPTION=?,PRICE=?,SALE=?,AVAILABLE=? Where PRODUCT_ID=?";
+
+		try {
+			PreparedStatement pstm = conn.prepareStatement(sql);
+			pstm.setString(1,product.getName());
+			pstm.setString(2, product.getImage());
+			pstm.setString(3, product.getDescription());
+			pstm.setFloat(4, product.getPrice());
+			pstm.setFloat(5, product.getSale());
+			pstm.setInt(6, product.getAvailable());
+			pstm.setString(7,product.getID());
+
+			if(pstm.executeUpdate()>0){
+				System.out.println("Success");
+			}else {
+				System.out.println("Fail");
+			}
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+	}
 }
