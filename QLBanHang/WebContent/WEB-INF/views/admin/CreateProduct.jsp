@@ -8,7 +8,7 @@
     <title>Create JSP</title>
 </head>
 <body>
-<form action="Create" method="POST">
+<form action="CreateProduct" method="POST">
     <h1>Create New Product</h1>
     <table>
         <tr>

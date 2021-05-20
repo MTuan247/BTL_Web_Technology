@@ -6,8 +6,12 @@
     <title>Title</title>
 </head>
 <body>
-<%--    <jsp:include page="./_listCategoryAdmin.jsp"></jsp:include>--%>
-    <a href="/Create">Create</a>
-    <jsp:include page="./_listProductAdmin.jsp"></jsp:include>
+<table>
+    <tr>
+        <th style="vertical-align: top"><jsp:include page="./_listCategoryAdmin.jsp"></jsp:include></th>
+        <th style="vertical-align: top"><jsp:include page="./_listProductAdmin.jsp"></jsp:include></th>
+    </tr>
+
+</table>
 </body>
 </html>

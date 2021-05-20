@@ -11,8 +11,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet("/Update")
-public class UpdateServlet extends HttpServlet {
+@WebServlet("/UpdateProduct")
+public class UpdateProductServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -35,8 +35,8 @@ public class UpdateServlet extends HttpServlet {
         String id = request.getParameter("id");
         Product product = DBUtils.getProductByID(id);
         request.setAttribute("product",product);
-//        request.getRequestDispatcher("WEB-INF/views/admin/UpdateProduct.jsp");
-        RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher("/WEB-INF/views/admin/UpdateProduct.jsp");
+//        request.getRequestDispatcher("WEB-INF/views/admin/updateProduct.jsp");
+        RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher("/WEB-INF/views/admin/updateProduct.jsp");
         dispatcher.forward(request, response);
     }
 }

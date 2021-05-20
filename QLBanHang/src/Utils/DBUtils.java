@@ -1,5 +1,6 @@
 package Utils;
 
+import java.security.AccessControlException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -342,7 +343,7 @@ public class DBUtils {
 		}
 	}
 
-	public static void deleteProduct(Connection conn, String code) throws SQLException {
+	public static void deleteProduct(Connection conn, String code) {
 		String sql = "DELETE FROM product WHERE PRODUCT_ID = ?";
 
 		try {
@@ -403,5 +404,152 @@ public class DBUtils {
 			e.printStackTrace();
 		}
 
+	}
+
+	public static List<UserAccount> getAllUser(Connection conn){
+		List<UserAccount> accounts = new ArrayList<UserAccount>();
+		String sql = "SELECT * FROM account WHERE IS_ADMIN = 0";
+
+		try {
+			PreparedStatement pstm = conn.prepareStatement(sql);
+
+			ResultSet rs = pstm.executeQuery();
+			while(rs.next()){
+				String userID = rs.getString(1);
+				String name = rs.getString(2);
+				String userName = rs.getString(3);
+				String password = rs.getString(4);
+				UserAccount user = new UserAccount(userID,name,userName,password);
+				accounts.add(user);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return accounts;
+	}
+
+	public static UserAccount getUserByID(Connection conn,String id){
+		String sql = "SELECT * FROM account WHERE USER_ID = ?";
+
+		try {
+			PreparedStatement pstm = conn.prepareStatement(sql);
+			pstm.setString(1,id);
+			ResultSet rs = pstm.executeQuery();
+
+			if(rs.next()){
+				String name = rs.getString("NAME");
+				String userName = rs.getString("USER_NAME");
+				String password = rs.getString("PASSWORD");
+				UserAccount user = new UserAccount(id,name,userName,password);
+				return user;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+	public static void changeUserInfo(UserAccount user){
+		String sql = "Update account Set NAME=?,USER_NAME=?,PASSWORD=? Where USER_ID=?";
+
+		try {
+			PreparedStatement pstm = conn.prepareStatement(sql);
+			pstm.setString(1,user.getName());
+			pstm.setString(2,user.getUserName());
+			pstm.setString(3,user.getPassword());
+			pstm.setString(4,user.getUserID());
+			pstm.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+
+	public static void insertUser(Connection conn, UserAccount user){
+		String sql = "INSERT INTO account(USER_ID,NAME,USER_NAME,PASSWORD) VALUES (?,?,?,?)";
+
+		try {
+			PreparedStatement pstm = conn.prepareStatement(sql);
+			pstm.setString(1, user.getUserID());
+			pstm.setString(2,user.getName());
+			pstm.setString(3, user.getUserName());
+			pstm.setString(4, user.getPassword());
+
+			if(pstm.executeUpdate()>0){
+				System.out.println("Success");
+			}else {
+				System.out.println("Fail");
+			}
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+	public static void deleteUser(Connection conn, String code) {
+		String sql = "DELETE FROM account WHERE USER_ID = ?";
+
+		try {
+			PreparedStatement pstm = conn.prepareStatement(sql);
+			pstm.setString(1,code);
+			pstm.executeUpdate();
+		} catch (SQLException e){
+			e.printStackTrace();
+		}
+	}
+
+	public static Category getCategoryByID(Connection conn, String id){
+		String sql = "SELECT * FROM category WHERE CATEGORY_ID = ?";
+
+		try {
+			PreparedStatement pstm = conn.prepareStatement(sql);
+			pstm.setString(1,id);
+			ResultSet rs = pstm.executeQuery();
+			if(rs.next()){
+				String name = rs.getString(2);
+				return new Category(Integer.parseInt(id),name);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+	public static void changeCategoryInfo(Category category){
+		String sql = "Update category Set NAME=? Where CATEGORY_ID=?";
+
+		try {
+			PreparedStatement pstm = conn.prepareStatement(sql);
+			pstm.setString(1,category.getName());
+			pstm.setInt(2,category.getCategoryID());
+			pstm.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+
+	public static void deleteCategory(Connection conn,String id){
+		String sql = "DELETE FROM category WHERE CATEGORY_ID = ?";
+
+		try {
+			PreparedStatement pstm = conn.prepareStatement(sql);
+			pstm.setString(1,id);
+			pstm.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+
+	public static void insertCategory(Connection conn,Category category){
+		String sql = "INSERT INTO category VALUES (?,?)";
+
+		try {
+			PreparedStatement pstm = conn.prepareStatement(sql);
+			pstm.setInt(1,category.getCategoryID());
+			pstm.setString(2,category.getName());
+			pstm.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 	}
 }

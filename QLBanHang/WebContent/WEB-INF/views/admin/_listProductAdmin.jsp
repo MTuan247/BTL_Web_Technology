@@ -4,6 +4,7 @@
 
 <table border="1" cellpadding="5" cellspacing="1"
        style="display: inline-block;">
+    <tr><a href="/CreateProduct" style="display: block">Create a product</a></tr>
     <tr>
         <th>ID</th>
         <th>Name</th>
@@ -23,11 +24,11 @@
             <td>${product.sale }</td>
             <td>${product.available }</td>
             <td>
-                <form method="get" action="Update">
+                <form method="get" action="UpdateProduct">
                     <input type="hidden" name="id" value="${product.productID}" />
                     <input type="submit" name="action" value="Change Infomation" />
                 </form>
-                <form method="Post" action="Delete">
+                <form method="Post" action="DeleteProduct">
                     <input type="hidden" name="id" value="${product.productID}" />
                     <input type="submit" name="delete" value="Delete" />
                 </form>

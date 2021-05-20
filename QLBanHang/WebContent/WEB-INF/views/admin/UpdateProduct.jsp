@@ -8,7 +8,7 @@
     <title>Update JSP</title>
 </head>
 <body>
-<form action="Update" method="POST">
+<form action="UpdateProduct" method="POST">
     <h1>Update New Product</h1>
     <table>
         <tr>
