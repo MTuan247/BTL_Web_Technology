@@ -155,27 +155,39 @@
         <p>Thanh toán tiền mặt khi nhận hàng</p>
       </div>
       <h5 class="transaction-info-title">DANH SÁCH SẢN PHẨM</h5>
-      <table>
+      <div class="table-responsive-container">
+        <table>
+          <tr>
+            <th>Mã sản phẩm</th>
+            <th>Tên sản phẩm</th>
+            <th>Giá</th>
+            <th>Số lượng</th>
+            <th>Giảm giá</th>
+            <th>Tạm tính</th>
+          </tr>
+          <tr>
+            <td class="table-row-link" data-link="#">111</td>
+            <td>Dell Latitude 7480</td>
+            <td>15.000.000 đ</td>
+            <td>1</td>
+            <td>20%</td>
+            <td>12.000.000 đ</td>
+          </tr>
+        </table>
+      </div>
+      <br>
+      <table class="money-container">
         <tr>
-          <th>Mã đơn hàng</th>
-          <th>Ngày mua</th>
-          <th>Sản phẩm</th>
-          <th>Tổng tiền</th>
-          <th>Trạng thái đơn hàng</th>
+          <td class="money-item">Tạm tính</td>
+          <td class="money-value">12.000.000 đ</td>
         </tr>
         <tr>
-          <td class="table-row-link" data-link="#">123456</td>
-          <td>5/5/2021</td>
-          <td>Dell Latitude 7480</td>
-          <td>15.000.000</td>
-          <td>Giao hàng thành công</td>
+          <td class="money-item">Phí vận chuyển</td>
+          <td class="money-value">0 đ</td>
         </tr>
         <tr>
-          <td class="table-row-link" data-link="#">1234567</td>
-          <td>5/5/2021</td>
-          <td>Dell Latitude 7480 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</td>
-          <td>15.000.000</td>
-          <td>Giao hàng thành công</td>
+          <td class="money-item">Tổng cộng</td>
+          <td class="money-value" id="total-money">12.000.000 đ</td>
         </tr>
       </table>
     </div>
@@ -247,13 +259,14 @@
     <hr>
     <div>Coppyright &copy; 2021, DQHT Team</div>
   </footer>
-  <a id="go-to-head" href="#header">
+  <a id="go-to-head" onclick="topFunction()">
     <i class="fas fa-angle-up"></i>
   </a>
 
   <!-- <script src="assets/js/table.js"></script> -->
   <script src="assets/js/index.js"></script>
   <script src="assets/js/table.js"></script>
+  <script src="assets/js/scrollToTop.js"></script>
 </body>
 
 </html>
