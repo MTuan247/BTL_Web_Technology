@@ -602,11 +602,13 @@ footer a {
 }
 
 .sidebar-link:hover {
-  background-color: var(--dark-color);
+  /* background-color: var(--dark-color); */
+  background-color: #ddd;
 }
 
 .sidebar-link.active-link {
-  background-color: var(--dark-color);
+  /* background-color: var(--dark-color); */
+  background-color: #ddd;
 }
 
 
