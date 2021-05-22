@@ -50,6 +50,43 @@ function showPwd(hide_pwd_id, show_pwd_id, pwd_id) {
 }
 
 
+var index_email;
+
+// lưu thông tin subscribe
+function saveEmailSubscribe(email) {
+  var xhttp = new XMLHttpRequest();
+	xhttp.onreadystatechange = function() {
+		if (this.readyState == 4 && this.status == 200) {
+			alert("Hello");
+
+		}
+	};
+	
+  xhttp.open("PUT", `https://subscribe-8fb4a-default-rtdb.firebaseio.com/email/${index_email}.json`, true);
+  xhttp.send(JSON.stringify(email));
+	index_email ++;
+}
+
+
+function getNumberEmail() {
+	  var xhttp = new XMLHttpRequest();
+	  xhttp.onreadystatechange = function() {
+	    if (this.readyState == 4 && this.status == 200) {
+				var res = JSON.parse(this.responseText);
+				// console.log(res.length);
+				index_email = res.length;
+	    }
+	  };
+	  xhttp.open("GET", "https://subscribe-8fb4a-default-rtdb.firebaseio.com/email.json", true);
+	  xhttp.send();
+}
+
+var subscribe_submit = document.getElementById("subscribe-submit");
+var subscribe_input = document.getElementById("subscribe-input");
+
+subscribe_submit.onclick = () => {
+	saveEmailSubscribe(subscribe_input.value);
+}
 
 // add loading page
 function doneLoading() {
@@ -59,26 +96,11 @@ function doneLoading() {
 window.onload = () => {
 	// setTimeout(() => {doneLoading()}, 1000);
 	doneLoading();
-}
-
-// lưu thông tin subscribe
-function saveEmailSubscribe() {
-  var xhttp = new XMLHttpRequest();
-  // xhttp.onreadystatechange = function() {
-  //   if (this.readyState == 4 && this.status == 200) {
-	// 		var res = JSON.parse(this.responseText);
-	// 		console.log(res);
-  //   }
-  // };
-	a = ["email1"];
-  xhttp.open("POST", "https://subscribe-8fb4a-default-rtdb.firebaseio.com/email.json", true);
-  xhttp.send('email2');
+	getNumberEmail();
 }
 
 
 
-document.getElementById("subscribe-submit").onclick = () => {
-	saveEmailSubscribe();
-}
+
 
 
