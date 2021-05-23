@@ -13,8 +13,7 @@
   <script src="https://kit.fontawesome.com/aa8e5675e3.js" crossorigin="anonymous"></script>
 
   <!--  -->
-  <link rel="stylesheet" type="text/css" href="assets/css/user.css">
-  <link rel="stylesheet" type="text/css" href="assets/css/product.css">
+  <link rel="stylesheet" type="text/css" href="assets/css/product-detail.css">
 </head>
 
 <body class="overlay-scrollbar">
@@ -117,95 +116,58 @@
       <img src="assets/image/loading4-crop.gif" class="loading-gif">
     </div> 
 
+    <div class="info-container">
+      <div class="img-product-container">
+        <h2 class="product-name">Dell Latitude 7480 core i5-6300U, RAM 16GB DDR4, SSD 256GB</h2>
+        <img src="assets/image/product1.jpg" alt="product">
+      </div>
+      <div class="detail-container">
+        <h2 class="product-name">Dell Latitude 7480 core i5-6300U, RAM 16GB DDR4, SSD 256GB</h2>
+        <div class="product-price">
+          <p class="price-end">12.000.000 đ</p>
+          <p class="price-discount">
+            <span>15.000.000 đ</span> | <span>-20%</span>
+          </p>
+        </div>
 
-    <div class="sidebar" id="sidebar">
-      <p class="cat-title">Danh mục sản phẩm</p>
-      <ul class="sidebar-menu">
-        <li class="sidebar-item">
-          <a href="#" class="sidebar-link active-link">
-          <!-- <a href="#" class="sidebar-link active-link"> -->
-            <span>Danh mục 1</span>
-          </a>
-        </li>
-        <li class="sidebar-item">
-          <a href="#" class="sidebar-link">
-            <span>Danh mục 2</span>
-          </a>
-        </li>
-        <li class="sidebar-item">
-          <a href="#" class="sidebar-link">
-            <span>Danh mục 3</span>
-          </a>
-        </li>
-      </ul>
-    </div>
+        <hr>
+        <p>Số Lượng</p>
+        <div class="product-qty-container">
+          <span class="decrease-qty value-button" onclick="decreaseValue(this)">-</span>
+          <input class="input-qty" type="number" value="1" min="1"  max="5" id="number" required>
+          <span class="increase-qty value-button" onclick="increaseValue(this)">+</span>
+        </div>
 
-    <div class="content">
-      <h2 id="page-title">Sản phẩm - Danh mục 1</h2>
-      <div class="flex">
-        <div class="flex-item product-item">
-          <img src="assets/image/product1.jpg">
-          <span class="product-discount-tag">-20%</span>
-          <p class="product-name"><span>Dell 7480 abadbjkd adjweoidh aaaaaaaaaaaaaaaaaaaaaaaaa</span></p>
-          <span class="product-price-after">12.000.000 đ</span>
-          <span class="product-price-before">15.000.000 đ</span>
-          <div class="add-cart-btn">
-            <i class="fas fa-cart-plus"></i>
-          </div>
-        </div>
-        <div class="flex-item product-item">
-          <img src="assets/image/product2.jpg">
-          <span class="product-discount-tag">-20%</span>
-          <p class="product-name"><span>Laptop Asus VivoBook S15 S533EA-BQ018T (Core i5-1135G7/ 8GB DDR4 3200MHz/ 512GB M.2 NVMe PCIe 3.0/ 15.6 FHD/ Win10) - Hàng Chính Hãng</span></p>
-          <span class="product-price-after">12.000.000 đ</span>
-          <span class="product-price-before">15.000.000 đ</span>
-          <div class="add-cart-btn">
-            <i class="fas fa-cart-plus"></i>
-          </div>
-        </div>
-        <div class="flex-item product-item">
-          <img src="assets/image/product3.jpg">
-          <span class="product-discount-tag">-20%</span>
-          <p class="product-name"><span>Dell 7480 abadbjkd adjweoidh aaaaaaaaaaaaaaaaaaaaaaaaa</span></p>
-          <span class="product-price-after">12.000.000 đ</span>
-          <span class="product-price-before">15.000.000 đ</span>
-          <div class="add-cart-btn">
-            <i class="fas fa-cart-plus"></i>
-          </div>
-        </div>
-        <div class="flex-item product-item">
-          <img src="assets/image/product4.jpg">
-          <span class="product-discount-tag">-20%</span>
-          <p class="product-name"><span>Laptop Asus VivoBook S15 S533EA-BQ018T (Core i5-1135G7/ 8GB DDR4 3200MHz/ 512GB M.2 NVMe PCIe 3.0/ 15.6 FHD/ Win10) - Hàng Chính Hãng</span></p>
-          <span class="product-price-after">12.000.000 đ</span>
-          <span class="product-price-before">15.000.000 đ</span>
-          <div class="add-cart-btn">
-            <i class="fas fa-cart-plus"></i>
-          </div>
-        </div>
-        <div class="flex-item product-item">
-          <img src="assets/image/product2.jpg">
-          <span class="product-discount-tag">-20%</span>
-          <p class="product-name"><span>Dell 7480 abadbjkd adjweoidh aaaaaaaaaaaaaaaaaaaaaaaaa</span></p>
-          <span class="product-price-after">12.000.000 đ</span>
-          <span class="product-price-before">15.000.000 đ</span>
-          <div class="add-cart-btn">
-            <i class="fas fa-cart-plus"></i>
-          </div>
-        </div>
-        <div class="flex-item product-item">
-          <img src="assets/image/product3.jpg">
-          <span class="product-discount-tag">-20%</span>
-          <p class="product-name"><span>Laptop Asus VivoBook S15 S533EA-BQ018T (Core i5-1135G7/ 8GB DDR4 3200MHz/ 512GB M.2 NVMe PCIe 3.0/ 15.6 FHD/ Win10) - Hàng Chính Hãng</span></p>
-          <span class="product-price-after">12.000.000 đ</span>
-          <span class="product-price-before">15.000.000 đ</span>
-          <div class="add-cart-btn">
-            <i class="fas fa-cart-plus"></i>
-          </div>
-        </div>
-        
+        <a href="#" class="buy-btn">Chọn Mua</a>
       </div>
     </div>
+
+    <div class="description-container">
+      <h3 class="description-title">Mô tả sản phẩm</h3>
+      <p class="description-p">Laptop Dell Latitude E7280 Core i5 7300U/ Ram 8Gb/ SSD 256Gb/ Màn 12.5 inch HD
+        Thiết kế
+        
+        Dell Latitude 7280 có vỏ máy được làm bằng hợp kim nhôm cao cấp và được sơn đen nhám nên cho cảm giác cầm nắm cực tốt, tăng sự chắc chắn và bền bỉ cho chiếc laptop này mà vẫn giữ được vẻ thanh lịch vốn có. Phần khung máy cũng được làm bằng hợp kim cao cấp khiến nó thậm chí vượt qua được cả bài test tiêu chuẩn MIL-STD 810G của quân đội Mỹ.
+        
+        Kích thước của E7280 là 304.8 x 208 x 17.05 mm và nặng khoảng 1.18Kg - mỏng hơn so với các sản phẩm cùng dòng Latitude đi trước của Dell, thậm chí là so cả với dòng Dell XPS 13. Nhưng Dell Latitude 7280 sẽ có thiết kế tối giản vì là dòng sản phẩm mà Dell nhắm đến các đối tượng là doanh nhân cần sự bền bỉ, gọn nhẹ, và có độ bảo mật cao.
+        
+        Bàn phím và Touchpad
+        
+        Bàn phím trên Dell Latitude 7280 rất tốt, cho cảm giác gõ tốt và độ đàn hồi sâu - hành trình lên đến 1,7mm và lực là 60 gram. Khung máy chắc chắn bởi hợp kim vì vậy bàn phím sẽ không bị flex gây khó chịu như nhiều mẫu laptop rẻ tiền.
+        
+        Touchpad trên Dell Latitude 7280 hỗ trợ đa điểm của Windows 10 và có kích thước khá rộng rãi 9,65cm x 5,5cm. Đủ cho nhu cầu sử dụng cá nhân. Cảm giác di chuyển tay trên Touchpad tốt, phản hồi tức thì do đây là mẫu laptop cao cấp hàng đầu. Các nút bấm tích hợp cũng cho một cảm giác cao cấp khi có sự chắc chắn và êm cần thiết.
+        
+        Cổng kết nối
+        
+        Với yêu cầu là một mẫu laptop dành cho doanh nhân phục vụ nhu cầu công việc thì Dell E7280 được trang bị rất đầy đủ các cổng kết nối. Bao gồm: DC-in, DisplayPort, USB Type C Thunderbolt Options, HDMI, 2 x USB (3.0), RJ45, Audio, Optional WiGig Dock.
+        
+        Âm thanh
+        
+        Chất lượng âm thanh trên chiếc laptop doanh nhân thế này thường ở mức trung bình. Và Dell Latitude 7280 không phải ngoại lệ. Nó sẽ không được tốt như những chiếc laptop thiên về khả năng giải trí.</p>
+    </div>
+
+
+    
   </main>
   <!-- Subscribe container -->
   <hr>
