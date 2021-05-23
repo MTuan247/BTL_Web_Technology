@@ -11,7 +11,7 @@ import Model.Product;
 import Utils.DBUtils;
 
 @WebServlet("/Category")
-public class CategoryServlet extends HomeServlet {
+public class CategoryServlet extends ProductListServlet {
 	private static final long serialVersionUID = 1L;
 
 	@Override

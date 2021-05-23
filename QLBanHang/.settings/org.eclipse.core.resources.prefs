@@ -1,0 +1,5 @@
+eclipse.preferences.version=1
+encoding//WebContent/WEB-INF/views/_listC.jsp=UTF-8
+encoding//WebContent/WEB-INF/views/_listP.jsp=UTF-8
+encoding//WebContent/WEB-INF/views/_listProductInCart.jsp=UTF-8
+encoding//WebContent/WEB-INF/views/_listProductInHome.jsp=UTF-8

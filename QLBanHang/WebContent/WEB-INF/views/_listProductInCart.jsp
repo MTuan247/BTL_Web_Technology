@@ -1,15 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
+  pageEncoding="ISO-8859-1"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
-<style>
-table, th, td {
-	border: 1px solid black;
-	padding: 1px;
-	spacing: 1px;
-	border-spacing: 1px;
-}
-</style>
 <script>
 	function changeNumber(id) {
 		var num = document.getElementById(id).value;
@@ -37,7 +30,7 @@ table, th, td {
 	}
 </script>
 
-<table border="1" style="display: block;">
+<%-- <table border="1" style="display: block;">
 	<tr>
 		<th>ID</th>
 		<th>Name</th>
@@ -71,4 +64,31 @@ table, th, td {
 </table>
 <form method="POST" action="Cart" style="margin-top: 20px;">
 	<input type="submit" name="action" value="Buy" />
-</form>
+</form> --%>
+
+<c:forEach items="${listProduct}" var="product">
+  <tr>
+    <td class="table-row-link" data-link="#">
+      <img class="img-product-row" src="${product.image}" alt="${product.name}">
+    </td>
+    <td class="product-name-row">${product.image}</td>
+    <td class="product-price-row">
+      <p class="price-end-row"><fmt:formatNumber type="number" maxFractionDigits="0" value="${product.price*product.sale}" /> đ</p>
+      <c:if test="${product.sale != 1}"> 
+        <p class="price-discount-row">
+          <span><fmt:formatNumber type="number" maxFractionDigits="0" value="${product.price}" /> đ</span> | <span>-<fmt:formatNumber type="percent" value="${1 - product.sale}" /></span>
+        </p>
+      </c:if>
+    </td>
+    <td class="product-qty-row">
+      <div>
+        <span class="decrease-qty value-button"
+          onclick="decreaseValue(this)">-</span> <input
+          class="input-qty" type="number" value="1" min="1" max="99"
+          id="number" required> <span
+          class="increase-qty value-button"
+          onclick="increaseValue(this)">+</span>
+      </div> <a href="#" class="remove-product-btn">Xóa</a>
+    </td>
+  </tr>
+</c:forEach>

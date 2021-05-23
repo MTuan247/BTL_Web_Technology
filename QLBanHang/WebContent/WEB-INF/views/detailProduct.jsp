@@ -1,8 +1,24 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
-<!DOCTYPE html>
+<head>
+  <title>${product.name} | eShop</title>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+    content="width=device-width, height=device-height, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+  <link rel="icon" type="image/png" href="assets/image/logo200px.png">
+
+  <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+  <link href="assets/css/style.css" rel="stylesheet" type="text/css">
+  <script src="https://kit.fontawesome.com/aa8e5675e3.js" crossorigin="anonymous"></script>
+
+  <!--  -->
+  <link rel="stylesheet" type="text/css" href="assets/css/product-detail.css">
+</head>
+
+<%-- <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
@@ -37,4 +53,45 @@
 	<jsp:include page="_footer.jsp"></jsp:include>
 
 </body>
-</html>
+</html> --%>
+
+<jsp:include page="_header.jsp"></jsp:include>
+
+<div class="info-container">
+      <div class="img-product-container">
+        <h2 class="product-name">${product.name}</h2>
+        <img src="${product.image}" alt="${product.name}">
+      </div>
+      <div class="detail-container">
+        <h2 class="product-name">${product.name}</h2>
+        <div class="product-price">
+          <p class="price-end"><fmt:formatNumber type="number" maxFractionDigits="0" value="${product.price*product.sale}" /> đ</p>
+          <c:if test="${product.sale != 1}"> 
+            <p class="price-discount">
+              <span><fmt:formatNumber type="number" maxFractionDigits="0" value="${product.price}" /> đ</span> | <span>-<fmt:formatNumber type="percent" value="${1 - product.sale}" /></span>
+            </p>
+          </c:if>
+        </div>
+
+        <hr>
+        <p>Số Lượng</p>
+        <div class="product-qty-container">
+          <span class="decrease-qty value-button" onclick="decreaseValue(this)">-</span>
+          <input class="input-qty" type="number" value="1" min="1"  max="5" id="number" required>
+          <span class="increase-qty value-button" onclick="increaseValue(this)">+</span>
+        </div>
+
+        <a href="#" class="buy-btn">Chọn Mua</a>
+      </div>
+    </div>
+
+    <div class="description-container">
+      <h3 class="description-title">Mô tả sản phẩm</h3>
+      <p class="description-p">${product.description}</p>
+    </div>
+
+
+    
+  </main>
+  
+<jsp:include page="_footer.jsp"></jsp:include>
