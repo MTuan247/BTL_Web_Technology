@@ -261,6 +261,23 @@ public class DBUtils {
 			e.printStackTrace();
 		}
 	}
+	
+	public static void insertToCart(Connection conn, String userID, String productID, String num) {
+		String sql = "Insert into Cart(USER_ID, PRODUCT_ID, NUMBER) values (?,?,?)";
+
+		try {
+			PreparedStatement pstm = conn.prepareStatement(sql);
+
+			pstm.setString(1, userID);
+			pstm.setString(2, productID);
+			pstm.setString(3, num);
+
+			pstm.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 
 	public static void removeFromCart(Connection conn, String userID, String productID) {
 		String sql = "Delete From Cart Where USER_ID = ? AND PRODUCT_ID = ?";

@@ -26,6 +26,7 @@
 				<form method="POST" action="Cart">
 					<input type="hidden" name="productID" value="${product.productID}" />
 					<c:if test="${!product.isInCart() }">
+						<input type="number" name="number" min="0" max="${product.available}" />
 						<input type="submit" name="action" value="Add To Cart" />
 					</c:if>
 					<c:if test="${product.isInCart() }">
