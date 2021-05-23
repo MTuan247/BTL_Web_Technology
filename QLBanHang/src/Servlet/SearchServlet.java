@@ -12,7 +12,7 @@ import Model.Product;
 import Utils.DBUtils;
 
 @WebServlet("/Search")
-public class SearchServlet extends HomeServlet {
+public class SearchServlet extends ProductListServlet {
 	private static final long serialVersionUID = 1L;
 
 	@Override

@@ -44,7 +44,14 @@
     </div>
 
     <div class="content">
+    <c:if test="${param.searchValue != null}">
+      <p>Kết quả tìm kiếm <strong> "${param.searchValue}" </strong></p>
+      
+    </c:if>
+    <c:if test="${param.searchValue == null}">
       <h2 id="page-title">Sản phẩm</h2>
+    </c:if>
+      
       <div class="flex">
         <jsp:include page="_listP.jsp"></jsp:include>
       </div>
