@@ -31,7 +31,7 @@ public class LogoutServlet extends HttpServlet {
 		HttpSession sesssion = request.getSession();
 		MyUtils.deleteLoginedUser(sesssion);
 		MyUtils.deleteUserCookie(response);
-		RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher("/WEB-INF/views/loginView.jsp");
+		RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher("/WEB-INF/views/client/loginView.jsp");
 
 		dispatcher.forward(request, response);
 

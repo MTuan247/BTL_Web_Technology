@@ -26,7 +26,7 @@ public class RegisterServlet extends HttpServlet {
             throws ServletException, IOException {
 
         RequestDispatcher dispatcher //
-                = this.getServletContext().getRequestDispatcher("/WEB-INF/views/registerView.jsp");
+                = this.getServletContext().getRequestDispatcher("/WEB-INF/views/client/registerView.jsp");
 
         dispatcher.forward(request, response);
 

@@ -34,7 +34,7 @@ public class OrderHistoryServlet extends HttpServlet{
 
         request.setAttribute("listOrder",listOrder);
 
-        RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher("/WEB-INF/views/orderHistory.jsp");
+        RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher("/WEB-INF/views/client/orderHistory.jsp");
 
         dispatcher.forward(request, response);
 

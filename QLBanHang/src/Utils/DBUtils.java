@@ -332,10 +332,12 @@ public class DBUtils {
 		try {
 			PreparedStatement pstm = conn.prepareStatement(sql);
 			ResultSet rs = pstm.executeQuery();
-			boolean status = false;
+			boolean status;
 			while(rs.next()){
 				if(rs.getInt("STATUS") == 1){
 					status = true;
+				} else {
+					status = false;
 				}
 				listOrders.add(new Order(rs.getString("ORDER_ID"),
 						rs.getString("USER_ID"),
@@ -412,7 +414,7 @@ public class DBUtils {
 
 			ResultSet rs = pstm.executeQuery();
 
-			if (rs.next()) {
+			while (rs.next()) {
 				String orderID = rs.getString("ORDER_ID");
 				String name = rs.getString("NAME");
 				String phoneNumber = rs.getString("PHONE_NUMBER");
@@ -431,6 +433,7 @@ public class DBUtils {
 		}
 		return list;
 	}
+
 
 	public static void changeOrderInfo(Order order){
 		String sql = "Update order_detail Set STATUS=? Where ORDER_ID=?";

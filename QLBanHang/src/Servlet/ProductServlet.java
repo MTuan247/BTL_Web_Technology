@@ -42,7 +42,7 @@ public class ProductServlet extends HttpServlet {
 		
 		request.setAttribute("product", product);
 
-		RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher("/WEB-INF/views/detailProduct.jsp");
+		RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher("/WEB-INF/views/client/detailProduct.jsp");
 
 		dispatcher.forward(request, response);
 

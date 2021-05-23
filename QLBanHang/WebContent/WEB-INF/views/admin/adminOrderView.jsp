@@ -36,8 +36,8 @@
             <td>${order.address}</td>
             <td>${order.totalMoney}</td>
             <td>${order.userID}</td>
-            <c:if test="${!order.status}"><td>Pending</td></c:if>
-            <c:if test="${order.status}"><td>Confirm</td></c:if>
+            <c:if test="${!order.isStatus()}"><td>Pending</td></c:if>
+            <c:if test="${order.isStatus()}"><td>Confirm</td></c:if>
             <td>
                 <form method="get" action="AdminOrderDetail">
                     <input type="hidden" name="id" value="${order.orderID}" />

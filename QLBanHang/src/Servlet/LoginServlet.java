@@ -29,7 +29,7 @@ public class LoginServlet extends HttpServlet {
 			throws ServletException, IOException {
 
 		RequestDispatcher dispatcher //
-				= this.getServletContext().getRequestDispatcher("/WEB-INF/views/loginView.jsp");
+				= this.getServletContext().getRequestDispatcher("/WEB-INF/views/client/loginView.jsp");
 
 		dispatcher.forward(request, response);
 
@@ -80,7 +80,7 @@ public class LoginServlet extends HttpServlet {
 
 			// Forward (Chuyển tiếp) tới trang /WEB-INF/views/login.jsp
 			RequestDispatcher dispatcher //
-					= this.getServletContext().getRequestDispatcher("/WEB-INF/views/loginView.jsp");
+					= this.getServletContext().getRequestDispatcher("/WEB-INF/views/client/loginView.jsp");
 
 			dispatcher.forward(request, response);
 		}

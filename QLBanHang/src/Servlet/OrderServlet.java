@@ -30,7 +30,7 @@ public class OrderServlet extends CartServlet {
 //        request.setAttribute("user",loginedUser);
         request.setAttribute("totalMoney", totalMoney);
         request.setAttribute("listProduct", listProduct);
-        RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher("/WEB-INF/views/orderView.jsp");
+        RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher("//WEB-INF/views/client/orderView.jsp");
         dispatcher.forward(request, response);
     }
 
@@ -57,7 +57,7 @@ public class OrderServlet extends CartServlet {
         }
         request.setAttribute("order",order);
         request.setAttribute("listProduct",listProduct);
-        RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher("/WEB-INF/views/orderSuccess.jsp");
+        RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher("//WEB-INF/views/client/orderSuccess.jsp");
         dispatcher.forward(request, response);
 
         CleanCart(conn,request);

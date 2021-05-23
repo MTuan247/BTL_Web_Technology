@@ -39,7 +39,7 @@ public class UserInfoServlet extends HttpServlet {
        request.setAttribute("user", loginedUser);
 
        RequestDispatcher dispatcher //
-               = this.getServletContext().getRequestDispatcher("/WEB-INF/views/userInfoView.jsp");
+               = this.getServletContext().getRequestDispatcher("/WEB-INF/views/client/userInfoView.jsp");
        dispatcher.forward(request, response);
 
    }

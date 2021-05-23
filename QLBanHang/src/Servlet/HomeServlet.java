@@ -48,7 +48,7 @@ public class HomeServlet extends HttpServlet {
 		request.setAttribute("listProduct", listProduct);
 		request.setAttribute("listCategory", listCategory);
 
-		RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher("/WEB-INF/views/homeView.jsp");
+		RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher("/WEB-INF/views/client/homeView.jsp");
 
 		dispatcher.forward(request, response);
 

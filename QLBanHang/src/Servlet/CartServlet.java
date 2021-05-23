@@ -36,7 +36,7 @@ public class CartServlet extends HttpServlet {
 		
 		request.setAttribute("totalMoney", totalMoney);
 		request.setAttribute("listProduct", listProduct);
-		RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher("/WEB-INF/views/cartView.jsp");
+		RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher("/WEB-INF/views/client/cartView.jsp");
 		dispatcher.forward(request, response);
 	}
 
