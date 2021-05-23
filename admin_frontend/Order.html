@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Order</title>
+	<!-- Import lib -->
+	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.css">
+	<link rel="stylesheet" type="text/css" href="fontawesome-free/css/all.min.css">
+	<link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+	<!-- End import lib -->
+
+	<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body class="overlay-scrollbar">
+	<!-- navbar -->
+	<div class="navbar">
+		<ul class="navbar-nav nav-right">
+			<li class="nav-item mode">
+				<a class="nav-link" href="#" onclick="switchTheme()">
+					<i class="fas fa-moon dark-icon"></i>
+					<i class="fas fa-sun light-icon"></i>
+				</a>
+			</li>
+		</ul>
+		<!-- end nav right -->
+	</div>
+	<div class="wrapper">
+		<div class="row">
+			<div class="col-10 col-m-12 col-sm-12">
+				<div class="card">
+					<div class="card-header">
+						<h3>
+							Order
+						</h3>
+					</div>
+					<div class="pdoduct-content">
+						<table>
+							<thead>
+								<tr>
+									<th>ID</th>
+									<th>Name</th>
+									<th>Phone number</th>
+									<th>Address</th>
+									<th>Total money</th>
+									<th>UserID</th>
+									<th>Status</th>
+									<th>Detail</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>1</td>
+									<td>Order 1</td>
+									<td>1223</td>
+									<td>100,sadsadq,sda</td>
+									<td>256</td>
+									<td>1</td>
+									<td>Pending</td>
+									<td>
+										<form class="navbar-nav nav-left">
+											<li class="nav-item">
+												<a class="nav-link" href="/OrderDetail">
+													<i class="fas fa-info-circle"></i>
+												</a>
+											</li>
+										</form>
+									</td>
+								</tr>
+								<tr>
+									<td>2</td>
+									<td>Order 2</td>
+									<td>1223</td>
+									<td>100,sadsadq,sda</td>
+									<td>256</td>
+									<td>1</td>
+									<td>Confirm</td>
+									<td>
+										<form class="navbar-nav nav-left">
+											<li class="nav-item">
+												<a class="nav-link" href="/OrderDetail">
+													<i class="fas fa-info-circle"></i>
+												</a>
+											</li>
+										</form>
+									</td>
+								</tr>
+								<tr>
+									<td>3</td>
+									<td>Order 3</td>
+									<td>1223</td>
+									<td>100,sadsadq,sda</td>
+									<td>256</td>
+									<td>1</td>
+									<td>Confirm</td>
+									<td>
+										<form class="navbar-nav nav-left">
+											<li class="nav-item">
+												<a class="nav-link" href="/OrderDetail">
+													<i class="fas fa-info-circle"></i>
+												</a>
+											</li>
+										</form>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- end main content -->
+	<!-- import script -->
+	<script src="index.js"></script>
+	<!-- end import script -->
+</body>
+</html>
