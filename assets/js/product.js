@@ -33,3 +33,18 @@ function decreaseValue(element) {
   value = value === min_value ? value : value - 1;
   qty_element.value = value;
 }
+
+
+function clickProduct(event) {
+    console.log(event.target)
+    var link = event.target.getAttribute("data-link");
+    window.open(link);
+  
+}
+
+var elements = document.getElementsByClassName("product-item");
+for(var i = 0; i < elements.length; ++i) {
+  elements[i].addEventListener('click', (event) => {
+    clickProduct(event);
+  })
+}
