@@ -69,6 +69,3 @@ table, th, td {
 		</tr>
 	</c:forEach>
 </table>
-<form method="POST" action="Cart" style="margin-top: 20px;">
-	<input type="submit" name="action" value="Buy" />
-</form>

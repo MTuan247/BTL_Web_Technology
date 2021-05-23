@@ -15,11 +15,10 @@
 
 	<h3>${product.name }</h3>
 
-	<jsp:include page="_listC.jsp"></jsp:include>
-	<div style="display: inline-block; border-width: 1px; border-style: solid;" >
-		<h4>${product.productID}</h4>
+	<div>
 		<img src="${product.image }" alt="${product.name}" style="height: 100px;">
 		<h4>${product.name}</h4>
+		<h4>${product.description}</h4>
 		<h4>${product.price}</h4>
 		<h4>${product.sale}</h4>
 		<h4>${product.available}</h4>

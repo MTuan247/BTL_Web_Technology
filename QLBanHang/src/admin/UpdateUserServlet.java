@@ -1,6 +1,5 @@
 package admin;
 
-import Model.Product;
 import Model.UserAccount;
 import Utils.DBUtils;
 import Utils.MyUtils;

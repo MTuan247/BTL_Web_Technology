@@ -1,4 +1,4 @@
-package Servlet;
+package admin;
 
 import java.sql.Connection;
 import java.util.List;
@@ -9,7 +9,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import Model.Product;
 import Utils.DBUtils;
-import admin.AdminProductServlet;
 
 @WebServlet("/AdminCategory")
 public class AdminCategoryServlet extends AdminProductServlet {

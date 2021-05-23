@@ -1,6 +1,5 @@
 package Utils;
 
-import java.security.AccessControlException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -8,10 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import Model.Product;
-import Model.UserAccount;
-import Model.CartProduct;
-import Model.Category;
+import Model.*;
 
 import DB.*;
 
@@ -282,6 +278,20 @@ public class DBUtils {
 		}
 	}
 
+	public static void cleanCart(Connection conn, String userID){
+		String sql = "Delete From Cart Where USER_ID = ?";
+
+		try {
+			PreparedStatement pstm = conn.prepareStatement(sql);
+
+			pstm.setString(1, userID);
+			pstm.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
 	public static void updateNumberCartProduct(Connection conn, String userID, String productID, int number) {
 		String sql = "Update Cart Set Number=? Where USER_ID = ? AND PRODUCT_ID = ?";
 
@@ -314,6 +324,204 @@ public class DBUtils {
 			e.printStackTrace();
 		}
 
+	}
+
+	public static List<Order> getAllOrder(Connection conn){
+		String sql = "SELECT * FROM order_detail ";
+		List<Order> listOrders = new ArrayList<Order>();
+		try {
+			PreparedStatement pstm = conn.prepareStatement(sql);
+			ResultSet rs = pstm.executeQuery();
+			boolean status = false;
+			while(rs.next()){
+				if(rs.getInt("STATUS") == 1){
+					status = true;
+				}
+				listOrders.add(new Order(rs.getString("ORDER_ID"),
+						rs.getString("USER_ID"),
+						rs.getString("NAME"),
+						rs.getString("PHONE_NUMBER"),
+						rs.getString("ADDRESS"),
+						rs.getDouble("TOTAL_MONEY"),
+						status
+				));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return listOrders;
+	}
+
+
+	public static void insertOrder(Connection conn, Order order){
+		String sql = "INSERT INTO order_detail VALUES (?,?,?,?,?,?,?)";
+
+		try {
+			PreparedStatement pstm = conn.prepareStatement(sql);
+
+			pstm.setString(1,order.getOrderID());
+			pstm.setString(2,order.getFullName());
+			pstm.setString(3,order.getPhoneNumber());
+			pstm.setString(4,order.getAddress());
+			pstm.setDouble(5,order.getTotalMoney());
+			pstm.setString(6,order.getUserID());
+			pstm.setInt(7,0);
+			pstm.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+	}
+
+	public static Order findOrder(String id){
+		String sql = "Select * from order_detail where ORDER_ID=?";
+
+		try {
+			PreparedStatement pstm = conn.prepareStatement(sql);
+			pstm.setString(1, id);
+
+			ResultSet rs = pstm.executeQuery();
+
+			if (rs.next()) {
+				String orderID = rs.getString("ORDER_ID");
+				String name = rs.getString("NAME");
+				String phoneNumber = rs.getString("PHONE_NUMBER");
+				String address = rs.getString("ADDRESS");
+				double totalMoney = rs.getDouble("TOTAL_MONEY");
+				String userID = rs.getString("USER_ID");
+				boolean status = false;
+				if(rs.getInt("STATUS") == 1){
+					status = true;
+				}
+
+				return new Order(orderID,userID,name,phoneNumber,address,totalMoney,status);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+	public static List<Order> findOrderByUserID(String id){
+		String sql = "Select * from order_detail where USER_ID=?";
+		List<Order> list = new ArrayList<Order>();
+
+		try {
+			PreparedStatement pstm = conn.prepareStatement(sql);
+			pstm.setString(1, id);
+
+			ResultSet rs = pstm.executeQuery();
+
+			if (rs.next()) {
+				String orderID = rs.getString("ORDER_ID");
+				String name = rs.getString("NAME");
+				String phoneNumber = rs.getString("PHONE_NUMBER");
+				String address = rs.getString("ADDRESS");
+				double totalMoney = rs.getDouble("TOTAL_MONEY");
+				String userID = rs.getString("USER_ID");
+				boolean status = false;
+				if(rs.getInt("STATUS") == 1){
+					status = true;
+				}
+
+				list.add(new Order(orderID,userID,name,phoneNumber,address,totalMoney,status));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return list;
+	}
+
+	public static void changeOrderInfo(Order order){
+		String sql = "Update order_detail Set STATUS=? Where ORDER_ID=?";
+
+		try {
+			PreparedStatement pstm = conn.prepareStatement(sql);
+			if (order.isStatus()){
+				pstm.setInt(1,1);
+			} else{
+				pstm.setInt(1,0);
+			}
+			pstm.setString(2,order.getOrderID());
+			pstm.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+
+	public static void deleteOrder(Connection conn,String id){
+		String sql = "DELETE FROM order_detail WHERE ORDER_ID = ?";
+
+		try {
+			PreparedStatement pstm = conn.prepareStatement(sql);
+			pstm.setString(1,id);
+			pstm.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+
+	public static List<CartProduct> getProductByOrderID(String id){
+		String sql = "SELECT product.NAME,product.IMAGE,product.PRICE,product.SALE,order_product.NUMBER FROM order_product JOIN product JOIN order_detail WHERE order_detail.ORDER_ID = order_product.ORDER_ID AND order_product.PRODUCT_ID = product.PRODUCT_ID and order_detail.ORDER_ID = ?";
+		List<CartProduct> listProduct = new ArrayList<CartProduct>();
+		try {
+			PreparedStatement pstm = conn.prepareStatement(sql);
+			pstm.setString(1,id);
+			ResultSet rs = pstm.executeQuery();
+			while (rs.next()){
+				CartProduct product = new CartProduct();
+				product.setName(rs.getString("NAME"));
+				product.setImage(rs.getString("IMAGE"));
+				product.setPrice(rs.getFloat("PRICE"));
+				product.setSale(rs.getFloat("SALE"));
+				product.setNum(rs.getInt("NUMBER"));
+				listProduct.add(product);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return listProduct;
+	}
+
+	public static void insertOrderProduct(Connection conn,OrderProduct orderProduct){
+		String sql = "INSERT INTO order_product(ORDER_ID,PRODUCT_ID,NUMBER) VALUES (?,?,?)";
+
+		try {
+			PreparedStatement pstm = conn.prepareStatement(sql);
+
+			pstm.setString(1,orderProduct.getOrderID());
+			pstm.setString(2,orderProduct.getProductID());
+			pstm.setInt(3,orderProduct.getNum());
+			pstm.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+
+	public static void deleteOrderProduct(Connection conn,String id){
+		String sql = "DELETE FROM order_product WHERE ORDER_PRODUCT_ID = ?";
+
+		try {
+			PreparedStatement pstm = conn.prepareStatement(sql);
+			pstm.setString(1,id);
+			pstm.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+
+	public static void changeOrderProductInfo(OrderProduct orderProduct){
+		String sql = "Update order_detail Set PRODUCT_ID=?, NUMBER=? Where ORDER_PRODUCT_ID=?";
+
+		try {
+			PreparedStatement pstm = conn.prepareStatement(sql);
+			pstm.setString(1,orderProduct.getProductID());
+			pstm.setInt(2, orderProduct.getNum());
+			pstm.setString(3, orderProduct.getOrderProductID());
+			pstm.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 	}
 
 	public static void insertProduct(Connection conn, Product product, int categoryID) {
@@ -551,5 +759,22 @@ public class DBUtils {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+	}
+
+	public static String getNextOrderID(Connection conn){
+		String sql = "SELECT ORDER_ID FROM order_detail order by ORDER_ID Desc limit 1";
+		String result = "1";
+
+		try {
+			PreparedStatement pstm = conn.prepareStatement(sql);
+			ResultSet rs = pstm.executeQuery();
+			if(rs.next()){
+				result = String.valueOf(rs.getInt(1)+1);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		return result;
 	}
 }

@@ -32,7 +32,7 @@ public class CartServlet extends HttpServlet {
 			throws ServletException, IOException {
 		Connection conn = MyUtils.getStoredConnection(request);
 		List<CartProduct> listProduct = getListCartProduct(conn,request);
-		float totalMoney = CalculateMoney(listProduct);
+		double totalMoney = CalculateMoney(listProduct);
 		
 		request.setAttribute("totalMoney", totalMoney);
 		request.setAttribute("listProduct", listProduct);
@@ -85,7 +85,7 @@ public class CartServlet extends HttpServlet {
 		return listProduct;
 	}
 	
-	public float CalculateMoney(List<CartProduct> list) {
+	public double CalculateMoney(List<CartProduct> list) {
 		float sum = 0;
 		for (CartProduct o : list){
 			sum += o.getPrice() * o.getSale() * o.getNum();
@@ -169,5 +169,17 @@ public class CartServlet extends HttpServlet {
 		}
 		MyUtils.storeCartProduct(session, null);
 		MyUtils.storeCartProductID(session, null);
+	}
+
+	public void CleanCart(Connection conn, HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		UserAccount loginedUser = MyUtils.getLoginedUser(session);
+
+		if (loginedUser == null) {
+			MyUtils.storeCartProduct(session, null);
+			MyUtils.storeCartProductID(session, null);
+		} else {
+			DBUtils.cleanCart(conn, loginedUser.getUserID());
+		}
 	}
 }
