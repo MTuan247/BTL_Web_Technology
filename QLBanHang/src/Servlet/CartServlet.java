@@ -97,15 +97,19 @@ public class CartServlet extends HttpServlet {
 		HttpSession session = request.getSession();
 		
 		String productID = request.getParameter("productID");
+		String num = request.getParameter("number");
+		int number = Integer.parseInt(num);
 		
 		UserAccount loginedUser = MyUtils.getLoginedUser(session);
 		if (loginedUser == null) {	
 			List<CartProduct> listProduct = MyUtils.getCartProduct(session);
 			List<String> listProductID = MyUtils.getCartProductID(session);
-			listProduct.add(DBUtils.findProduct(conn, productID));
+			CartProduct cartProduct = DBUtils.findProduct(conn, productID);
+			cartProduct.setNum(number);
+			listProduct.add(cartProduct);
 			listProductID.add(productID);
 		} else {
-			DBUtils.insertToCart(conn, loginedUser.getUserID(), productID);
+			DBUtils.insertToCart(conn, loginedUser.getUserID(), productID, num);
 		}
 		
 //		List<CartProduct> listProduct = MyUtils.getCartProduct(session);

@@ -60,7 +60,6 @@
         <fmt:formatNumber type="number" maxFractionDigits="0" value="${product.price}" /> đ
       </span>
     </c:if>
-
     <%-- form method="POST" action="Cart" id="add-cart-form">
       <input type="hidden" name="productID" value="${product.productID}" />
       <c:if test="${!product.isInCart() }">
