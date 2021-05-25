@@ -1,29 +1,50 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-         pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+         pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<div style="display: inline-block;">
-    <table border="1" cellpadding="5" cellspacing="1" >
-        <tr><a href="/CreateCategory" style="display: block">Create a category</a></tr>
+<div class="sidebar">
+    <table class="sidebar-nav">
         <tr>
-            <th>CategoryID</th>
-            <th>Name</th>
-            <th>Action</th>
+            <td colspan="3">
+                <h3>Category</h3>
+            </td>
+            <td>
+                <a href="CreateCategory">
+                    <i class="fas fa-plus-circle" style="color: black"></i>
+                </a>
+            </td>
+        </tr>
+        <tr>
+            <td>ID</td>
+            <td>Name</td>
+            <td colspan="2"></td>
         </tr>
         <c:forEach items="${listCategory}" var="category">
-            <tr>
+            <tr class="sidebar-nav-item">
                 <td>${category.categoryID}</td>
-                <td><a href="AdminCategory?categoryID=${category.categoryID }">${category.name}</a></td>
+                <td>
+                    <a href="AdminCategory?categoryID=${category.categoryID }" class="sidebar-nav-link">
+                            ${category.name}
+                    </a>
+                </td>
                 <td>
                     <form method="get" action="UpdateCategory">
                         <input type="hidden" name="id" value="${category.categoryID}" />
-                        <input type="submit" name="action" value="Change Infomation" />
+                        <button type="submit" name="action" value="Update" class = "action-button">
+                            <i class="fas fa-edit"></i>
+                        </button>
                     </form>
+                </td>
+                <td>
                     <form method="Post" action="DeleteCategory">
                         <input type="hidden" name="id" value="${category.categoryID}" />
-                        <input type="submit" name="delete" value="Delete" />
+                        <button type="submit" name="action" value="Delete" class = "action-button">
+                            <i class="fa fa-trash"></i>
+                        </button>
                     </form>
                 </td>
             </tr>
         </c:forEach>
     </table>
 </div>
+
+

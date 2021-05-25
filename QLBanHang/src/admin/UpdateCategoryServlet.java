@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 @WebServlet("/UpdateCategory")
-public class UpdateCategoryServlet extends HttpServlet {
+public class UpdateCategoryServlet extends AdminProductServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -33,7 +33,7 @@ public class UpdateCategoryServlet extends HttpServlet {
         String id = request.getParameter("id");
         Category category = DBUtils.getCategoryByID(conn,id);
         request.setAttribute("category",category);
-        RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher("/WEB-INF/views/admin/updateCategory.jsp");
-        dispatcher.forward(request, response);
+        request.setAttribute("doUpdateCategory",true);
+        super.doGet(request,response);
     }
 }

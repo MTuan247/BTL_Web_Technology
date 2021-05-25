@@ -15,7 +15,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 @WebServlet("/CreateUser")
-public class CreateUserServlet extends HttpServlet {
+public class CreateUserServlet extends AdminUserServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -42,8 +42,8 @@ public class CreateUserServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher("/WEB-INF/views/admin/createUser.jsp");
-        dispatcher.forward(request, response);
+        request.setAttribute("doCreateUser",true);
+        super.doGet(request,response);
     }
 
     public boolean checkValidUserName(String username,HttpServletRequest request, HttpServletResponse response){

@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 @WebServlet("/CreateCategory")
-public class CreateCategoryServlet extends HttpServlet {
+public class CreateCategoryServlet extends AdminProductServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -32,7 +32,7 @@ public class CreateCategoryServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher("/WEB-INF/views/admin/createCategory.jsp");
-        dispatcher.forward(request, response);
+        request.setAttribute("doCreateCategory",true);
+        super.doGet(request,response);
     }
 }

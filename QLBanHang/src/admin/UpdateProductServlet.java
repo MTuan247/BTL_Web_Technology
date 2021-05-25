@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 @WebServlet("/UpdateProduct")
-public class UpdateProductServlet extends HttpServlet {
+public class UpdateProductServlet extends AdminProductServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -35,8 +35,7 @@ public class UpdateProductServlet extends HttpServlet {
         String id = request.getParameter("id");
         Product product = DBUtils.getProductByID(id);
         request.setAttribute("product",product);
-//        request.getRequestDispatcher("WEB-INF/views/admin/updateProduct.jsp");
-        RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher("/WEB-INF/views/admin/updateProduct.jsp");
-        dispatcher.forward(request, response);
+        request.setAttribute("doUpdateProduct",true);
+        super.doGet(request,response);
     }
 }

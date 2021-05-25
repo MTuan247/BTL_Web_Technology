@@ -27,6 +27,7 @@ public class AdminProductServlet extends HttpServlet{
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        request.setCharacterEncoding("UTF-8");
 
         Connection conn = MyUtils.getStoredConnection(request);
         List<Product> listProduct = null;

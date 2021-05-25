@@ -14,11 +14,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 @WebServlet("/CreateProduct")
-public class CreateProductServlet extends HttpServlet {
+public class CreateProductServlet extends AdminProductServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        request.setCharacterEncoding("UTF-8");
         Connection conn = MyUtils.getStoredConnection(request);
 
         String id = request.getParameter("id");
@@ -31,13 +32,14 @@ public class CreateProductServlet extends HttpServlet {
         int categoryID = Integer.parseInt(request.getParameter("categoryID"));
 
         Product product = new Product(id,name,image,description,price,sale,available);
+        System.out.println("Alo"+name);
         DBUtils.insertProduct(conn,product,categoryID);
         response.sendRedirect("Admin");
     }
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher("/WEB-INF/views/admin/createProduct.jsp");
-        dispatcher.forward(request, response);
+        request.setAttribute("doCreateProduct",true);
+        super.doGet(request,response);
     }
 }
