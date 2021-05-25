@@ -145,11 +145,13 @@ input[type=number]::-webkit-outer-spin-button {
   text-decoration: none;
   color: var(--second-color);
   background-color: var(--danger-color);
+  border: none;
   padding: 1.5rem 0rem;
   margin-top: 3rem;
   width: 60%;
   border-radius: 5px;
   text-align: center;
+  cursor: pointer;
 }
 
 .buy-btn:hover {
@@ -171,8 +173,7 @@ input[type=number]::-webkit-outer-spin-button {
   padding: 4rem 6rem;
   text-align: justify;
   white-space: pre-wrap;
-  letter-spacing: 2px;
-  line-height: 2rem;
+  line-height: 2.5rem;
 }
 
 
