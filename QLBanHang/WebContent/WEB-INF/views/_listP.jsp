@@ -41,7 +41,7 @@
 <!-- </table> -->
 <c:forEach items="${listProduct}" var="product">
   <div class="flex-item product-item" data-link="Product?productID=${product.productID}">
-    <img src="${product.image}" alt="${product.name}"> 
+    <img src="${product.image}" alt="${product.name}" loading="lazy"> 
     
     <c:if test="${product.sale != 1}">
       <span class="product-discount-tag">-<fmt:formatNumber type="percent" value="${1 - product.sale}" /></span>
