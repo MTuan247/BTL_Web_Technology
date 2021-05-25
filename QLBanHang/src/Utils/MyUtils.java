@@ -102,12 +102,11 @@ public class MyUtils {
     }
     
     public static List<String> getCartProductID(HttpSession session) {
-    	@SuppressWarnings("unchecked")
-		List<String> list = (List<String>) session.getAttribute(ATT_NAME_CART_LIST_ID);
-    	if (list == null) {
-    		list = new ArrayList<String>();
-    		storeCartProductID(session,list);
-    	}
+		List<String> list = new ArrayList<String>();
+    	List<CartProduct> listProduct = getCartProduct(session);
+		for(CartProduct o : listProduct) {
+			list.add(o.getProductID());
+		}
         return list;
     }
  
