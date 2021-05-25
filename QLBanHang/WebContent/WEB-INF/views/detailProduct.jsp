@@ -74,7 +74,7 @@
         </div>
 
         <hr>
-        <form method="POST" action="Cart">
+        <form method="POST" action="Cart" id="add-form">
           <input type="hidden" name="productID" value="${product.productID}" />
           <p>Số Lượng</p>
           <div class="product-qty-container">
@@ -84,7 +84,16 @@
           </div>
           <button type="submit" class="buy-btn" name="action" value="Add To Cart">Chọn Mua</button>
         </form>
-        
+        <%-- <div id="add-form">
+          <input type="hidden" id="productID" name="productID" value="${product.productID}" />
+          <p>Số Lượng</p>
+          <div class="product-qty-container">
+            <span class="decrease-qty value-button" onclick="decreaseValue(this)">-</span>
+            <input class="input-qty" type="number" name="number" value="1" min="1"  max="5" id="number" required>
+            <span class="increase-qty value-button" onclick="increaseValue(this)">+</span>
+          </div>
+          <button type="button" class="buy-btn" name="action" value="Add To Cart" onclick="addToCart()">Chọn Mua</button>
+        </div> --%>
       </div>
     </div>
 
