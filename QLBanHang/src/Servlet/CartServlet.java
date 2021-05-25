@@ -34,6 +34,7 @@ public class CartServlet extends HttpServlet {
 		List<CartProduct> listProduct = getListCartProduct(conn,request);
 		float totalMoney = CalculateMoney(listProduct);
 		
+		request.getSession().setAttribute("numberOfCartProduct", listProduct.size());
 		request.setAttribute("totalMoney", totalMoney);
 		request.setAttribute("listProduct", listProduct);
 		RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher("/WEB-INF/views/cartView.jsp");
@@ -103,11 +104,11 @@ public class CartServlet extends HttpServlet {
 		UserAccount loginedUser = MyUtils.getLoginedUser(session);
 		if (loginedUser == null) {	
 			List<CartProduct> listProduct = MyUtils.getCartProduct(session);
-			List<String> listProductID = MyUtils.getCartProductID(session);
+//			List<String> listProductID = MyUtils.getCartProductID(session);
 			CartProduct cartProduct = DBUtils.findProduct(conn, productID);
 			cartProduct.setNum(number);
 			listProduct.add(cartProduct);
-			listProductID.add(productID);
+//			listProductID.add(productID);
 		} else {
 			DBUtils.insertToCart(conn, loginedUser.getUserID(), productID, num);
 		}
@@ -126,9 +127,9 @@ public class CartServlet extends HttpServlet {
 		
 		if (loginedUser == null) {
 			List<CartProduct> listProduct = MyUtils.getCartProduct(session);
-			List<String> listProductID = MyUtils.getCartProductID(session);
+//			List<String> listProductID = MyUtils.getCartProductID(session);
 			listProduct.removeIf(n -> (n.getID().equalsIgnoreCase(productID) ));
-			listProductID.remove(productID);
+//			listProductID.remove(productID);
 		} else {
 			DBUtils.removeFromCart(conn, loginedUser.getUserID(), productID);
 		}
