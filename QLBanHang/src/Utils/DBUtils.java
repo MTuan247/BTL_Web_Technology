@@ -244,6 +244,33 @@ public class DBUtils {
 		}
 		return null;
 	}
+	
+	public static CartProduct findCartProduct(Connection conn, String product_ID, String userID) {
+		String sql = "Select * from Cart,Product where Cart.PRODUCT_ID = Product.PRODUCT_ID and Product.PRODUCT_ID = ? and USER_ID = ?";
+
+		try {
+			PreparedStatement pstm = conn.prepareStatement(sql);
+			pstm.setString(1, product_ID);
+			pstm.setString(2, userID);
+
+			ResultSet rs = pstm.executeQuery();
+
+			if (rs.next()) {
+				String productID = rs.getString("PRODUCT_ID");
+				String name = rs.getString("Name");
+				String image = rs.getString("image");
+				String description = rs.getString("description");
+				float price = rs.getFloat("Price");
+				float sale = rs.getFloat("sale");
+				int available = rs.getInt("available");
+				int number = rs.getInt("Number");
+				return new CartProduct(productID, name, image, description, price, sale, available, number);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
 
 	public static void insertToCart(Connection conn, String userID, String productID) {
 		String sql = "Insert into Cart(USER_ID, PRODUCT_ID, NUMBER) values (?,?,?)";
