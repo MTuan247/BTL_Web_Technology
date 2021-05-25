@@ -98,12 +98,8 @@
 </div>
 </main>
 
+<script src="assets/js/slideshow.js"></script>
+<script src="assets/js/product.js"></script>
 <jsp:include page="_footer.jsp"></jsp:include>
 
-  <script src="assets/js/slideshow.js"></script>
-    <script src="assets/js/index.js"></script>
-    <script src="assets/js/scrollToTop.js"></script>
-    <script src="assets/js/product.js"></script>
-  </body>
   
-</html>

@@ -73,5 +73,6 @@
     </div>
   </main>
 
-<jsp:include page="_footer.jsp"></jsp:include>
+
 <script src="assets/js/product.js"></script>
+<jsp:include page="_footer.jsp"></jsp:include>

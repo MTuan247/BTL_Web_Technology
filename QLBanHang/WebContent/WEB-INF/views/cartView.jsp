@@ -89,7 +89,9 @@
 </main>
 </c:if>
 
-<jsp:include page="_footer.jsp"></jsp:include>
+
 <script src="assets/js/table.js"></script>
 <script src="assets/js/cart.js"></script>
+<jsp:include page="_footer.jsp"></jsp:include>
+
 

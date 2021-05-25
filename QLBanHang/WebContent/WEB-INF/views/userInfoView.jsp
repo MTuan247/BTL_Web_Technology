@@ -120,10 +120,6 @@
     </div>
   </main>
   
-  
-<jsp:include page="_footer.jsp"></jsp:include>
-<script src="assets/js/index.js"></script>
+  <script src="assets/js/index.js"></script>
   <script src="assets/js/scrollToTop.js"></script>
-</body>
-
-</html>
+<jsp:include page="_footer.jsp"></jsp:include>
