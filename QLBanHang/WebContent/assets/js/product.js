@@ -1,5 +1,5 @@
 // Đảm bảo không thể để trống input[type=number]
-const numInputs = document.querySelectorAll('input[type=number]')
+var numInputs = document.querySelectorAll('input[type=number]')
 
 numInputs.forEach((input) => {
   input.addEventListener('change', function(e) {
@@ -21,6 +21,9 @@ function increaseValue(element) {
   value = value === max_value ? value : value + 1;
 
   qty_element.value = value;
+  
+  changeNumber(qty_element);
+  location.reload();
 }
 
 function decreaseValue(element) {
@@ -32,6 +35,9 @@ function decreaseValue(element) {
 
   value = value === min_value ? value : value - 1;
   qty_element.value = value;
+  
+  changeNumber(qty_element);
+  location.reload();
 }
 
 
@@ -47,4 +53,46 @@ for(var i = 0; i < elements.length; ++i) {
   elements[i].addEventListener('click', (event) => {
     clickProduct(event);
   })
+}
+
+
+/* test */
+
+function clickRowLink(event) {
+  if(event.target.matches('.img-product-row')) {
+    var link = event.target.dataset.link;
+    window.open(link);
+  }
+}
+
+window.onclick = function(event) {
+  clickRowLink(event);
+};
+
+/**/
+
+function changeNumber(element) {
+		console.log("hello")
+		var data = "action=Change&productID="+ element.id + "&num=" + element.value;
+		
+		var xhttp = new XMLHttpRequest();	
+		xhttp.onreadystatechange = function() {
+		    if (this.readyState == 4 && this.status == 200) {
+		      var str = `<fmt:formatNumber type="number" maxFractionDigits="0" value="${this.responseText}" /> đ`;
+		      document.getElementById("total-money").innerHTML = str;
+		      document.getElementById("tmp-money").innerHTML = str;
+		    }
+		  };
+		xhttp.open("POST", "Cart", true);
+		xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+		xhttp.send(data);
+	}
+	
+function Buy() {
+	var data = "action=Buy";
+	
+	var xhttp = new XMLHttpRequest();	
+	xhttp.open("POST", "Cart", true);
+	xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+	xhttp.send(data);
 }

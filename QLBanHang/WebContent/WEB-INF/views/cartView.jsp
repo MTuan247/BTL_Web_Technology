@@ -1,7 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
   pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@ page import="java.util.List,Model.CartProduct"%>
+
+<jsp:include page="_header.jsp"></jsp:include>
 
 
 <head>
@@ -33,32 +36,7 @@
 </c:if>
 </head>
 
-<%-- <!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Home Page</title>
-</head>
-<body>
-
-	<jsp:include page="_header.jsp"></jsp:include>
-	<jsp:include page="_menu.jsp"></jsp:include>
-
-	<h3>Cart</h3>
-
-	<jsp:include page="_listProductInCart.jsp"></jsp:include>
-	
-	<br>
-	<h3 id="TotalMoney">Total Money: ${totalMoney }</h3>
-	<br>
-	
-	
-	
-	<jsp:include page="_footer.jsp"></jsp:include>
-
-</body>
-</html> --%>
-<jsp:include page="_header.jsp"></jsp:include>
+<%-- <jsp:include page="_header.jsp"></jsp:include> --%>
 <c:if test="${listProduct.size() == 0}">
     <h2 class="notice">Giỏ hàng <span>(0 sản phẩm)</span></h2>
     <img src="assets/image/empty_cart.svg" class="img-notice">
@@ -70,7 +48,7 @@
 <c:if test="${listProduct.size() != 0}">
 <div class="content">
   <h2 class="notice">
-    Giỏ hàng <span>(3 sản phẩm)</span>
+    Giỏ hàng <span>(${listProduct.size()} sản phẩm)</span>
   </h2>
   <div class="table-responsive-container">
     <table class="product-cart-table">
@@ -80,29 +58,7 @@
         <th>Giá</th>
         <th>Số lượng</th>
       </tr>
-      <tr>
-        <td class="table-row-link" data-link="#"><img
-          class="img-product-row" src="assets/image/product1.jpg">
-        </td>
-        <td class="product-name-row">Dell Latitude 7480 123221
-          424325 sf è we3fsd wewqdwd 3eqwdwwd 3eqwdwd 3e3w</td>
-        <td class="product-price-row">
-          <p class="price-end-row">12.000.000 đ</p>
-          <p class="price-discount-row">
-            <span>15.000.000 đ</span> | <span>-20%</span>
-          </p>
-        </td>
-        <td class="product-qty-row">
-          <div>
-            <span class="decrease-qty value-button"
-              onclick="decreaseValue(this)">-</span> <input
-              class="input-qty" type="number" value="1" min="1" max="99"
-              id="number" required> <span
-              class="increase-qty value-button"
-              onclick="increaseValue(this)">+</span>
-          </div> <a href="#" class="remove-product-btn">Xóa</a>
-        </td>
-      </tr>      
+      <jsp:include page="_listProductInCart.jsp"></jsp:include>
     </table>
   </div>
 </div>
@@ -111,15 +67,16 @@
   <table class="money-container">
     <tr>
       <td class="money-item">Tạm tính</td>
-      <td class="money-value">${totalMoney} đ</td>
+      <td class="money-value" id="tmp-money">
+        <fmt:formatNumber type="number" maxFractionDigits="0" value="${totalMoney}" /> đ
+      </td>
     </tr>
-    <!-- <tr>
-            <td class="money-item">Phí vận chuyển</td>
-            <td class="money-value">0 đ</td>
-          </tr> -->
+
     <tr>
       <td class="money-item">Tổng cộng</td>
-      <td class="money-value" id="total-money">${totalMoney} đ</td>
+      <td class="money-value" id="total-money">
+        <fmt:formatNumber type="number" maxFractionDigits="0" value="${totalMoney}" /> đ
+      </td>
     </tr>
     <tr>
       <td class="money-item"></td>
@@ -133,3 +90,6 @@
 </c:if>
 
 <jsp:include page="_footer.jsp"></jsp:include>
+<script src="assets/js/table.js"></script>
+<script src="assets/js/product.js"></script>
+

@@ -15,6 +15,9 @@
 
 <!-- </body> -->
 <!-- </html> -->
+
+  
+<jsp:include page="_header.jsp"></jsp:include>
 <head>
   <title>Sản phẩm | eShop</title>
   <meta charset="UTF-8">
@@ -30,9 +33,6 @@
   <link rel="stylesheet" type="text/css" href="assets/css/user.css">
   <link rel="stylesheet" type="text/css" href="assets/css/product.css">
 </head>
-  
-<jsp:include page="_header.jsp"></jsp:include>
-
 
 <div class="sidebar" id="sidebar">
       <p class="cat-title">Danh mục sản phẩm</p>
@@ -44,17 +44,32 @@
     </div>
 
     <div class="content">
+    
     <c:if test="${param.searchValue != null}">
       <p>Kết quả tìm kiếm <strong> "${param.searchValue}" </strong></p>
       
     </c:if>
+    
     <c:if test="${param.searchValue == null}">
       <h2 id="page-title">Sản phẩm</h2>
     </c:if>
+    
+    <c:choose>
+      <c:when test="${param.searchValue != null && listProduct.size() == 0}">
+        <div style="text-align: center">
+          <p >Không tìm thấy sản phẩm phù hợp!</p>
+          <img style="max-width: 60%" src="assets/image/search-empty.svg">
+        </div>
+      </c:when>
       
-      <div class="flex">
-        <jsp:include page="_listP.jsp"></jsp:include>
-      </div>
+      <c:otherwise>
+        <div class="flex">
+          <jsp:include page="_listP.jsp"></jsp:include>
+        </div>
+      </c:otherwise>
+      
+    </c:choose>
+      
     </div>
   </main>
 

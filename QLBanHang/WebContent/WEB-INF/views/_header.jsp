@@ -66,7 +66,7 @@
             <i class="fas fa-search navbar-search-icon navbar-icon dropdown-toggle" data-toggle="search-menu" title="Tìm kiếm"></i>
             <div id="search-menu" class="dropdown-menu">
               <form method="GET" action="Search" id="search-form" autocomplete="off">
-                <input type="search" placeholder="Nhập thông tin sản phẩm, danh mục" name="searchValue" id="search-bar">
+                <input type="search" placeholder="Nhập từ khóa về sản phẩm" name="searchValue" id="search-bar">
                 <input type="submit" value="Tìm kiếm" id="search-button">
               </form>
             </div>
@@ -113,7 +113,7 @@
           <li class="navbar-item">
             <div class="cart-wrapper" onclick=" window.location.href = 'Cart' ">
               <i class="fas fa-shopping-cart cart-icon navbar-icon" title="Giỏ hàng"></i>
-              <span class="cart-number-product">100</span>
+              <span class="cart-number-product">${numberOfCartProduct}</span>
             </div>
           </li>
         </ul> 
