@@ -14,13 +14,14 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
     <link href="assets/css/style.css" rel="stylesheet" type="text/css">
     <script src="https://kit.fontawesome.com/aa8e5675e3.js" crossorigin="anonymous"></script>
-    <link rel="stylesheet" type="text/css" href="assets/css/slideshow.css">
 
     <!--  -->
     <link rel="stylesheet" type="text/css" href="assets/css/error_page.css">
     <link rel="stylesheet" type="text/css" href="assets/css/user.css">
     <link rel="stylesheet" type="text/css" href="assets/css/transaction-detail.css">
     <link rel="stylesheet" type="text/css" href="assets/css/transaction.css">
+    
+    
 </head>
 
 <body class="overlay-scrollbar">
@@ -85,7 +86,6 @@
 <!-- <script src="assets/js/table.js"></script> -->
 <script src="assets/js/index.js"></script>
 <script src="assets/js/table.js"></script>
-<script src="assets/js/scrollToTop.js"></script>
 </body>
 
 </html>

@@ -56,7 +56,7 @@
                                 <td>
                                     <form class="navbar-nav nav-left">
                                         <li class="nav-item">
-                                            <a class="nav-link" href="/AdminOrderDetail?id=${order.orderID}">
+                                            <a class="nav-link" href="${pageContext.request.contextPath }/AdminOrderDetail?id=${order.orderID}">
                                                 <i class="fas fa-info-circle"></i>
                                             </a>
                                         </li>

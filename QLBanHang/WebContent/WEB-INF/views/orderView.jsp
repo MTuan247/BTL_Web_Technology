@@ -96,7 +96,7 @@
             </tr>
             <tr class="form-item">
               <td><label for="tel">Số điện thoại</label></td>
-              <td><input type="tel" name="phoneNumber" value="" required></td>
+              <td><input type="tel" name="phone_number" value="" required></td>
             </tr>
             <tr class="form-item">
               <td><label for="province">Tỉnh/Thành phố</label></td>
