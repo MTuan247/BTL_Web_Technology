@@ -3,3 +3,5 @@ encoding//WebContent/WEB-INF/views/_listC.jsp=UTF-8
 encoding//WebContent/WEB-INF/views/_listP.jsp=UTF-8
 encoding//WebContent/WEB-INF/views/_listProductInCart.jsp=UTF-8
 encoding//WebContent/WEB-INF/views/_listProductInHome.jsp=UTF-8
+encoding//src/Servlet/LoginServlet.java=UTF-8
+encoding//src/Utils/MyUtils.java=UTF-8

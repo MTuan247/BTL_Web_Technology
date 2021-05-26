@@ -53,13 +53,11 @@ public class LoginServlet extends HttpServlet {
 		} else {
 			Connection conn = MyUtils.getStoredConnection(request);
 			try {
-				// Tìm user trong DB.
-
 				user = DBUtils.findUser(conn, userName, password);
 
 				if (user == null) {
 					hasError = true;
-					errorString = "Tên đăng nhập hoặc Mật khẩu không đúng";
+					errorString = "Tên đăng nhập hoặc mật khẩu không đúng";
 				}
 			} catch (SQLException e) {
 				e.printStackTrace();
@@ -67,41 +65,43 @@ public class LoginServlet extends HttpServlet {
 				errorString = e.getMessage();
 			}
 		}
-		// Trong trường hợp có lỗi,
-		// forward (chuyển hướng) tới /WEB-INF/views/login.jsp
+
 		if (hasError) {
 			user = new UserAccount();
 			user.setUserName(userName);
 			user.setPassword(password);
 
-			// Lưu các thông tin vào request attribute trước khi forward.
 			request.setAttribute("errorString", errorString);
 			request.setAttribute("user", user);
 
-			// Forward (Chuyển tiếp) tới trang /WEB-INF/views/login.jsp
 			RequestDispatcher dispatcher //
 					= this.getServletContext().getRequestDispatcher("/WEB-INF/views/loginView.jsp");
 
 			dispatcher.forward(request, response);
 		}
-		// Trường hợp không có lỗi.
-		// Lưu thông tin người dùng vào Session.
-		// Và chuyển hướng sang trang userInfo.
+
 		else {
 			HttpSession session = request.getSession();
 			MyUtils.storeLoginedUser(session, user);
 
-			// Nếu người dùng chọn tính năng "Remember me".
 			if (remember) {
 				MyUtils.storeUserCookie(response, user);
 			}
-			// Ngược lại xóa Cookie
+
 			else {
 				MyUtils.deleteUserCookie(response);
 			}
+			
+			Boolean isOrder = (Boolean) session.getAttribute("isOrder");
+			System.out.print(isOrder);
+			if(isOrder != null) {
+				session.setAttribute("isOrder", null);
+				response.sendRedirect(request.getContextPath() + "/Order");
+				return;
+			}
 
-			// Redirect (Chuyển hướng) sang trang /userInfo.
 			response.sendRedirect(request.getContextPath() + "/Home");
+
 		}
 	}
 
