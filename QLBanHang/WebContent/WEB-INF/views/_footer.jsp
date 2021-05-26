@@ -12,7 +12,7 @@
     </div>
     <form>
       <input type="text" placeholder="Địa chỉ email của bạn" name="subscribe-email" id="subscribe-input">
-      <input type="submit" value="Đăng ký" id="subscribe-submit">
+      <button type="button" value="Đăng ký" id="subscribe-submit">Đăng ký</button>
     </form>
   </div>
   <!-- End Subscribe container -->

@@ -50,7 +50,7 @@ function showPwd(hide_pwd_id, show_pwd_id, pwd_id) {
 }
 
 
-var index_email;
+/*var index_email;
 
 // lưu thông tin subscribe
 function saveEmailSubscribe(email) {
@@ -86,7 +86,7 @@ var subscribe_input = document.getElementById("subscribe-input");
 
 subscribe_submit.onclick = () => {
 	saveEmailSubscribe(subscribe_input.value);
-}
+}*/
 
 // add loading page
 function doneLoading() {

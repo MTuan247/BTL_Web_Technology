@@ -89,13 +89,13 @@
 </div>
 
 <div class="product-container">
-  <a class="product-container-title" href="product.html">Sản phẩm
+  <a class="product-container-title" href="${pageContext.request.contextPath}/ProductList">Sản phẩm
     nổi bật</a>
   <div class="flex">
     <jsp:include page="_listProductInHome.jsp"></jsp:include>
   </div>
 
-  <a class="more-product-btn" href="product.html">Xem thêm sản phẩm</a>
+  <a class="more-product-btn" href="${pageContext.request.contextPath}/ProductList">Xem thêm sản phẩm</a>
 </div>
 </main>
 
