@@ -12,11 +12,11 @@ public class SQLServerConnUtils_SQLJDBC {
             throws ClassNotFoundException, SQLException {
  
         // Chú ý: Thay đổi các thông số kết nối cho phù hợp.
-        String hostName = "localhost";
-        String sqlInstanceName = "ADMIN-PC";
+        String hostName = "DESKTOP-67E139F";
+        String sqlInstanceName = "SQLEXPRESS";
         String database = "QLBanHang";
         String userName = "sa";
-        String password = "";
+        String password = "123456789";
  
         return getSQLServerConnection_SQLJDBC(hostName, sqlInstanceName, database, userName, password);
     }
@@ -31,7 +31,7 @@ public class SQLServerConnUtils_SQLJDBC {
         // Cấu trúc URL Connection dành cho SQLServer
         // Ví dụ:
         // jdbc:sqlserver://ServerIp:1433/SQLEXPRESS;databaseName=simplehr
-        String connectionURL = "jdbc:sqlserver://" + hostName + ":1433" //
+        String connectionURL = "jdbc:sqlserver://" + hostName + ":57604" //
                 + ";instance=" + sqlInstanceName + ";databaseName=" + database;
  
         Connection conn = DriverManager.getConnection(connectionURL, userName, password);
