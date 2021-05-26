@@ -77,7 +77,7 @@ CREATE TABLE order_product (
 INSERT INTO Account(USER_NAME,NAME,PASSWORD,IS_ADMIN)
 VALUES 
 ('tuan','tuan','123',0),
-('Phạm Trung Hiếu','hieu','123',1);
+('hieu', N'Phạm Trung Hiếu','123',1);
 
 --------------insert to category-------------
 
