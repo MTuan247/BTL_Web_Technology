@@ -23,22 +23,22 @@ public class MyUtils {
     
     private static final String ATT_NAME_CART_LIST_ID = "ATTRIBUTE_FOR_STORE_CART_LIST_ID";
  
-    // Lưu trữ Connection vào attribute của request.
-    // Thông tin lưu trữ này chỉ tồn tại trong thời gian yêu cầu (request)
-    // cho tới khi dữ liệu được trả về trình duyệt người dùng.
+    // LÆ°u trá»¯ Connection vĂ o attribute cá»§a request.
+    // ThĂ´ng tin lÆ°u trá»¯ nĂ y chá»‰ tá»“n táº¡i trong thá»�i gian yĂªu cáº§u (request)
+    // cho tá»›i khi dá»¯ liá»‡u Ä‘Æ°á»£c tráº£ vá»� trĂ¬nh duyá»‡t ngÆ°á»�i dĂ¹ng.
     public static void storeConnection(ServletRequest request, Connection conn) {
         request.setAttribute(ATT_NAME_CONNECTION, conn);
     }
  
-    // Lấy đối tượng Connection đã được lưu trữ trong attribute của request.
+    // Láº¥y Ä‘á»‘i tÆ°á»£ng Connection Ä‘Ă£ Ä‘Æ°á»£c lÆ°u trá»¯ trong attribute cá»§a request.
     public static Connection getStoredConnection(ServletRequest request) {
         Connection conn = (Connection) request.getAttribute(ATT_NAME_CONNECTION);
         return conn;
     }
  
-    // Lưu trữ thông tin người dùng đã login vào Session.
+    // LÆ°u trá»¯ thĂ´ng tin ngÆ°á»�i dĂ¹ng Ä‘Ă£ login vĂ o Session.
     public static void storeLoginedUser(HttpSession session, UserAccount loginedUser) {
-        // Trên JSP có thể truy cập thông qua ${loginedUser}
+        // TrĂªn JSP cĂ³ thá»ƒ truy cáº­p thĂ´ng qua ${loginedUser}
         session.setAttribute("loginedUser", loginedUser);
     }
     
@@ -46,17 +46,17 @@ public class MyUtils {
         session.setAttribute("loginedUser", null);
     }
  
-    // Lấy thông tin người dùng lưu trữ trong Session.
+    // Láº¥y thĂ´ng tin ngÆ°á»�i dĂ¹ng lÆ°u trá»¯ trong Session.
     public static UserAccount getLoginedUser(HttpSession session) {
         UserAccount loginedUser = (UserAccount) session.getAttribute("loginedUser");
         return loginedUser;
     }
  
-    // Lưu thông tin người dùng vào Cookie.
+    // LÆ°u thĂ´ng tin ngÆ°á»�i dĂ¹ng vĂ o Cookie.
     public static void storeUserCookie(HttpServletResponse response, UserAccount user) {
         System.out.println("Store user cookie");
         Cookie cookieUserName = new Cookie(ATT_NAME_USER_NAME, user.getUserName());
-        // 1 ngày (Đã đổi ra giây)
+        // 1 ngĂ y (Ä�Ă£ Ä‘á»•i ra giĂ¢y)
         cookieUserName.setMaxAge(24 * 60 * 60);
         response.addCookie(cookieUserName);
     }
@@ -73,15 +73,15 @@ public class MyUtils {
         return null;
     }
  
-    // Xóa Cookie của người dùng
+    // XĂ³a Cookie cá»§a ngÆ°á»�i dĂ¹ng
     public static void deleteUserCookie(HttpServletResponse response) {
         Cookie cookieUserName = new Cookie(ATT_NAME_USER_NAME, null);
-        // 0 giây. (Cookie này sẽ hết hiệu lực ngay lập tức)
+        // 0 giĂ¢y. (Cookie nĂ y sáº½ háº¿t hiá»‡u lá»±c ngay láº­p tá»©c)
         cookieUserName.setMaxAge(0);
         response.addCookie(cookieUserName);
     }
     
-    // Lưu, Lấy danh sách sản phẩm trong list vào session
+    // LÆ°u, Láº¥y danh sĂ¡ch sáº£n pháº©m trong list vĂ o session
     public static void storeCartProduct(HttpSession session, List<CartProduct> list) {
     	session.setAttribute(ATT_NAME_CART_LIST, list);
     }
@@ -96,7 +96,7 @@ public class MyUtils {
         return list;
     }
     
- // Lưu, Lấy danh sách id sản phẩm trong list vào session
+ // LÆ°u, Láº¥y danh sĂ¡ch id sáº£n pháº©m trong list vĂ o session
     public static void storeCartProductID(HttpSession session, List<String> list) {
     	session.setAttribute(ATT_NAME_CART_LIST_ID, list);
     }
@@ -109,5 +109,6 @@ public class MyUtils {
 		}
         return list;
     }
+    
  
 }

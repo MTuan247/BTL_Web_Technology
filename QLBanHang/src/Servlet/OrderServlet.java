@@ -20,8 +20,7 @@ public class OrderServlet extends CartServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         Connection conn = MyUtils.getStoredConnection(request);
-        List<CartProduct> listProduct = getListCartProduct(conn,request);
-        double totalMoney = CalculateMoney(listProduct);
+
 
 //        Lấy ra tên và sdt của user
 //        HttpSession session = request.getSession();
@@ -33,10 +32,16 @@ public class OrderServlet extends CartServlet {
         HttpSession session = request.getSession();
         UserAccount loginedUser = MyUtils.getLoginedUser(session);
         if (loginedUser == null) {
-
-            response.sendRedirect(request.getContextPath() + "/Login");
-            return;
+        	session.setAttribute("isOrder", true);
+        	RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher("/Login");
+        	dispatcher.forward(request, response);
+        	return;
+        } else {
+        	MergeCart(conn, request);
         }
+        
+        List<CartProduct> listProduct = getListCartProduct(conn,request);
+        double totalMoney = CalculateMoney(listProduct);
         request.setAttribute("user", loginedUser);
 //        
         
@@ -78,5 +83,25 @@ public class OrderServlet extends CartServlet {
 
         CleanCart(conn, request);
     }
+    
+    public void MergeCart(Connection conn, HttpServletRequest request) {
+    	HttpSession session = request.getSession();
+    	List<CartProduct> listProduct = MyUtils.getCartProduct(session);
+    	UserAccount loginedUser = MyUtils.getLoginedUser(session);
+    	
+    	for (CartProduct o : listProduct) {
+    		String productID = o.getProductID();
+    		int number = o.getNum();
+    		String num = String.valueOf(number);
+    		CartProduct cartProduct = DBUtils.findCartProduct(conn, productID, loginedUser.getUserID());
+			if(cartProduct == null) {
+				DBUtils.insertToCart(conn, loginedUser.getUserID(), productID, num);
+			} else {
+				number += cartProduct.getNum();
+				DBUtils.updateNumberCartProduct(conn, loginedUser.getUserID(), productID, number);
+			}
+    	}
+    	
+	}
 
 }
