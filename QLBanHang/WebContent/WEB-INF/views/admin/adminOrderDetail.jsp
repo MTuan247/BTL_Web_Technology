@@ -5,7 +5,7 @@
 <html>
 
 <head>
-    <title>Quản lý đơn hàng</title>
+    <title>Admin Order Detail</title>
     <meta charset="UTF-8">
     <meta name="viewport"
           content="width=device-width, height=device-height, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
@@ -24,7 +24,6 @@
 </head>
 
 <body class="overlay-scrollbar">
-<jsp:include page="_navbar.jsp"></jsp:include>
     <div class="content" style="margin: auto">
         <h3>Chi tiết đơn hàng #${order.orderID}</h3>
         <p class="transaction-date">Ngày đặt hàng: ${order.createdDate}</p>

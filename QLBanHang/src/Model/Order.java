@@ -8,20 +8,22 @@ public class Order {
     private String address;
     private double totalMoney;
     private boolean status;
+    private String createdDate;
 
     public Order() {
     }
 
-    public Order(String userID, String fullName, String phoneNumber, String address, double totalMoney, boolean status) {
+    public Order(String userID, String fullName, String phoneNumber, String address, double totalMoney, boolean status, String createdDate) {
         this.userID = userID;
         this.fullName = fullName;
         this.phoneNumber = phoneNumber;
         this.address = address;
         this.totalMoney = totalMoney;
         this.status = status;
+        this.createdDate = createdDate;
     }
 
-    public Order(String orderID, String userID, String fullName, String phoneNumber, String address, double totalMoney, boolean status) {
+    public Order(String orderID, String userID, String fullName, String phoneNumber, String address, double totalMoney, boolean status, String createdDate) {
         this.orderID = orderID;
         this.userID = userID;
         this.fullName = fullName;
@@ -29,6 +31,7 @@ public class Order {
         this.address = address;
         this.totalMoney = totalMoney;
         this.status = status;
+        this.createdDate = createdDate;
     }
 
     public String getOrderID() {
@@ -85,5 +88,13 @@ public class Order {
 
     public void setStatus(boolean status) {
         this.status = status;
+    }
+
+    public String getCreatedDate() {
+        return createdDate;
+    }
+
+    public void setCreatedDate(String createdDate) {
+        this.createdDate = createdDate;
     }
 }

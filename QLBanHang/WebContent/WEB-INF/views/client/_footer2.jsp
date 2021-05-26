@@ -1,20 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
   pageEncoding="UTF-8"%>
   
-  <!-- Subscribe container -->
-  <hr>
-  <div class="subscribe-container">
-    <img src="assets/image/subscribe.svg" alt="subscribe image">
-    <div class="subscribe-text">
-      <p>Đăng ký nhận bản tin từ eShop</p>
-      <p>Đừng bỏ lỡ những sản phẩm và chương trình siêu hấp dẫn</p>
-    </div>
-    <form>
-      <input type="text" placeholder="Địa chỉ email của bạn" name="subscribe-email" id="subscribe-input">
-      <input type="submit" value="Đăng ký" id="subscribe-submit">
-    </form>
-  </div>
-  <!-- End Subscribe container -->
 
   
     <footer class="footer">
@@ -75,12 +61,8 @@
       <i class="fas fa-angle-up"></i>
     </a>
 
-  <!--   <script src="assets/js/slideshow.js"></script>
     <script src="assets/js/index.js"></script>
     <script src="assets/js/scrollToTop.js"></script>
-    <script src="assets/js/product.js"></script>
   </body>
   
-</html> -->
-<script src="assets/js/index.js"></script>
-<script src="assets/js/scrollToTop.js"></script>
+</html>

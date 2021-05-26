@@ -1,7 +1,10 @@
 package Utils;
 
 import java.sql.Connection;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.ServletRequest;
@@ -111,5 +114,18 @@ public class MyUtils {
         return list;
     }
 
+    // format date to HH:mm dd/MM/yyyy
+    public static String FormatDate(String invalidDate){
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        String validDate = null;
+        try {
+            Date date = formatter.parse(invalidDate);
+            formatter = new SimpleDateFormat("HH:mm dd/MM/yyyy");
+            validDate = formatter.format(date);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return validDate;
+    }
  
 }

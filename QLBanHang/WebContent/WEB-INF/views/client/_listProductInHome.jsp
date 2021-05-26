@@ -39,7 +39,7 @@
 <!-- 		</tr> -->
 <%-- 	</c:forEach> --%>
 <!-- </table> -->
-<c:forEach items="${listProduct}" var="product">
+<c:forEach items="${listProduct}" var="product" begin="1" end="6">
   <div class="flex-item product-item" data-link="Product?productID=${product.productID}">
     <img src="${product.image}" alt="${product.name}" loading="lazy"> 
     
@@ -60,6 +60,7 @@
         <fmt:formatNumber type="number" maxFractionDigits="0" value="${product.price}" /> đ
       </span>
     </c:if>
+
     <%-- form method="POST" action="Cart" id="add-cart-form">
       <input type="hidden" name="productID" value="${product.productID}" />
       <c:if test="${!product.isInCart() }">

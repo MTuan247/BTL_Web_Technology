@@ -345,7 +345,8 @@ public class DBUtils {
 						rs.getString("PHONE_NUMBER"),
 						rs.getString("ADDRESS"),
 						rs.getDouble("TOTAL_MONEY"),
-						status
+						status,
+						MyUtils.FormatDate(rs.getString("CREATED_DATE"))
 				));
 			}
 		} catch (SQLException e) {
@@ -356,7 +357,7 @@ public class DBUtils {
 
 
 	public static void insertOrder(Connection conn, Order order){
-		String sql = "INSERT INTO order_detail VALUES (?,?,?,?,?,?,?)";
+		String sql = "INSERT INTO order_detail VALUES (?,?,?,?,?,?,?,now())";
 
 		try {
 			PreparedStatement pstm = conn.prepareStatement(sql);
@@ -395,8 +396,9 @@ public class DBUtils {
 				if(rs.getInt("STATUS") == 1){
 					status = true;
 				}
+				String date = MyUtils.FormatDate(rs.getString("CREATED_DATE"));
 
-				return new Order(orderID,userID,name,phoneNumber,address,totalMoney,status);
+				return new Order(orderID,userID,name,phoneNumber,address,totalMoney,status,date);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -404,7 +406,8 @@ public class DBUtils {
 		return null;
 	}
 
-	public static List<Order> findOrderByUserID(String id){
+
+	public static List<Order> findOrderByUserID(String id) {
 		String sql = "Select * from order_detail where USER_ID=?";
 		List<Order> list = new ArrayList<Order>();
 
@@ -422,18 +425,18 @@ public class DBUtils {
 				double totalMoney = rs.getDouble("TOTAL_MONEY");
 				String userID = rs.getString("USER_ID");
 				boolean status = false;
-				if(rs.getInt("STATUS") == 1){
+				if (rs.getInt("STATUS") == 1) {
 					status = true;
 				}
+				String date = MyUtils.FormatDate(rs.getString("CREATED_DATE"));
 
-				list.add(new Order(orderID,userID,name,phoneNumber,address,totalMoney,status));
+				list.add(new Order(orderID, userID, name, phoneNumber, address, totalMoney, status, date));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 		return list;
 	}
-
 
 	public static void changeOrderInfo(Order order){
 		String sql = "Update order_detail Set STATUS=? Where ORDER_ID=?";

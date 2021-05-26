@@ -14,7 +14,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>Order</title>
+    <title>Admin User</title>
     <!-- Import lib -->
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.css">
     <link rel="stylesheet" type="text/css" href="/assets-admin/fontawesome-free/css/all.min.css">
@@ -29,6 +29,14 @@
         <!-- Modal content -->
         <div class="modal-content">
             <jsp:include page="_createUser.jsp"></jsp:include>
+        </div>
+    </div>
+</c:if>
+<c:if test="${doUpdateUser}">
+    <div id="myModal" class="modal">
+        <!-- Modal content -->
+        <div class="modal-content">
+            <jsp:include page="_updateUser.jsp"></jsp:include>
         </div>
     </div>
 </c:if>
@@ -63,7 +71,7 @@
     // When the user clicks anywhere outside of the modal, close it
     window.onclick = function(event) {
         if (event.target == modal) {
-            window.location.href = "/Admin";
+            window.location.href = "/AdminUser";
         }
     }
 </script>
