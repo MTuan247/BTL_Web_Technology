@@ -44,8 +44,8 @@ public class HomeServlet extends HttpServlet {
 				o.setInCart(true);
 			}
 		}
-
-		request.setAttribute("numberOfCartProduct", listProductIDInCart.size());
+		
+		request.getSession().setAttribute("numberOfCartProduct", listProductIDInCart.size());
 		request.setAttribute("listProduct", listProduct);
 		request.setAttribute("listCategory", listCategory);
 
@@ -77,4 +77,5 @@ public class HomeServlet extends HttpServlet {
 		
 		return listProductIDInCart;
 	}
+
 }

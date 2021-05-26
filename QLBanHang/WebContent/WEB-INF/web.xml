@@ -13,4 +13,12 @@
     <welcome-file>Home</welcome-file>
     <welcome-file>index.html</welcome-file>
   </welcome-file-list>
+  <error-page>
+	<error-code>404</error-code>
+	<location>/Error404</location>
+  </error-page>
+<error-page>
+	<exception-type>java.lang.Throwable</exception-type>
+	<location>/Error</location>
+  </error-page>
 </web-app>

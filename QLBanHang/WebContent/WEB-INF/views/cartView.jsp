@@ -84,12 +84,14 @@
         có)</td>
     </tr>
   </table>
-  <a href="#" class="pay-link">Tiến hành thanh toán</a>
+  <a href="${pageContext.request.contextPath}/Order" class="pay-link">Tiến hành thanh toán</a>
 </div>
 </main>
 </c:if>
 
-<jsp:include page="_footer.jsp"></jsp:include>
+
 <script src="assets/js/table.js"></script>
-<script src="assets/js/product.js"></script>
+<script src="assets/js/cart.js"></script>
+<jsp:include page="_footer.jsp"></jsp:include>
+
 

@@ -29,11 +29,11 @@
     <link rel="icon" type="image/png" href="assets/image/logo200px.png" >
 
     <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
-    <link href="assets/css/style.css" rel="stylesheet" type="text/css">
+    
+    <!-- test: thêm ${pageContext.request.contextPath} trước assets-->
+    <link href="${pageContext.request.contextPath}/assets/css/style.css" rel="stylesheet" type="text/css">
     <script src="https://kit.fontawesome.com/aa8e5675e3.js" crossorigin="anonymous"></script>
-<!--     <link rel="stylesheet" type="text/css" href="assets/css/slideshow.css"> -->
-<!--     <link rel="stylesheet" type="text/css" href="assets/css/index.css"> -->
-<!--     <link rel="stylesheet" type="text/css" href="assets/css/product.css"> -->
+
   </head>
   <body class="overlay-scrollbar">
     <header class="header" id="header">
@@ -45,7 +45,8 @@
             <i class="fas fa-bars navbar-icon"></i>
           </li>
           <li class="navbar-item">
-            <a href="${pageContext.request.contextPath}/"><img src="assets/image/logo-side1200_400px.png" alt="logo eshop" class="logo"></a>
+          <!-- test: thêm ${pageContext.request.contextPath} trước assets của img -->
+            <a href="${pageContext.request.contextPath}/"><img src="${pageContext.request.contextPath}/assets/image/logo-side1200_400px.png" alt="logo eshop" class="logo"></a>
           </li>
         </ul> 
 
@@ -94,7 +95,7 @@
                 </a>
               </li>
               <li class="dropdown-menu-item">
-                <a href="history_transaction.html" class="dropdown-menu-link">
+                <a href="${pageContext.request.contextPath}/OrderHistory" class="dropdown-menu-link">
                   <i class="fas fa-shopping-bag"></i>
                   <span>Lịch sử mua hàng</span>
                 </a>
@@ -140,9 +141,10 @@
       </div>
     </header>
 
+<!-- test: thêm ${pageContext.request.contextPath} trước assets: fix cho trường hợp http://localhost:8080/QLBanHang/Home/123-->
     <main class="main-content">
       <div class="loading-wrapper">
-        <img src="assets/image/logo-side180_60px.png" class="loading-logo logo">
+        <img src="${pageContext.request.contextPath}/assets/image/logo-side180_60px.png" class="loading-logo logo">
         <p>Đang tải trang, bạn chờ một chút nhé ^^</p>
-        <img src="assets/image/loading4-crop.gif" class="loading-gif">
+        <img src="${pageContext.request.contextPath}/assets/image/loading4-crop.gif" class="loading-gif">
       </div>

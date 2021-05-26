@@ -44,6 +44,7 @@ public class ProductServlet extends HttpServlet {
 			product.setInCart(true);
 		}
 		
+		request.getSession().setAttribute("numberOfCartProduct", listProductIDInCart.size());
 		request.setAttribute("product", product);
 		request.setAttribute("listCategory", listCategory);
 

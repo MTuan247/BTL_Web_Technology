@@ -44,7 +44,7 @@ public class ProductListServlet extends HomeServlet {
 			}
 		}
 
-		request.setAttribute("numberOfCartProduct", listProductIDInCart.size());
+		request.getSession().setAttribute("numberOfCartProduct", listProductIDInCart.size());
 		request.setAttribute("listProduct", listProduct);
 		request.setAttribute("listCategory", listCategory);
 

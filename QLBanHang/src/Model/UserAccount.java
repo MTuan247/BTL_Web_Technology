@@ -11,6 +11,18 @@ public class UserAccount {
 
 	}
 
+	public UserAccount(String userID, String name, String userName, String password) {
+		this.userID = userID;
+		this.Name = name;
+		this.userName = userName;
+		this.password = password;
+	}
+
+	public UserAccount(String userName, String password) {
+		this.userName = userName;
+		this.password = password;
+	}
+
 	public String getUserName() {
 		return userName;
 	}

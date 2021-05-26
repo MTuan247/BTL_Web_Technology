@@ -65,7 +65,7 @@
       <div class="login-container">
         <div class="label-container">
           <label class="label-item" for="username">Tên đăng nhập</label>
-          <span>Chưa có tài khoản? <a href="sign-up.html">Đăng ký</a></span>
+          <span>Chưa có tài khoản? <a href="${pageContext.request.contextPath}/Register">Đăng ký</a></span>
         </div>
         <input type="text" placeholder="Nhập tên đăng nhập" name="userName" required>
 
@@ -90,8 +90,3 @@
     </form>
   </main>
   <jsp:include page="_footer2.jsp"></jsp:include>
-   <script src="assets/js/index.js"></script>
-    <script src="assets/js/scrollToTop.js"></script>
-  </body>
-  
-</html>
