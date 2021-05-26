@@ -96,7 +96,7 @@ function doneLoading() {
 window.onload = () => {
 	// setTimeout(() => {doneLoading()}, 1000);
 	doneLoading();
-	getNumberEmail();
+	/*getNumberEmail();*/
 }
 
 

@@ -6,6 +6,7 @@ numInputs.forEach((input) => {
     if (e.target.value == '') {
       e.target.value = 1
     }
+    onChangeNumber(e);
   })
 })
 
@@ -23,7 +24,6 @@ function increaseValue(element) {
   qty_element.value = value;
   
   changeNumber(qty_element);
-  location.reload();
 }
 
 function decreaseValue(element) {
@@ -37,7 +37,6 @@ function decreaseValue(element) {
   qty_element.value = value;
   
   changeNumber(qty_element);
-  location.reload();
 }
 
 
@@ -71,8 +70,8 @@ window.onclick = function(event) {
 
 /**/
 
-function changeNumber(element) {
-		console.log("hello")
+function onChangeNumber(event) {
+		var element = event.target;
 		var data = "action=Change&productID="+ element.id + "&num=" + element.value;
 		
 		var xhttp = new XMLHttpRequest();	
@@ -81,12 +80,31 @@ function changeNumber(element) {
 		      var str = `<fmt:formatNumber type="number" maxFractionDigits="0" value="${this.responseText}" /> đ`;
 		      document.getElementById("total-money").innerHTML = str;
 		      document.getElementById("tmp-money").innerHTML = str;
+		      location.reload();
 		    }
 		  };
 		xhttp.open("POST", "Cart", true);
 		xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 		xhttp.send(data);
-	}
+}
+
+function changeNumber(element) {
+		/*console.log("hello")*/
+		var data = "action=Change&productID="+ element.id + "&num=" + element.value;
+		
+		var xhttp = new XMLHttpRequest();	
+		xhttp.onreadystatechange = function() {
+		    if (this.readyState == 4 && this.status == 200) {
+		      var str = `<fmt:formatNumber type="number" maxFractionDigits="0" value="${this.responseText}" /> đ`;
+		      document.getElementById("total-money").innerHTML = str;
+		      document.getElementById("tmp-money").innerHTML = str;
+		      location.reload();
+		    }
+		  };
+		xhttp.open("POST", "Cart", true);
+		xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+		xhttp.send(data);
+}
 	
 function Buy() {
 	var data = "action=Buy";

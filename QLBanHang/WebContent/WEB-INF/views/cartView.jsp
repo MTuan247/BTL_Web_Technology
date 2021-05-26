@@ -80,8 +80,7 @@
     </tr>
     <tr>
       <td class="money-item"></td>
-      <td class="money-value" id="notice-VAT">(Đã bao gồm VAT nếu
-        có)</td>
+      <td class="money-value" id="notice-VAT">(Đã bao gồm VAT nếu có)</td>
     </tr>
   </table>
   <a href="${pageContext.request.contextPath}/Order" class="pay-link">Tiến hành thanh toán</a>
@@ -90,8 +89,9 @@
 </c:if>
 
 
-<script src="assets/js/table.js"></script>
 <script src="assets/js/cart.js"></script>
+<script src="assets/js/table.js"></script>
+
 <jsp:include page="_footer.jsp"></jsp:include>
 
 
