@@ -28,15 +28,29 @@ public class OrderServlet extends CartServlet {
 //        UserAccount loginedUser = MyUtils.getLoginedUser(session);
 //
 //        request.setAttribute("user",loginedUser);
+        
+//        
+        HttpSession session = request.getSession();
+        UserAccount loginedUser = MyUtils.getLoginedUser(session);
+        if (loginedUser == null) {
+
+            response.sendRedirect(request.getContextPath() + "/Login");
+            return;
+        }
+        request.setAttribute("user", loginedUser);
+//        
+        
         request.setAttribute("totalMoney", totalMoney);
         request.setAttribute("listProduct", listProduct);
-        RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher("//WEB-INF/views/client/orderView.jsp");
+        RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher("//WEB-INF/views/orderView.jsp");
         dispatcher.forward(request, response);
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        Connection conn = MyUtils.getStoredConnection(request);
+        request.setCharacterEncoding("UTF-8");
+    	
+    	Connection conn = MyUtils.getStoredConnection(request);
 
         HttpSession session = request.getSession();
         String loginedUserID = MyUtils.getLoginedUser(session).getUserID();
@@ -49,7 +63,8 @@ public class OrderServlet extends CartServlet {
         double totalMoney = this.CalculateMoney(listProduct);
 
 
-        Order order = new Order(orderID,loginedUserID,name,phoneNumber,address,totalMoney,false);
+//        Order order = new Order(orderID,loginedUserID,name,phoneNumber,address,totalMoney,false);
+        Order order = new Order(loginedUserID, name,phoneNumber,address,totalMoney,false);
         DBUtils.insertOrder(conn,order);
         for (CartProduct cp: listProduct) {
             OrderProduct orderProduct = new OrderProduct(orderID,cp.getProductID(),cp.getNum());
@@ -57,10 +72,11 @@ public class OrderServlet extends CartServlet {
         }
         request.setAttribute("order",order);
         request.setAttribute("listProduct",listProduct);
-        RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher("//WEB-INF/views/client/orderSuccess.jsp");
+             
+        RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher("//WEB-INF/views/orderSuccess.jsp");
         dispatcher.forward(request, response);
 
-        CleanCart(conn,request);
+        CleanCart(conn, request);
     }
 
 }

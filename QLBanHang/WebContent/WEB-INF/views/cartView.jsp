@@ -84,7 +84,7 @@
         có)</td>
     </tr>
   </table>
-  <a href="#" class="pay-link">Tiến hành thanh toán</a>
+  <a href="${pageContext.request.contextPath}/Order" class="pay-link">Tiến hành thanh toán</a>
 </div>
 </main>
 </c:if>

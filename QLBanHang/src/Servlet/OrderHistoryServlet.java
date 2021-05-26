@@ -33,8 +33,20 @@ public class OrderHistoryServlet extends HttpServlet{
         List<Order> listOrder = DBUtils.findOrderByUserID(userID);
 
         request.setAttribute("listOrder",listOrder);
+        
+//        
+        UserAccount loginedUser = MyUtils.getLoginedUser(session);
 
-        RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher("/WEB-INF/views/client/orderHistory.jsp");
+
+        if (loginedUser == null) {
+
+            response.sendRedirect(request.getContextPath() + "/Login");
+            return;
+        }
+
+        request.setAttribute("user", loginedUser);
+//
+        RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher("/WEB-INF/views/orderHistory.jsp");
 
         dispatcher.forward(request, response);
 

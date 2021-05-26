@@ -4,7 +4,8 @@
   <!-- Subscribe container -->
   <hr>
   <div class="subscribe-container">
-    <img src="assets/image/subscribe.svg" alt="subscribe image">
+  <!-- test: thêm ${pageContext.request.contextPath} trước assets-->
+    <img src="${pageContext.request.contextPath}/assets/image/subscribe.svg" alt="subscribe image">
     <div class="subscribe-text">
       <p>Đăng ký nhận bản tin từ eShop</p>
       <p>Đừng bỏ lỡ những sản phẩm và chương trình siêu hấp dẫn</p>
@@ -82,5 +83,7 @@
   </body>
   
 </html> -->
-<script src="assets/js/index.js"></script>
-<script src="assets/js/scrollToTop.js"></script>
+
+<!-- test: thêm ${pageContext.request.contextPath} trước assets-->
+<script src="${pageContext.request.contextPath}/assets/js/index.js"></script>
+<script src="${pageContext.request.contextPath}/assets/js/scrollToTop.js"></script>

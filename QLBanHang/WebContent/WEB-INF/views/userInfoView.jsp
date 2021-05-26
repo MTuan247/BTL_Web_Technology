@@ -52,7 +52,7 @@
           </a>
         </li>
         <li class="sidebar-item">
-          <a href="#" class="sidebar-link">
+          <a href="${pageContext.request.contextPath}/OrderHistory" class="sidebar-link">
             <i class="fas fa-shopping-bag"></i>
             <span>Lịch sử mua hàng</span>
           </a>

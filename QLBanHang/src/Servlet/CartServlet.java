@@ -187,4 +187,16 @@ public class CartServlet extends HttpServlet {
 		MyUtils.storeCartProduct(session, null);
 		MyUtils.storeCartProductID(session, null);
 	}
+	
+	public void CleanCart(Connection conn, HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		UserAccount loginedUser = MyUtils.getLoginedUser(session);
+
+		if (loginedUser == null) {
+			MyUtils.storeCartProduct(session, null);
+			MyUtils.storeCartProductID(session, null);
+		} else {
+			DBUtils.cleanCart(conn, loginedUser.getUserID());
+		}
+	}
 }

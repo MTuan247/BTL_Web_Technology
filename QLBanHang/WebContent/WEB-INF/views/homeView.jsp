@@ -22,6 +22,7 @@
 
 <!-- </body> -->
 <!-- </html> -->
+<jsp:include page="_header.jsp"></jsp:include>
 <head>
     <title>eShop - Mua sắm online</title>
     <meta charset="UTF-8">
@@ -31,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="assets/css/product.css">
 </head>
   
-<jsp:include page="_header.jsp"></jsp:include>
+
 
 <div class="slideshow-container">
   <div class="slide-item fade">

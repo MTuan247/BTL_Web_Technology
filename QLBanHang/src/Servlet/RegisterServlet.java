@@ -26,7 +26,7 @@ public class RegisterServlet extends HttpServlet {
             throws ServletException, IOException {
 
         RequestDispatcher dispatcher //
-                = this.getServletContext().getRequestDispatcher("/WEB-INF/views/client/registerView.jsp");
+                = this.getServletContext().getRequestDispatcher("/WEB-INF/views/registerView.jsp");
 
         dispatcher.forward(request, response);
 
@@ -44,10 +44,10 @@ public class RegisterServlet extends HttpServlet {
 
         if (userName == null || password == null || userName.length() == 0 || password.length() == 0) {
             hasError = true;
-            errorString = "Required username and password!";
+            errorString = "Tên tài khoản và Mật khẩu là bắt buộc!";
         } else if(!checkValidUserName(userName,request,response)){
             hasError = true;
-            errorString = "Username has already been taken";
+            errorString = "Tên tài khoản đã tồn tại";
         }
         else {
             Connection conn = MyUtils.getStoredConnection(request);

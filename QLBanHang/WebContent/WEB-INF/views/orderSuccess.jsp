@@ -2,18 +2,23 @@
          pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="UTF-8">
-    <title>Home Page</title>
-</head>
-<body>
 
 <jsp:include page="_header.jsp"></jsp:include>
-<jsp:include page="_menu.jsp"></jsp:include>
+<head>
+    <title>Đặt hàng thành công | eShop</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+    <link rel="icon" type="image/png" href="assets/image/logo200px.png" >
 
-<form method="post" action="Order">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <link href="assets/css/style.css" rel="stylesheet" type="text/css">
+    <script src="https://kit.fontawesome.com/aa8e5675e3.js" crossorigin="anonymous"></script>
+
+    <!--  -->
+    <link rel="stylesheet" type="text/css" href="assets/css/error_page.css">
+  </head>
+
+<%-- <form method="post" action="Order">
     <h3>Order</h3>
     <jsp:include page="_listProductInOrder.jsp"></jsp:include>
     <br>
@@ -40,10 +45,11 @@
     <h3>Payment</h3>
     COD
 
-</form>
+</form> --%>
 
+  <h2 class="notice">Đặt hàng thành công! Cảm ơn bạn đã mua hàng!</h2>
+  <img src="assets/image/successful_purchase.svg" class="img-notice">
+  <a class="go-back-link" href="${pageContext.request.contextPath}/Home">Tiếp tục mua hàng</a>
+</main>
 
 <jsp:include page="_footer.jsp"></jsp:include>
-
-</body>
-</html>

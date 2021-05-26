@@ -59,7 +59,7 @@ public class LoginServlet extends HttpServlet {
 
 				if (user == null) {
 					hasError = true;
-					errorString = "User Name or password invalid";
+					errorString = "Tên đăng nhập hoặc Mật khẩu không đúng";
 				}
 			} catch (SQLException e) {
 				e.printStackTrace();

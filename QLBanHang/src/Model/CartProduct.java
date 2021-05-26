@@ -15,6 +15,10 @@ public class CartProduct extends Product {
 		this.num = num;
 	}
 	
+	public CartProduct() {
+		// TODO Auto-generated constructor stub
+	}
+
 	public int getNum() {
 		return num;
 	}

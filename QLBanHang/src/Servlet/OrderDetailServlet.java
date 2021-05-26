@@ -27,7 +27,7 @@ public class OrderDetailServlet extends HttpServlet {
         request.setAttribute("listProduct",listProduct);
         request.setAttribute("order",order);
 
-        RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher("/WEB-INF/views/client/orderDetail.jsp");
+        RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher("/WEB-INF/views/orderDetail.jsp");
 
         dispatcher.forward(request, response);
     }
