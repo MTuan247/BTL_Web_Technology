@@ -63,20 +63,22 @@
         <h5 class="transaction-info-title">TRẠNG THÁI ĐƠN HÀNG</h5>
         <div class="transaction-info-item" style="width: max-content; border: none" >
                 <c:if test="${!order.status}">
-                    Đang giao hàng
+                    <span style="color: var(--warning-color)">Đang giao hàng</span>
                     <form method="Post" action="UpdateOrder" style="display: inline; vertical-align: middle; margin-left: 20px;">
                         <input type="hidden" name="id" value="${order.orderID}" />
-                        <button type="submit" name="action" value="Confirm" class="action-button" style="color: darkolivegreen">
-                            <i class="fas fa-check-circle"></i>
+                        <button type="submit" name="action" value="Confirm" class="action-button" style="color: green; background-color: transparent;">
+                            <i class="fas fa-check-circle" style="font-size: 30px"></i>
+                            <span style="font-style: italic; font-size: 15px;">(Nhấn vào để thay đổi trạng thái)</span>
                         </button>
                     </form>
                 </c:if>
                 <c:if test="${order.status}">
-                    Đã nhận hàng
+                    <span style="color: var(--success-color)">Đã nhận hàng</span>
                     <form method="Post" action="UpdateOrder" style="display: inline; vertical-align: middle; margin-left: 20px;">
                         <input type="hidden" name="id" value="${order.orderID}" />
-                        <button type="submit" name="action" value="Pending" class="action-button" style="color: red">
-                            <i class="fas fa-times-circle"></i>
+                        <button type="submit" name="action" value="Pending" class="action-button" style="color: red; background-color: transparent;">
+                            <i class="fas fa-times-circle" style="font-size: 30px"></i>
+                            <span style="font-style: italic; font-size: 15px;">(Nhấn vào để thay đổi trạng thái)</span>
                         </button>
                     </form>
                 </c:if>

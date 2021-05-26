@@ -744,7 +744,9 @@ public class DBUtils {
 				String name = rs.getString(2);
 				String userName = rs.getString(3);
 				String password = rs.getString(4);
-				UserAccount user = new UserAccount(userID,name,userName,password);
+				String tel = rs.getString("PHONE_NUMBER");
+				String email = rs.getString("EMAIL");
+				UserAccount user = new UserAccount(userID,name,userName,password, tel, email);
 				accounts.add(user);
 			}
 		} catch (SQLException e) {

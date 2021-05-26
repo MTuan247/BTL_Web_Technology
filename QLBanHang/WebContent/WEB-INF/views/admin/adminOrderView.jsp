@@ -50,8 +50,8 @@
                                 <td>${order.address}</td>
                                 <td>${order.totalMoney}</td>
                                 <td>${order.userID}</td>
-                                <c:if test="${!order.isStatus()}"><td>Pending</td></c:if>
-                                <c:if test="${order.isStatus()}"><td>Confirm</td></c:if>
+                                <c:if test="${!order.isStatus()}"><td style="color: var(--warning-color);">Pending</td></c:if>
+                                <c:if test="${order.isStatus()}"><td style="color: var(--success-color);">Confirm</td></c:if>
                                 <td>${order.createdDate}</td>
                                 <td>
                                     <form class="navbar-nav nav-left">

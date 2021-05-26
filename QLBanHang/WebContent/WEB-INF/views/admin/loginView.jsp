@@ -2,7 +2,7 @@
          pageEncoding="UTF-8"%>
 
 <head>
-   <title>Đăng nhập | eShop</title>
+   <title>ADMIN - Đăng nhập | eShop</title>
    <meta charset="UTF-8">
    <meta name="viewport"
          content="width=device-width, height=device-height, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
@@ -22,17 +22,17 @@
 
 <main class="main-content">
    <img src="assets/image/logo-side180_60px.png" alt="logo"
-        class="logo"> <img src="assets/image/login.svg"
+        class="logo"> <img src="assets/image/admin.svg"
                            alt="login img" class="img-side">
    <form class="login-form" action="${pageContext.request.contextPath}/AdminLogin" method="post">
 
       <div class="login-imgcontainer">
-         <h2>Đăng nhập</h2>
+         <h2>ADMIN - Đăng nhập</h2>
       </div>
       <div class="login-container">
          <div class="label-container">
             <label class="label-item" for="username">Tên đăng nhập</label>
-            <span>Chưa có tài khoản? <a href="sign-up.html">Đăng ký</a></span>
+            <!-- <span>Chưa có tài khoản? <a href="sign-up.html">Đăng ký</a></span> -->
          </div>
          <input type="text" placeholder="Nhập tên đăng nhập" name="userName" required>
 

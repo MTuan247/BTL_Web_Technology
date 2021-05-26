@@ -5,10 +5,12 @@
         <thead>
             <tr>
                 <th>ID</th>
-                <th>Name</th>
                 <th>Username</th>
-                <th>Password</th>
-                <th></th>
+                <th>Name</th>
+                <th>Tel</th>
+                <th>Email</th>
+                <!-- <th>Password</th>
+                <th></th> -->
             </tr>
 
         </thead>
@@ -16,9 +18,11 @@
             <tbody>
                 <tr>
                     <td>${user.userID}</td>
-                    <td>${user.getName()}</td>
                     <td>${user.userName}</td>
-                    <td>${user.password}</td>
+                    <td>${user.getName()}</td>
+                    <td>${user.tel}</td>
+                    <td>${user.email}</td>
+                    <%-- <td><input type="password" value="${user.password}" disabled></td>
                     <td>
                         <form method="get" action="UpdateUser">
                             <input type="hidden" name="id" value="${user.userID}" />
@@ -26,7 +30,7 @@
                                 <i class="fas fa-info-circle"></i>
                             </button>
                         </form>
-                    </td>
+                    </td> --%>
                 </tr>
             </tbody>
         </c:forEach>
