@@ -629,3 +629,9 @@ table th {
 	padding: 20px;
 	width: 33.33%;
 }
+
+/* Button */
+
+button {
+  cursor: pointer;
+}

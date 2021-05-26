@@ -49,7 +49,7 @@
 
 <div class="card">
     <h3 class="card-header" style="margin: 0px">
-        Create Category
+        Create User
     </h3>
     <form action="CreateUser" method="POST">
         <table>
@@ -65,14 +65,13 @@
                 <td>Username</td>
                 <td><input type="text" name="username" value="${user.getUserName()}"></td>
             </tr>
-            <tr>
-                <td>
-                    <c:if test="${invalidUsername}">
+            <c:if test="${invalidUsername}">
+                <tr>
+                    <td colspan="2">
                         <p style="color: red; margin: 0px;font-size: small">Username has already been taken</p>
-                    </c:if>
-                </td>
-            </tr>
-            <tr>
+                    </td>
+                </tr>
+            </c:if>
                 <td>Password</td>
                 <td><input type="text" name="password" value="${user.getPassword()}"></td>
             </tr>

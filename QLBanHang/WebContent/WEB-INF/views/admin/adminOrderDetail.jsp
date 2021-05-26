@@ -1,11 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 
 <head>
-    <title>Quản lý đơn hàng</title>
+    <title>Admin Order Detail</title>
     <meta charset="UTF-8">
     <meta name="viewport"
           content="width=device-width, height=device-height, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
@@ -25,7 +26,6 @@
 </head>
 
 <body class="overlay-scrollbar">
-<jsp:include page="_navbar.jsp"></jsp:include>
     <div class="content" style="margin: auto">
         <h3>Chi tiết đơn hàng #${order.orderID}</h3>
         <p class="transaction-date">Ngày đặt hàng: ${order.createdDate}</p>
@@ -45,7 +45,9 @@
         <table class="money-container">
             <tr>
                 <td class="money-item">Tạm tính</td>
-                <td class="money-value">${order.totalMoney }</td>
+                <td class="money-value">
+                  <fmt:formatNumber type="number" maxFractionDigits="0" value="${order.totalMoney }" /> đ
+                </td>
             </tr>
             <tr>
                 <td class="money-item">Phí vận chuyển</td>
@@ -53,7 +55,9 @@
             </tr>
             <tr>
                 <td class="money-item">Tổng cộng</td>
-                <td class="money-value" id="total-money">${order.totalMoney }</td>
+                <td class="money-value" id="total-money">
+                  <fmt:formatNumber type="number" maxFractionDigits="0" value="${order.totalMoney }" /> đ
+                </td>
             </tr>
         </table>
         <h5 class="transaction-info-title">TRẠNG THÁI ĐƠN HÀNG</h5>

@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 @WebServlet("/UpdateUser")
-public class UpdateUserServlet extends HttpServlet {
+public class UpdateUserServlet extends AdminUserServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -35,7 +35,7 @@ public class UpdateUserServlet extends HttpServlet {
         String id = request.getParameter("id");
         UserAccount user = DBUtils.getUserByID(conn,id);
         request.setAttribute("user",user);
-        RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher("/WEB-INF/views/admin/updateUser.jsp");
-        dispatcher.forward(request, response);
+        request.setAttribute("doUpdateUser",true);
+        super.doGet(request,response);
     }
 }
