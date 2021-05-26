@@ -12,6 +12,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.sql.Connection;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 @WebServlet("/Order")
@@ -67,9 +69,13 @@ public class OrderServlet extends CartServlet {
         String address = request.getParameter("address") + ", " +request.getParameter("ward") + ", " +request.getParameter("district") + ", " + request.getParameter("city");
         double totalMoney = this.CalculateMoney(listProduct);
 
+//       Date
+        Date date = new Date();
+        String strDate = new SimpleDateFormat("HH:mm dd/MM/yyyy").format(date);
+        
 
 //        Order order = new Order(orderID,loginedUserID,name,phoneNumber,address,totalMoney,false);
-        Order order = new Order(loginedUserID, name,phoneNumber,address,totalMoney,false);
+        Order order = new Order(loginedUserID, name,phoneNumber,address,totalMoney,false, strDate);
         DBUtils.insertOrder(conn,order);
         for (CartProduct cp: listProduct) {
             OrderProduct orderProduct = new OrderProduct(orderID,cp.getProductID(),cp.getNum());

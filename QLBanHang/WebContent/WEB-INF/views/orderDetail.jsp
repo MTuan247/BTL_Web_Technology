@@ -102,7 +102,7 @@
 </div>
 <div class="content">
       <h3>Chi tiết đơn hàng #${order.orderID}</h3>
-      <p class="transaction-date">Ngày đặt hàng: 23:28 5/5/2021</p>
+      <p class="transaction-date">Ngày đặt hàng: ${order.createdDate}</p>
       
       <h5 class="transaction-info-title">TRẠNG THÁI ĐƠN HÀNG</h5>
       <div class="transaction-info-item">

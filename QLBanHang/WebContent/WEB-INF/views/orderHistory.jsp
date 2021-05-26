@@ -127,6 +127,7 @@
 
         <tr>
           <th>Mã đơn hàng</th>
+          <th>Ngày đặt hàng</th>
           <th>Tên người nhận</th>
           <th>Số điện thoại</th>
           <th>Địa chỉ</th>
@@ -138,6 +139,7 @@
           <tr>
             <td class="table-row-link"
               data-link="${pageContext.request.contextPath}/OrderDetail?id=${order.orderID}">${order.orderID}</td>
+            <td>${order.createdDate}</td>
             <td>${order.fullName}</td>
             <td>${order.phoneNumber}</td>
             <td>${order.address}</td>
