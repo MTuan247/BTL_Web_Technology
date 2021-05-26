@@ -39,17 +39,20 @@
     </tr> --%>
     
     <tr>
-      <td class="table-row-link" data-link="#">${product.productID}</td>
+      <%-- <td class="table-row-link" data-link="#">${product.productID}</td> --%>
+      <td class="table-row-link" data-link="${pageContext.request.contextPath}/Product?product_id=${product.productID}">
+        <img class="img-product-row" style="width: 5rem; height: 5rem;" src="${product.image }" alt="${product.name}" data-link="${pageContext.request.contextPath}/Product?product_id=${product.productID}">
+      </td>
       <td>${product.name}</td>
       <td>
         <fmt:formatNumber type="number" maxFractionDigits="0" value="${product.price}" /> đ
       </td>
-      <td>${product.num }</td>
       <td>
         <fmt:formatNumber type="percent" value="${1 - product.sale}" />
       </td>
       <td>
         <fmt:formatNumber type="number" maxFractionDigits="0" value="${product.price*product.sale}" /> đ
       </td>
+      <td>SLx ${product.num }</td>
     </tr>
 </c:forEach>

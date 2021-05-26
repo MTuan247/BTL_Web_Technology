@@ -518,7 +518,13 @@ public class DBUtils {
 	}
 
 	public static List<CartProduct> getProductByOrderID(String id){
-		String sql = "SELECT product.NAME,product.IMAGE,product.PRICE,product.SALE,order_product.NUMBER FROM order_product JOIN product JOIN order_detail WHERE order_detail.ORDER_ID = order_product.ORDER_ID AND order_product.PRODUCT_ID = product.PRODUCT_ID and order_detail.ORDER_ID = ?";
+//		String sql = "SELECT product.NAME,product.IMAGE,product.PRICE,product.SALE,order_product.NUMBER "
+//				+ "FROM order_product JOIN product on order_product.JOIN order_detail "
+//				+ "WHERE order_detail.ORDER_ID = order_product.ORDER_ID AND order_product.PRODUCT_ID = product.PRODUCT_ID and order_detail.ORDER_ID = ?";
+		
+		String sql = "SELECT product.PRODUCT_ID, product.NAME,product.IMAGE,product.PRICE,product.SALE,order_product.NUMBER "
+		+ "FROM order_product, product, order_detail "
+		+ "WHERE order_detail.ORDER_ID = order_product.ORDER_ID AND order_product.PRODUCT_ID = product.PRODUCT_ID and order_detail.ORDER_ID = ?";
 		List<CartProduct> listProduct = new ArrayList<CartProduct>();
 		try {
 			PreparedStatement pstm = conn.prepareStatement(sql);
@@ -526,6 +532,7 @@ public class DBUtils {
 			ResultSet rs = pstm.executeQuery();
 			while (rs.next()){
 				CartProduct product = new CartProduct();
+				product.setProductID(rs.getString("PRODUCT_ID"));
 				product.setName(rs.getString("NAME"));
 				product.setImage(rs.getString("IMAGE"));
 				product.setPrice(rs.getFloat("PRICE"));

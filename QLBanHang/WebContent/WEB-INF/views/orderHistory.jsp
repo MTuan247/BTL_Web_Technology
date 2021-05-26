@@ -54,7 +54,7 @@
   pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<jsp:include page="_header.jsp"></jsp:include>
+
 
 <head>
 <title>Lịch sử đặt hàng | eShop</title>
@@ -79,7 +79,7 @@
 </c:if>
 
 </head>
-
+<jsp:include page="_header.jsp"></jsp:include>
 
 <div class="sidebar">
   <div class="sidebar-title-container">
@@ -127,7 +127,7 @@
 
         <tr>
           <th>Mã đơn hàng</th>
-          <th>Tên</th>
+          <th>Tên người nhận</th>
           <th>Số điện thoại</th>
           <th>Địa chỉ</th>
           <th>Giá trị</th>
@@ -145,10 +145,10 @@
               <fmt:formatNumber type="number" maxFractionDigits="0" value="${order.totalMoney}" /> đ
             </td>
             <c:if test="${!order.status}">
-              <td>Pending</td>
+              <td style="color: var(--warning-color);">Pending</td>
             </c:if>
             <c:if test="${order.status}">
-              <td>Confirm</td>
+              <td style="color: var(--success-color);">Confirm</td>
             </c:if>
             <%-- <td>
             <form method="get" action="OrderDetail">
@@ -173,6 +173,6 @@
 </div>
 </main>
 
-<script src="assets/js/table.js"></script>
-<jsp:include page="_footer.jsp"></jsp:include>
 
+<jsp:include page="_footer.jsp"></jsp:include>
+<script src="assets/js/table.js"></script>

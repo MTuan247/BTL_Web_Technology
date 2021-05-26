@@ -70,9 +70,9 @@ public class OrderServlet extends CartServlet {
             OrderProduct orderProduct = new OrderProduct(orderID,cp.getProductID(),cp.getNum());
             DBUtils.insertOrderProduct(conn,orderProduct);
         }
-        request.setAttribute("order",order);
-        request.setAttribute("listProduct",listProduct);
-             
+//        request.setAttribute("order",order);
+//        request.setAttribute("listProduct",listProduct);
+        request.setAttribute("numberOfCartProduct", 0);
         RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher("//WEB-INF/views/orderSuccess.jsp");
         dispatcher.forward(request, response);
 

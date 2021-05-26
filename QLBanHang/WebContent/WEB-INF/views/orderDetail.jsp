@@ -49,7 +49,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
   pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <jsp:include page="_header.jsp"></jsp:include>
 
 <head>
@@ -71,7 +71,6 @@
 <link rel="stylesheet" type="text/css" href="assets/css/user.css">
 <link rel="stylesheet" type="text/css" href="assets/css/transaction-detail.css">
  <link rel="stylesheet" type="text/css" href="assets/css/transaction.css">
-
 </head>
 
 
@@ -104,26 +103,35 @@
 <div class="content">
       <h3>Chi tiết đơn hàng #${order.orderID}</h3>
       <p class="transaction-date">Ngày đặt hàng: 23:28 5/5/2021</p>
+      
+      <h5 class="transaction-info-title">TRẠNG THÁI ĐƠN HÀNG</h5>
+      <div class="transaction-info-item">
+          <c:if test="${!order.status}"><p style="color: var(--warning-color);">Pending</p></c:if>
+          <c:if test="${order.status}"><p style="color: var(--success-color);">Confirm</p></c:if>
+      </div>
+      
       <h5 class="transaction-info-title">ĐỊA CHỈ NGƯỜI NHẬN</h5>
       <div class="transaction-info-item">
         <p id="receiver-name">${order.fullName}</p>
         <p>Địa chỉ: ${order.address }<p>
         <p>Điện thoại: ${order.phoneNumber}</p>
       </div>
+      
       <h5 class="transaction-info-title">HÌNH THỨC THANH TOÁN</h5>
       <div class="transaction-info-item">
         <p>Thanh toán tiền mặt khi nhận hàng</p>
       </div>
+      
       <h5 class="transaction-info-title">DANH SÁCH SẢN PHẨM</h5>
       <div class="table-responsive-container">
         <table>
           <tr>
-            <th>Mã sản phẩm</th>
+            <th>Sản phẩm</th>
             <th>Tên sản phẩm</th>
             <th>Giá</th>
-            <th>Số lượng</th>
             <th>Giảm giá</th>
             <th>Tạm tính</th>
+            <th>Số lượng</th>
           </tr>
           <jsp:include page="_listProductInOrderDetail.jsp"></jsp:include>
         </table>
