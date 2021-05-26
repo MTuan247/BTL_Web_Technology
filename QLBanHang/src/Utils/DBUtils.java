@@ -31,10 +31,16 @@ public class DBUtils {
 
 		if (rs.next()) {
 			String userID = rs.getString("USER_ID");
+			String name = rs.getString("NAME");
+			String tel = rs.getString("PHONE_NUMBER");
+			String email = rs.getString("EMAIL");
 			UserAccount user = new UserAccount();
 			user.setUserID(userID);
 			user.setUserName(userName);
 			user.setPassword(password);
+			user.setName(name);
+			user.setEmail(email);
+			user.setTel(tel);
 			user.setAdmin(rs.getBoolean("IS_ADMIN"));
 			return user;
 		}
@@ -54,16 +60,61 @@ public class DBUtils {
 		if (rs.next()) {
 			String userID = rs.getString("USER_ID");
 			String password = rs.getString("Password");
+			String tel = rs.getString("PHONE_NUMBER");
+			String email = rs.getString("EMAIL");
+			String name = rs.getString("NAME");
 			boolean isAdmin = rs.getBoolean("IS_ADMIN");
 			UserAccount user = new UserAccount();
 			user.setUserID(userID);
 			user.setUserName(userName);
 			user.setPassword(password);
+			user.setName(name);
+			user.setEmail(email);
+			user.setTel(tel);
 			user.setAdmin(isAdmin);
 			return user;
 		}
 		return null;
 	}
+	
+	public static void updateUserInfo(Connection conn, String userID, String name, String tel, String email) {
+		String sql = "Update Account "
+				+ "Set NAME=?, PHONE_NUMBER=?, EMAIL=? "
+				+ "Where USER_ID = ?";
+
+		try {
+			PreparedStatement pstm = conn.prepareStatement(sql);
+
+			pstm.setString(1, name);
+			pstm.setString(2, tel);
+			pstm.setString(3, email);
+			pstm.setString(4, userID);
+
+			pstm.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+	public static void updatePass(Connection conn, String userID, String pass) {
+		String sql = "Update Account "
+				+ "Set PASSWORD=? "
+				+ "Where USER_ID = ?";
+
+		try {
+			PreparedStatement pstm = conn.prepareStatement(sql);
+
+			pstm.setString(1, pass);
+			pstm.setString(2, userID);
+
+			pstm.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
 
 	public static List<Product> getAllProduct(Connection conn) {
 		String sql = "Select * from Product ";
@@ -398,7 +449,8 @@ public class DBUtils {
 						rs.getString("PHONE_NUMBER"),
 						rs.getString("ADDRESS"),
 						rs.getDouble("TOTAL_MONEY"),
-						status
+						status,
+						MyUtils.FormatDate(rs.getString("CREATED_DATE"))
 				));
 			}
 		} catch (SQLException e) {
@@ -448,8 +500,9 @@ public class DBUtils {
 				if(rs.getInt("STATUS") == 1){
 					status = true;
 				}
-
-				return new Order(orderID,userID,name,phoneNumber,address,totalMoney,status);
+				
+				String date = MyUtils.FormatDate(rs.getString("CREATED_DATE"));
+				return new Order(orderID,userID,name,phoneNumber,address,totalMoney,status, date);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -479,7 +532,8 @@ public class DBUtils {
 					status = true;
 				}
 
-				list.add(new Order(orderID,userID,name,phoneNumber,address,totalMoney,status));
+				String date = MyUtils.FormatDate(rs.getString("CREATED_DATE"));
+				list.add(new Order(orderID,userID,name,phoneNumber,address,totalMoney,status, date));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();

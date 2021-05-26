@@ -1,6 +1,7 @@
 package Servlet;
 
 import java.io.IOException;
+import java.sql.Connection;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -11,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import Model.UserAccount;
+import Utils.DBUtils;
 import Utils.MyUtils;
 
 @WebServlet(urlPatterns = { "/UserInfo" })
@@ -47,7 +49,64 @@ public class UserInfoServlet extends HttpServlet {
    @Override
    protected void doPost(HttpServletRequest request, HttpServletResponse response)
            throws ServletException, IOException {
-       doGet(request, response);
+	   Connection conn = MyUtils.getStoredConnection(request);
+       String updateInfo = request.getParameter("update-info");
+       if(updateInfo != null ) {
+    	   updateInfo(conn, request, response);
+       }
+       String updatePass = request.getParameter("update-password");
+       if(updatePass != null ) {
+    	   String errorString = updatePassword(conn, request, response);
+    	   if(errorString == null) {
+    		   errorString = "Thành công!";
+    	   }
+    	   request.setAttribute("errorString", errorString);
+       }
+       
+       
+	   RequestDispatcher dispatcher //
+		= this.getServletContext().getRequestDispatcher("/WEB-INF/views/userInfoView.jsp");
+	   dispatcher.forward(request, response);
+	   return;
+   }
+   
+   public void updateInfo(Connection conn, HttpServletRequest request, HttpServletResponse response) {
+	   HttpSession session = request.getSession();
+
+       UserAccount loginedUser = MyUtils.getLoginedUser(session);
+	   
+	   String name = request.getParameter("name");
+	   String tel  = request.getParameter("tel");
+	   String email  = request.getParameter("email");
+	   loginedUser.setName(name);
+	   loginedUser.setTel(tel);
+	   loginedUser.setEmail(email);
+	   DBUtils.updateUserInfo(conn, loginedUser.getUserID(), name, tel, email);
+	   
+   }
+   
+   public String updatePassword(Connection conn, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	   HttpSession session = request.getSession();
+
+       UserAccount loginedUser = MyUtils.getLoginedUser(session);
+       
+	   String hasError = null;
+	   String newPass = request.getParameter("new-password");
+	   String newPassRetype  = request.getParameter("new-password-retype");
+	   String oldPass  = request.getParameter("old-password");
+	   
+	   if(!loginedUser.getPassword().equals(oldPass)) {
+		   hasError = "Mật khẩu sai!";
+	   } else if(!newPass.equals(newPassRetype)) {
+		   hasError = "Mật khẩu nhập lại không khớp!";
+	   }
+	   if (hasError != null) {
+		   return hasError;
+	   }
+	   loginedUser.setPassword(newPass);
+	   DBUtils.updatePass(conn, loginedUser.getUserID(), newPass);
+	   return hasError;
+	   
    }
 
 }

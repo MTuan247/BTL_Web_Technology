@@ -48,6 +48,20 @@ body {
   border: 2px solid var(--primary-color);
 }
 
+.form-item > input[type="email"], .form-item > input[type="tel"] {
+  width: 100%;
+  padding: 1rem 1.8rem;
+  border: 1px solid var(--main-color);
+  border-radius: 4px;
+}
+
+.form-item > input[type="email"]:focus, .form-item > input[type="tel"]:focus {
+  border: 2px solid var(--primary-color);
+}
+
+
+
+
 .form-item > input[type="submit"] {
   display: inline-block;
   position: relative;
