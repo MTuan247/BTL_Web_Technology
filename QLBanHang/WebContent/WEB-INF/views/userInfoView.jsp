@@ -67,37 +67,29 @@
     </div>
     <div class="content">
       <h3>Thông tin tài khoản</h3>
-      <form>
+      <form method="post" action="UserInfo" >
         <div class="form-item">
           <label for="name">Họ tên</label>
-          <input type="text" name="name" value="${user.userName}">
+          <input type="text" name="name" value="${loginedUser.name}">
         </div>
 
         <div class="form-item">
           <label for="tel">Số điện thoại</label>
-          <input type="text" name="tel" value="">
+          <input type="text" name="tel" value="${loginedUser.tel}">
         </div>
 
         <div class="form-item">
           <label for="email">Email</label>
-          <input type="text" name="email" value="">
+          <input type="text" name="email" value="${loginedUser.email}">
         </div>
 
-        <div class="form-item">
-          <label id="gender-label">Giới tính</label>
-          <div>
-            <label for="gender"><input type="radio" name="gender" value="Nam" checked>Nam</label>
-            <label for="gender"><input type="radio" name="gender" value="Nữ">Nữ</label>
-            <label for="gender"><input type="radio" name="gender" value="Khác">Khác</label>
-          </div>
-        </div>
         <div class="form-item">
           <input type="submit" name="update-info" value="Cập nhật">
         </div>
       </form>
 
       <h3>Thay đổi mật khẩu</h3>
-      <form>
+      <form method='post' action='UserInfo'>
         <div class="form-item">
           <label for="old-password">Mật khẩu cũ</label>
           <input type="password" name="old-password" placeholder="Nhập mật khẩu cũ">
@@ -112,6 +104,8 @@
           <label for="new-password-retype">Nhập lại</label>
           <input type="password" name="new-password-retype" placeholder="Nhập lại mật khẩu mới">
         </div>
+        
+         <p style="color: red;">${errorString}</p>
 
         <div class="form-item">
           <input type="submit" name="update-password" value="Cập nhật">

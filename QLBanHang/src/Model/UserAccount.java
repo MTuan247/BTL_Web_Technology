@@ -2,18 +2,34 @@ package Model;
 
 public class UserAccount {
 	private String userID;
-	private String Name;
+	private String name;
 	private String userName;
 	private String password;
+	private String tel;
+	private String email;
 	private boolean isAdmin;
 
 	public UserAccount() {
 
 	}
+	
+	
+
+	public UserAccount(String userID, String name, String userName, String password, String tel, String email) {
+		super();
+		this.userID = userID;
+		this.name = name;
+		this.userName = userName;
+		this.password = password;
+		this.tel = tel;
+		this.email = email;
+	}
+
+
 
 	public UserAccount(String userID, String name, String userName, String password) {
 		this.userID = userID;
-		this.Name = name;
+		this.name = name;
 		this.userName = userName;
 		this.password = password;
 	}
@@ -48,11 +64,11 @@ public class UserAccount {
 	}
 
 	public String getName() {
-		return Name;
+		return name;
 	}
 
 	public void setName(String name) {
-		Name = name;
+		this.name = name;
 	}
 
 	public boolean isAdmin() {
@@ -61,6 +77,22 @@ public class UserAccount {
 
 	public void setAdmin(boolean isAdmin) {
 		this.isAdmin = isAdmin;
+	}
+
+	public String getTel() {
+		return tel;
+	}
+
+	public void setTel(String tel) {
+		this.tel = tel;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
 	}
 	
 	
