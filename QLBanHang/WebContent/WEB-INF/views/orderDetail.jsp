@@ -158,6 +158,19 @@
     </div>
   </main>
 
+
+
 <script src="assets/js/table.js"></script>
 <jsp:include page="_footer.jsp"></jsp:include>
+<script>
+function clickRowLink(event) {
+    if(event.target.matches('.img-product-row')) {
+      var link = event.target.dataset.link;
+      window.open(link);
+    }
+  }
 
+  window.onclick = function(event) {
+    clickRowLink(event);
+  };
+</script>

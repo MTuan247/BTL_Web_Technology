@@ -40,8 +40,8 @@
     
     <tr>
       <%-- <td class="table-row-link" data-link="#">${product.productID}</td> --%>
-      <td class="table-row-link" data-link="${pageContext.request.contextPath}/Product?product_id=${product.productID}">
-        <img class="img-product-row" style="width: 5rem; height: 5rem;" src="${product.image }" alt="${product.name}" data-link="${pageContext.request.contextPath}/Product?product_id=${product.productID}">
+      <td class="table-row-link" data-link="${pageContext.request.contextPath}/Product?productID=${product.productID}">
+        <img class="img-product-row" style="width: 5rem; height: 5rem;" src="${product.image }" alt="${product.name}" data-link="${pageContext.request.contextPath}/Product?productID=${product.productID}">
       </td>
       <td>${product.name}</td>
       <td>
