@@ -1,4 +1,4 @@
-Create database QLBanHang;
+﻿Create database QLBanHang;
 
 use QLBanHang
 
@@ -26,6 +26,9 @@ Create Table Account(
 	USER_NAME NVARCHAR(30),
 	PASSWORD NVARCHAR(30),
 	IS_ADMIN BIT,
+
+	PHONE_NUMBER VARCHAR(12),
+	EMAIL VARCHAR(100)
 );
 
 Create Table Cart(
@@ -46,6 +49,7 @@ CREATE TABLE order_detail (
   TOTAL_MONEY float,
   USER_ID int,
   STATUS smallint DEFAULT '0',
+  CREATED_DATE datetime default current_timestamp,
   Foreign key (USER_ID) references Account(USER_ID),
   PRIMARY KEY (ORDER_ID)
 )
@@ -70,8 +74,10 @@ CREATE TABLE order_product (
 
 --------------insert to account-------------
 
-INSERT INTO Account(USER_ID,USER_NAME,NAME,PASSWORD,IS_ADMIN)
-VALUES (1,'tuan','tuan','123',0);
+INSERT INTO Account(USER_NAME,NAME,PASSWORD,IS_ADMIN)
+VALUES 
+('tuan','tuan','123',0),
+('Phạm Trung Hiếu','hieu','123',1);
 
 --------------insert to category-------------
 
@@ -92,7 +98,7 @@ VALUES
 (5,N'Laptop Acer Nitro 5 AN515 45 R3SM R5 5600H/8GB/512GB/4GB GTX1650/144Hz/Balo/Win10 (NH.QBMSV.005)','https://cdn.tgdd.vn/Products/Images/44/237636/acer-nitro-5-an515-45-r3sm-r5-nhqbmsv005-600x600.jpg',N'Laptop Acer Nitro 5 AN515 45 R3SM R5 (NH.QBMSV.005) có vẻ ngoài hình hầm hố đặc trưng của dòng laptop gaming, cấu hình mạnh mẽ chạy mượt các tựa game được các game thủ ưa thích với con chip AMD Ryzen 5 và card đồ họa NVIDIA GeForce GTX 1650 4GB.',23490000,1,1,295),
 (6,N'Điện thoại Samsung Galaxy S21 5G','https://cdn.tgdd.vn/Products/Images/42/220833/samsung-galaxy-s21-tim-600x600.jpg',N'Galaxy S21 5G nằm trong series S21 đến từ Samsung nổi bật với thiết kế tràn viền, cụm camera ấn tượng cho đến hiệu năng mạnh mẽ hàng đầu.',23490000,1,2,295),
 (7,N'Điện thoại iPhone 12 64GB','https://cdn.tgdd.vn/Products/Images/42/213031/iphone-12-violet-1-600x600.jpg',N'Trong những tháng cuối năm 2020, Apple đã chính thức giới thiệu đến người dùng cũng như iFan thế hệ iPhone 12 series mới với hàng loạt tính năng bứt phá, thiết kế được lột xác hoàn toàn, hiệu năng đầy mạnh mẽ và một trong số đó chính là iPhone 12 64GB.',23490000,1,2,295),
-(8,N'Điện thoại Xiaomi Redmi Note 10 (6GB/128GB)','https://cdn.tgdd.vn/Products/Images/42/222758/xiaomi-redmi-note-10-thumb-green-600x600.jpg','Xiaomi đã trình làng chiếc điện thoại mang tên gọi là Xiaomi Redmi Note 10 với điểm nhấn chính là cụm 4 camera 48 MP, chip rồng Snapdragon 678 mạnh mẽ cùng nhiều nâng cấp như dung lượng pin 5.000 mAh và hỗ trợ sạc nhanh 33 W tiện lợi.',23490000,1,2,295),
+(8,N'Điện thoại Xiaomi Redmi Note 10 (6GB/128GB)','https://cdn.tgdd.vn/Products/Images/42/222758/xiaomi-redmi-note-10-thumb-green-600x600.jpg',N'Xiaomi đã trình làng chiếc điện thoại mang tên gọi là Xiaomi Redmi Note 10 với điểm nhấn chính là cụm 4 camera 48 MP, chip rồng Snapdragon 678 mạnh mẽ cùng nhiều nâng cấp như dung lượng pin 5.000 mAh và hỗ trợ sạc nhanh 33 W tiện lợi.',23490000,1,2,295),
 (9,N'Điện thoại OPPO A93','https://cdn.tgdd.vn/Products/Images/42/229056/oppo-a93-trang-14-600x600.jpg',N'OPPO đã tung ra OPPO A93 dòng sản phẩm thuộc phân khúc điện thoại tầm trung được xem là tiếp nối từ OPPO A92 với nhiều điểm được nâng cấp như hiệu năng, hệ thống camera cùng khả năng sạc nhanh 18 W.',23490000,1,2,295),
 (10,N'Điện thoại Samsung Galaxy A02','https://cdn.tgdd.vn/Products/Images/42/228999/samsung-galaxy-a02-xanhduong-600x600-600x600.jpg',N'Samsung bổ sung thêm tùy chọn smartphone trong phân khúc giá rẻ mang tên Galaxy A02, máy trang bị một cấu hình ổn định cùng mức pin khủng 5000 mAh cho thời lượng vượt trội trong tầm giá mang đến bạn nhiều trải nghiệm thú vị hơn.',23490000,1,2,295),
 (11,N'Máy tính bảng Samsung Galaxy Tab S7','https://cdn.tgdd.vn/Products/Images/522/225031/samsung-galaxy-tab-s7-gold-new-600x600.jpg',N'Samsung Galaxy Tab S7 chiếc máy tính bảng có thiết kế tuyệt đẹp, màn hình 120 Hz siêu mượt, camera kép ấn tượng, bút S Pen cùng một hiệu năng mạnh mẽ thuộc top đầu thị trường máy tính bảng Android.',23490000,1,3,295),
