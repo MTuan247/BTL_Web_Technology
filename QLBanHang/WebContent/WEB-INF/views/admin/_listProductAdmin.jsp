@@ -34,7 +34,7 @@
                         <tr>
                             <td>${fn:escapeXml(product.productID)}</td>
                             <td>${fn:escapeXml(product.name)}</td>
-                            <td><img src="${fn:escapeXml(product.image) }" alt="${fn:escapeXml(product.name)}" style="height: 100px;"></td>
+                            <td><img src="${product.image }" alt="${fn:escapeXml(product.name)}" style="height: 100px;"></td>
                             <td>
                                 <fmt:formatNumber type="number" maxFractionDigits="0" value="${product.price}" />đ
                             </td>

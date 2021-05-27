@@ -61,7 +61,7 @@
 <div class="info-container">
       <div class="img-product-container">
         <h2 class="product-name">${fn:escapeXml(product.name)}</h2>
-        <img src="${fn:escapeXml(product.image)}" alt="${fn:escapeXml(product.name)}">
+        <img src="${product.image}" alt="${fn:escapeXml(product.name)}">
       </div>
       <div class="detail-container">
         <h2 class="product-name">${fn:escapeXml(product.name)}</h2>
