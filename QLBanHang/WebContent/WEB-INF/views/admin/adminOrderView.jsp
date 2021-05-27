@@ -1,6 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<%@ taglib uri = "http://java.sun.com/jsp/jstl/functions" prefix = "fn" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -44,11 +47,11 @@
                         <tbody>
                         <c:forEach items="${listOrder}" var="order">
                             <tr>
-                                <td>${order.orderID}</td>
-                                <td>${order.fullName}</td>
-                                <td>${order.phoneNumber}</td>
-                                <td>${order.address}</td>
-                                <td>${order.totalMoney}</td>
+                                <td>${fn:escapeXml(order.orderID)}</td>
+                                <td>${fn:escapeXml(order.fullName)}</td>
+                                <td>${fn:escapeXml(order.phoneNumber)}</td>
+                                <td>${fn:escapeXml(order.address)}</td>
+                                <td><fmt:formatNumber type="number" maxFractionDigits="0" value="${order.totalMoney}" /> đ</td>
                                 <td>${order.userID}</td>
                                 <c:if test="${!order.isStatus()}"><td style="color: var(--warning-color);">Pending</td></c:if>
                                 <c:if test="${order.isStatus()}"><td style="color: var(--success-color);">Confirm</td></c:if>

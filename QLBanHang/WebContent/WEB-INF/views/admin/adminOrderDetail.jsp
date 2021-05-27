@@ -2,6 +2,8 @@
          pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib uri = "http://java.sun.com/jsp/jstl/functions" prefix = "fn" %>
+
 <!DOCTYPE html>
 <html>
 
@@ -31,9 +33,9 @@
         <p class="transaction-date">Ngày đặt hàng: ${order.createdDate}</p>
         <h5 class="transaction-info-title">ĐỊA CHỈ NGƯỜI NHẬN</h5>
         <div class="transaction-info-item">
-            <p id="receiver-name">${order.fullName.toUpperCase()}</p>
-            <p>Địa chỉ: ${order.address }<p>
-            <p>Điện thoại: ${order.phoneNumber}</p>
+            <p id="receiver-name">${fn:escapeXml(order.fullName.toUpperCase())}</p>
+            <p>Địa chỉ: ${fn:escapeXml(order.address) }<p>
+            <p>Điện thoại: ${fn:escapeXml(order.phoneNumber)}</p>
         </div>
         <h5 class="transaction-info-title">HÌNH THỨC THANH TOÁN</h5>
         <div class="transaction-info-item">

@@ -50,6 +50,8 @@
   pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib uri = "http://java.sun.com/jsp/jstl/functions" prefix = "fn" %>
+
 <jsp:include page="_header.jsp"></jsp:include>
 
 <head>
@@ -78,7 +80,7 @@
   <div class="sidebar-title-container">
     <i class="fas fa-user-circle"></i>
     <p class="sidebar-title">
-      Tài khoản của<br> <span id="user-name">${user.userName}</span>
+      Tài khoản của<br> <span id="user-name">${fn:escapeXml(user.userName)}</span>
     </p>
   </div>
   <!-- <p class="sidebar-title">Tài khoản của<br><span id="user-name">Phạm Trung Hiếu</span></p> -->
@@ -112,9 +114,9 @@
       
       <h5 class="transaction-info-title">ĐỊA CHỈ NGƯỜI NHẬN</h5>
       <div class="transaction-info-item">
-        <p id="receiver-name">${order.fullName}</p>
-        <p>Địa chỉ: ${order.address }<p>
-        <p>Điện thoại: ${order.phoneNumber}</p>
+        <p id="receiver-name">${fn:escapeXml(order.fullName)}</p>
+        <p>Địa chỉ: ${fn:escapeXml(order.address) }<p>
+        <p>Điện thoại: ${fn:escapeXml(order.phoneNumber)}</p>
       </div>
       
       <h5 class="transaction-info-title">HÌNH THỨC THANH TOÁN</h5>

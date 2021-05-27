@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
   pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri = "http://java.sun.com/jsp/jstl/functions" prefix = "fn" %>
 
 
 <%-- 	<jsp:include page="_header.jsp"></jsp:include> --%>
@@ -45,17 +46,17 @@
 
     <div class="content">
     
-    <c:if test="${param.searchValue != null}">
-      <p>Kết quả tìm kiếm <strong> "${param.searchValue}" </strong></p>
+    <c:if test="${fn:escapeXml(param.searchValue) != null}">
+      <p>Kết quả tìm kiếm <strong> "${fn:escapeXml(param.searchValue)}" </strong></p>
       
     </c:if>
     
-    <c:if test="${param.searchValue == null}">
+    <c:if test="${fn:escapeXml(param.searchValue) == null}">
       <h2 id="page-title">Sản phẩm</h2>
     </c:if>
     
     <c:choose>
-      <c:when test="${param.searchValue != null && listProduct.size() == 0}">
+      <c:when test="${fn:escapeXml(param.searchValue) != null && listProduct.size() == 0}">
         <div style="text-align: center">
           <p >Không tìm thấy sản phẩm phù hợp!</p>
           <img style="max-width: 60%" src="assets/image/search-empty.svg">

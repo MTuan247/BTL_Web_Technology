@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri = "http://java.sun.com/jsp/jstl/functions" prefix = "fn" %>
+
 <div class="card">
     <h3 class="card-header" style="margin: 0px">
         Update Product
@@ -9,11 +11,11 @@
         <table>
             <tr>
                 <td>Product's ID</td>
-                <td><input type="text" name="id" value="${product.productID}"></td>
+                <td><input type="text" name="id" value="${fn:escapeXml(product.productID)}"></td>
             </tr>
             <tr>
                 <td>Product's Name</td>
-                <td><input type="text" name="name" value="${product.name}"></td>
+                <td><input type="text" name="name" value="${fn:escapeXml(product.name)}"></td>
             </tr>
             <tr>
                 <td>Image</td>
@@ -21,20 +23,20 @@
             </tr>
             <tr>
                 <td>Description</td>
-                <td><input type="text" name="description" value="${product.description}"></td>
+                <td><input type="text" name="description" value="${fn:escapeXml(product.description)}"></td>
             </tr>
 
             <tr>
                 <td>Price</td>
-                <td><input type="text" name="price" value="${product.price}"></td>
+                <td><input type="text" name="price" value="${fn:escapeXml(product.price)}"></td>
             </tr>
             <tr>
                 <td>Sale</td>
-                <td><input type="text" name="sale" value="${product.sale}"></td>
+                <td><input type="text" name="sale" value="${fn:escapeXml(product.sale)}"></td>
             </tr>
             <tr>
                 <td>Available</td>
-                <td><input type="text" name="available" value="${product.available}"></td>
+                <td><input type="text" name="available" value="${fn:escapeXml(product.available)}"></td>
             </tr>
             <tr>
                 <td colspan="2">

@@ -2,6 +2,7 @@
          pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@page import="controller.admin.CreateUserServlet"%>
+<%@ taglib uri = "http://java.sun.com/jsp/jstl/functions" prefix = "fn" %>
 
 <%--<!DOCTYPE html>--%>
 <%--<html>--%>
@@ -55,15 +56,15 @@
         <table>
             <tr>
                 <td>User's ID</td>
-                <td><input type="text" name="id" value="${user.getUserID()}"></td>
+                <td><input type="text" name="id" value="${fn:escapeXml(user.getUserID())}"></td>
             </tr>
             <tr>
                 <td>User's Name</td>
-                <td><input type="text" name="name" value="${user.getName()}"></td>
+                <td><input type="text" name="name" value="${fn:escapeXml(user.getName())}"></td>
             </tr>
             <tr>
                 <td>Username</td>
-                <td><input type="text" name="username" value="${user.getUserName()}"></td>
+                <td><input type="text" name="username" value="${fn:escapeXml(user.getUserName())}"></td>
             </tr>
             <c:if test="${invalidUsername}">
                 <tr>
@@ -72,8 +73,9 @@
                     </td>
                 </tr>
             </c:if>
+            <tr>
                 <td>Password</td>
-                <td><input type="text" name="password" value="${user.getPassword()}"></td>
+                <td><input type="password" name="password" value="${user.getPassword()}"></td>
             </tr>
             <tr>
                 <td colspan="2">

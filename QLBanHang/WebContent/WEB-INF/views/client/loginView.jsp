@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
   pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 <head>
 <title>Đăng nhập | eShop</title>
@@ -82,7 +83,7 @@
         <input type="password" placeholder="Nhập mật khẩu" name="password" id="password" required> 
         <label><input type="checkbox" checked="checked" name="rememberMe">Lưu thông tin đăng nhập</label> 
         
-        <p style="color: red;">${errorString}</p>
+        <p style="color: red;"><c:out value="${errorString}"></c:out></p>
         
         
         <input type="submit" value="Đăng Nhập">

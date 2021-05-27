@@ -2,9 +2,10 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib uri = "http://java.sun.com/jsp/jstl/functions" prefix = "fn" %>
 
 <head>
-  <title>${product.name} | eShop</title>
+  <title>${fn:escapeXml(product.name)} | eShop</title>
   <meta charset="UTF-8">
   <meta name="viewport"
     content="width=device-width, height=device-height, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
@@ -59,11 +60,11 @@
 
 <div class="info-container">
       <div class="img-product-container">
-        <h2 class="product-name">${product.name}</h2>
-        <img src="${product.image}" alt="${product.name}">
+        <h2 class="product-name">${fn:escapeXml(product.name)}</h2>
+        <img src="${fn:escapeXml(product.image)}" alt="${fn:escapeXml(product.name)}">
       </div>
       <div class="detail-container">
-        <h2 class="product-name">${product.name}</h2>
+        <h2 class="product-name">${fn:escapeXml(product.name)}</h2>
         <div class="product-price">
           <p class="price-end"><fmt:formatNumber type="number" maxFractionDigits="0" value="${product.price*product.sale}" /> đ</p>
           <c:if test="${product.sale != 1}"> 
@@ -99,7 +100,7 @@
 
     <div class="description-container">
       <h3 class="description-title">Mô tả sản phẩm</h3>
-      <p class="description-p">${product.description}</p>
+      <p class="description-p">${fn:escapeXml(product.description)}</p>
     </div>
 
 

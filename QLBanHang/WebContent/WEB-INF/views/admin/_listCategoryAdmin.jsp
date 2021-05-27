@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri = "http://java.sun.com/jsp/jstl/functions" prefix = "fn" %>
+
 <div class="sidebar">
     <table class="sidebar-nav">
         <tr>
@@ -20,10 +22,10 @@
         </tr>
         <c:forEach items="${listCategory}" var="category">
             <tr class="sidebar-nav-item">
-                <td>${category.categoryID}</td>
+                <td>${fn:escapeXml(category.categoryID)}</td>
                 <td>
                     <a href="${pageContext.request.contextPath}/AdminCategory?categoryID=${category.categoryID }" class="sidebar-nav-link">
-                            ${category.name}
+                            ${fn:escapeXml(category.name)}
                     </a>
                 </td>
                 <td>

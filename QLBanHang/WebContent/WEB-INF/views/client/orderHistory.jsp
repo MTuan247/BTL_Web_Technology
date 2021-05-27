@@ -54,6 +54,7 @@
   pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib uri = "http://java.sun.com/jsp/jstl/functions" prefix = "fn" %>
 
 
 <head>
@@ -85,7 +86,7 @@
   <div class="sidebar-title-container">
     <i class="fas fa-user-circle"></i>
     <p class="sidebar-title">
-      Tài khoản của<br> <span id="user-name">${user.userName}</span>
+      Tài khoản của<br> <span id="user-name">${fn:escapeXml(user.userName)}</span>
     </p>
   </div>
   <!-- <p class="sidebar-title">Tài khoản của<br><span id="user-name">Phạm Trung Hiếu</span></p> -->
@@ -140,9 +141,9 @@
             <td class="table-row-link"
               data-link="${pageContext.request.contextPath}/OrderDetail?id=${order.orderID}">${order.orderID}</td>
             <td>${order.createdDate}</td>
-            <td>${order.fullName}</td>
-            <td>${order.phoneNumber}</td>
-            <td>${order.address}</td>
+            <td>${fn:escapeXml(order.fullName)}</td>
+            <td>${fn:escapeXml(order.phoneNumber)}</td>
+            <td>${fn:escapeXml(order.address)}</td>
             <td>
               <fmt:formatNumber type="number" maxFractionDigits="0" value="${order.totalMoney}" /> đ
             </td>

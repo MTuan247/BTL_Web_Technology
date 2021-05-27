@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri = "http://java.sun.com/jsp/jstl/functions" prefix = "fn" %>
+
     <table>
         <thead>
             <tr>
@@ -17,11 +19,11 @@
         <c:forEach items="${listUser}" var="user">
             <tbody>
                 <tr>
-                    <td>${user.userID}</td>
-                    <td>${user.userName}</td>
-                    <td>${user.getName()}</td>
-                    <td>${user.tel}</td>
-                    <td>${user.email}</td>
+                    <td>${fn:escapeXml(user.userID)}</td>
+                    <td>${fn:escapeXml(user.userName)}</td>
+                    <td>${fn:escapeXml(user.getName())}</td>
+                    <td>${fn:escapeXml(user.tel)}</td>
+                    <td>${fn:escapeXml(user.email)}</td>
                     <%-- <td><input type="password" value="${user.password}" disabled></td>
                     <td>
                         <form method="get" action="UpdateUser">

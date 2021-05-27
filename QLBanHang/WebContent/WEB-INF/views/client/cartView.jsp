@@ -2,7 +2,7 @@
   pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
-<%@ page import="java.util.List,Model.CartProduct"%>
+<%@ page import="java.util.List, model.CartProduct"%>
 
 <jsp:include page="_header.jsp"></jsp:include>
 

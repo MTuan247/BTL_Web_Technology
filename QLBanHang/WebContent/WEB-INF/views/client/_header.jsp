@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
  <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+ <%@ taglib uri = "http://java.sun.com/jsp/jstl/functions" prefix = "fn" %>
+ 
 <!-- <div style="background: #E0E0E0; height: 55px; padding: 5px;"> -->
 <!-- 	<div style="float: left"> -->
 <!-- 		<h1>My Site</h1> -->
@@ -77,7 +79,7 @@
             <ul id="user-menu" class="dropdown-menu">
             
             
-            <c:if test="${loginedUser.userName == null}">
+            <c:if test="${fn:escapeXml(loginedUser.userName) == null}">
               <li class="dropdown-menu-item">
                 <a href="${pageContext.request.contextPath}/Login" class="dropdown-menu-link">
                   <i class="fas fa-sign-in-alt"></i>
@@ -87,7 +89,7 @@
             </c:if>
             
             
-            <c:if test="${loginedUser.userName != null}">
+            <c:if test="${fn:escapeXml(loginedUser.userName) != null}">
               <li class="dropdown-menu-item">
                 <a href="${pageContext.request.contextPath}/UserInfo" class="dropdown-menu-link">
                   <i class="fas fa-user"></i>
@@ -132,7 +134,7 @@
             <a href="${pageContext.request.contextPath}/" class="navbar-link-column" title="Liên hệ">Liên hệ</a>
           </li>
           
-          <c:if test="${loginedUser.userName == null}">
+          <c:if test="${fn:escapeXml(loginedUser.userName) == null}">
             <li class="navbar-item-column">
               <a href="${pageContext.request.contextPath}/Login" class="navbar-link-column" title="Liên hệ">Đăng nhập/ Đăng ký</a>
             </li>

@@ -1,8 +1,9 @@
-
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib uri = "http://java.sun.com/jsp/jstl/functions" prefix = "fn" %>
+
 <div class="table-responsive-container">
     <table>
         <tr>
@@ -14,15 +15,15 @@
         </tr>
         <c:forEach items="${listProduct}" var="product">
             <tr>
-                <td>${product.name}</td>
-                <td><img src="${product.image }" alt="${product.name}" style="height: 100px;"></td>
+                <td>${fn:escapeXml(product.name)}</td>
+                <td><img src="${fn:escapeXml(product.image)}" alt="${fn:escapeXml(product.name)}" style="height: 100px;"></td>
                 <td>
                     <fmt:formatNumber type="number" maxFractionDigits="0" value="${product.price}" />đ
                 </td>
                 <td>
                     <fmt:formatNumber type="percent" value="${1 - product.sale}" />
                 </td>
-                <td>${product.num }</td>
+                <td>${fn:escapeXml(product.num) }</td>
             </tr>
         </c:forEach>
     </table>

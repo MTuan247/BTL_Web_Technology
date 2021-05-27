@@ -2,6 +2,8 @@
          pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib uri = "http://java.sun.com/jsp/jstl/functions" prefix = "fn" %>
+
 <div class="col-12 col-m-12 col-sm-12">
     <div class="card">
         <div class="card-header">
@@ -30,17 +32,17 @@
                 <tbody>
                     <c:forEach items="${listProduct}" var="product">
                         <tr>
-                            <td>${product.productID}</td>
-                            <td>${product.name}</td>
-                            <td><img src="${product.image }" alt="${product.name}" style="height: 100px;"></td>
+                            <td>${fn:escapeXml(product.productID)}</td>
+                            <td>${fn:escapeXml(product.name)}</td>
+                            <td><img src="${fn:escapeXml(product.image) }" alt="${fn:escapeXml(product.name)}" style="height: 100px;"></td>
                             <td>
                                 <fmt:formatNumber type="number" maxFractionDigits="0" value="${product.price}" />đ
                             </td>
                             <td>
                                 <fmt:formatNumber type="percent" value="${1 - product.sale}" />
                             </td>
-                            <td>${product.description }</td>
-                            <td>${product.available }</td>
+                            <td>${fn:escapeXml(product.description) }</td>
+                            <td>${fn:escapeXml(product.available) }</td>
                             <td>
                                 <form method="get" action="UpdateProduct">
                                     <input type="hidden" name="id" value="${product.productID}" />

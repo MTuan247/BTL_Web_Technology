@@ -2,6 +2,8 @@
   pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib uri = "http://java.sun.com/jsp/jstl/functions" prefix = "fn" %>
+
 <head>
 <meta charset="UTF-8">
 </head>
@@ -41,14 +43,14 @@
 <!-- </table> -->
 <c:forEach items="${listProduct}" var="product">
   <div class="flex-item product-item" data-link="Product?productID=${product.productID}">
-    <img src="${product.image}" alt="${product.name}" loading="lazy"> 
+    <img src="${fn:escapeXml(product.image)}" alt="${fn:escapeXml(product.name)}" loading="lazy"> 
     
     <c:if test="${product.sale != 1}">
       <span class="product-discount-tag">-<fmt:formatNumber type="percent" value="${1 - product.sale}" /></span>
     </c:if>
     
     <p class="product-name">
-      <span>${product.name}</span>
+      <span>${fn:escapeXml(product.name)}</span>
     </p>
     
     <span class="product-price-after">

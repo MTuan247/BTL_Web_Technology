@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri = "http://java.sun.com/jsp/jstl/functions" prefix = "fn" %>
+
 <head>
   <title>Thông tin tài khoản | eShop</title>
   <meta charset="UTF-8">
@@ -21,7 +23,7 @@
 <div class="sidebar">
       <div class="sidebar-title-container">
         <i class="fas fa-user-circle"></i>
-        <p class="sidebar-title">Tài khoản của<br><span id="user-name">${user.userName}</span></p>
+        <p class="sidebar-title">Tài khoản của<br><span id="user-name">${fn:escapeXml(user.userName)}</span></p>
       </div>
       <!-- <p class="sidebar-title">Tài khoản của<br><span id="user-name">Phạm Trung Hiếu</span></p> -->
       <ul class="sidebar-menu">
@@ -50,17 +52,17 @@
       <form method="post" action="UserInfo">
         <div class="form-item">
           <label for="name">Họ tên</label>
-          <input type="text" name="name" value="${loginedUser.name}">
+          <input type="text" name="name" value="${fn:escapeXml(loginedUser.name)}">
         </div>
 
         <div class="form-item">
           <label for="tel">Số điện thoại</label>
-          <input type="tel" name="tel" value="${loginedUser.tel}">
+          <input type="tel" name="tel" value="${fn:escapeXml(loginedUser.tel)}">
         </div>
 
         <div class="form-item">
           <label for="email">Email</label>
-          <input type="email" name="email" value="${loginedUser.email}">
+          <input type="email" name="email" value="${fn:escapeXml(loginedUser.email)}">
         </div>
 
         <!-- <div class="form-item">
@@ -93,7 +95,7 @@
           <input type="password" name="new-password-retype" placeholder="Nhập lại mật khẩu mới">
         </div>
 
-        <p style="color: red;">${errorString}</p>
+        <p style="color: red;">${fn:escapeXml(errorString)}</p>
         
         <div class="form-item">
           <input type="submit" name="update-password" value="Cập nhật">
