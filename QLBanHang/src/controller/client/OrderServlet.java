@@ -20,7 +20,12 @@ import java.util.List;
 @WebServlet("/Order")
 public class OrderServlet extends CartServlet {
 
-    @Override
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	@Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         Connection conn = MyUtils.getStoredConnection(request);
 
@@ -85,7 +90,7 @@ public class OrderServlet extends CartServlet {
 //        request.setAttribute("order",order);
 //        request.setAttribute("listProduct",listProduct);
         request.setAttribute("numberOfCartProduct", 0);
-        RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher("//WEB-INF/views/orderSuccess.jsp");
+        RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher("//WEB-INF/views/client/orderSuccess.jsp");
         dispatcher.forward(request, response);
 
         CleanCart(conn, request);
