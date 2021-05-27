@@ -96,7 +96,10 @@
             </tr>
             <tr class="form-item">
               <td><label for="tel">Số điện thoại</label></td>
-              <td><input type="tel" name="phone_number" value="" required></td>
+              <td>
+              <input type="tel" name="phone_number" value="" 
+              pattern="[0-9]{10}" title="Số điện thoại dài 10 chữ số" required>
+              </td>
             </tr>
             <tr class="form-item">
               <td><label for="province">Tỉnh/Thành phố</label></td>

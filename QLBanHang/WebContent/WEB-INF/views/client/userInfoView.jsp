@@ -57,7 +57,9 @@
 
         <div class="form-item">
           <label for="tel">Số điện thoại</label>
-          <input type="tel" name="tel" value="${fn:escapeXml(loginedUser.tel)}">
+          <input type="tel" name="tel" value="${fn:escapeXml(loginedUser.tel)}"
+          pattern="[0-9]{10}"
+          title="Số điện thoại dài 10 chữ số" >
         </div>
 
         <div class="form-item">
